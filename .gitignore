@@ -33,3 +33,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# program
+.anchor
+.DS_Store
+target
+**/*.rs.bk
+test-ledger
+.yarn
