@@ -9,14 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bundlr-network/client": "^0.11.17",
+    "@coral-xyz/anchor": "0.26.0",
+    "@solana/web3.js": "1.78.4",
     "@types/node": "20.6.2",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@coral-xyz/anchor": "0.26.0",
-    "@solana/web3.js": "1.78.4",
     "assert": "*",
-    "bn.js": "*",
     "autoprefixer": "10.4.15",
+    "bn.js": "*",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
