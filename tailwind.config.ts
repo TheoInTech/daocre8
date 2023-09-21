@@ -17,6 +17,10 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ["var(--font-gordita)"],
+        body: ["var(--font-montserrat)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
