@@ -5,10 +5,12 @@ import { useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 // raise
 import { Agreement } from "@/app/raise/Agreement";
-import { useFormState } from "@/app/raise/FormContext";
-// types
+import { BasicDetails } from "@/app/raise/BasicDetails";
 import { Category } from "@/app/raise/Category";
-import { EStep, IFormData } from "@/lib/types/raise.type";
+import { useFormState } from "@/app/raise/FormContext";
+import { Summary } from "@/app/raise/Summary";
+// types
+import { EStep, IFormData } from "@/lib/schema/basic-details.schema";
 
 const RaisePage = () => {
   const { step, setStep, setFormData, formData } = useFormState();
@@ -30,6 +32,10 @@ const RaisePage = () => {
   switch (step) {
     case EStep.CATEGORY:
       return <Category />;
+    case EStep.SUMMARY:
+      return <Summary />;
+    case EStep.BASIC_DETAILS:
+      return <BasicDetails />;
     case EStep.AGREEMENT:
     default:
       return <Agreement />;

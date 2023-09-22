@@ -2,75 +2,81 @@
 
 import { useFormState } from "@/app/raise/FormContext";
 import { Button } from "@/components/ui/button";
-import { EStep } from "@/lib/types/raise.type";
-
-type FormButtonsVariant = "none" | "both" | "submit-only";
-interface IFormButtons {
-  variant?: FormButtonsVariant;
-  onBack?: () => void;
-  onSubmit?: () => void;
-  backText?: string;
-  submitText?: string;
-  isLoading?: boolean;
-  isSubmitDisabled?: boolean;
-}
+import { MultistepProgress } from "@/components/ui/multistep-progress";
+import { EStep } from "@/lib/schema/basic-details.schema";
+import { useRouter } from "next/navigation";
 
 export const FormButtons = ({
-  variant = "both",
-  onBack,
+  disabled = false,
   onSubmit,
-  backText = "Back",
-  submitText = "Next",
-  isSubmitDisabled = false,
-}: IFormButtons) => {
-  const { handleBack, setStep } = useFormState();
+}: {
+  disabled?: boolean;
+  onSubmit: () => void;
+}) => {
+  const { setStep, step, completion } = useFormState();
+  const router = useRouter();
 
-  const handleBackClick = () => {
-    if (onBack) {
-      onBack();
-    } else {
-      handleBack();
-    }
-  };
-
-  const handleSubmitClick = () => {
-    if (onSubmit) {
-      onSubmit();
+  const handleBack = () => {
+    if (step === EStep.AGREEMENT) {
+      router.push("/");
+    } else if (step === EStep.CATEGORY) {
+      setStep(EStep.AGREEMENT);
+    } else if (step === EStep.SUMMARY) {
+      setStep(EStep.CATEGORY);
     } else {
       setStep(EStep.SUMMARY);
     }
   };
 
-  switch (variant) {
-    case "none":
-      return <></>;
-    case "submit-only":
-      return (
-        <div className="flex items-center justify-center w-full gap-2 my-4 sm:gap-4">
-          <Button
-            onClick={handleSubmitClick}
-            type="submit"
-            disabled={isSubmitDisabled}
-          >
-            {submitText}
+  let render;
+
+  switch (step) {
+    case EStep.AGREEMENT:
+    case EStep.CATEGORY:
+      render = (
+        <>
+          <Button onClick={handleBack} variant={"outline"}>
+            Back
           </Button>
-        </div>
+          <Button onClick={onSubmit} disabled={disabled}>
+            {step === EStep.AGREEMENT && "Agree"}
+            {step === EStep.CATEGORY && "Next"}
+          </Button>
+        </>
       );
-    case "both":
+      break;
+    case EStep.BASIC_DETAILS:
+    case EStep.MILESTONES:
+    case EStep.REWARDS:
+    case EStep.STORY:
+    case EStep.TEAM:
+      render = (
+        <>
+          <Button onClick={handleBack} variant={"outline"}>
+            Back
+          </Button>
+          <Button onClick={onSubmit} type="submit" disabled={disabled}>
+            Save
+          </Button>
+        </>
+      );
+      break;
+    case EStep.SUMMARY:
     default:
-      return (
-        <div className="flex items-center justify-center w-full my-4 gap-x-4">
-          <Button onClick={handleBackClick} variant={"outline"}>
-            {backText}
-          </Button>
-          <Button
-            onClick={handleSubmitClick}
-            type="submit"
-            disabled={isSubmitDisabled}
-          >
-            {submitText}
-          </Button>
-        </div>
+      render = (
+        <Button onClick={handleBack} variant={"outline"}>
+          Back
+        </Button>
       );
   }
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 px-8 md:px-16 py-4 border border-t-border flex justify-between w-full gap-4 md:gap-8 z-50 backdrop-blur-sm bg-white bg-opacity-40 shadow-2xl">
+      <MultistepProgress
+        currentStep={Object.values(completion).filter(Boolean).length}
+        totalSteps={Object.keys(completion).length}
+      />
+      {render}
+    </div>
+  );
 };

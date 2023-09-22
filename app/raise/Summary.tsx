@@ -1,17 +1,52 @@
 import { FormButtons } from "@/app/raise/FormButtons";
+import { useFormState } from "@/app/raise/FormContext";
+import { SummaryTitle } from "@/app/raise/SummaryTitle";
+import { Button } from "@/components/ui/button";
+import { EStep } from "@/lib/schema/basic-details.schema";
+import { TCompletion } from "@/lib/types/raise.type";
+import { cn } from "@/lib/utils";
+import { CheckCircle, ChevronRight } from "lucide-react";
+
+const summaryButtons = [
+  { label: "1 | Basic Details", step: EStep.BASIC_DETAILS },
+  { label: "2 | Rewards", step: EStep.REWARDS },
+  { label: "3 | The Team", step: EStep.TEAM },
+  { label: "4 | Project Story", step: EStep.STORY },
+  { label: "5 | Funding & Milestones", step: EStep.MILESTONES },
+];
 
 export const Summary = () => {
+  const { setStep, completion } = useFormState();
+
   return (
-    <>
-      <h4 className="font-semibold text-4xl">Reminders before we begin:</h4>
-      <ul className="my-8 ml-8 list-disc [&>li]:mt-8 text-2xl">
-        <li>Project&apos;s rewards must be awesome</li>
-        <li>Projects should be transparent</li>
-        <li>Project should not offer investment returns</li>
-        <li>Projects should not offer equity</li>
-        <li>Projects cant&apos;t raise funds of charity</li>
-      </ul>
-      <FormButtons variant="both" backText="Cancel" submitText="Agree" />
-    </>
+    <div className="flex flex-col gap-4 items-center h-full flex-grow">
+      <SummaryTitle />
+      <div className="flex flex-col gap-4 w-full">
+        {summaryButtons.map(({ label, step }) => (
+          <div
+            key={label}
+            className="flex items-center justify-between w-full gap-4"
+          >
+            <Button
+              variant={"secondary"}
+              onClick={() => setStep(step)}
+              className="w-full flex justify-between p-4"
+            >
+              {label}
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+            <CheckCircle
+              className={cn(
+                "w-12 h-12",
+                completion[step as keyof TCompletion]
+                  ? "text-success"
+                  : "text-gray-300"
+              )}
+            />
+          </div>
+        ))}
+      </div>
+      <FormButtons onSubmit={() => {}} />
+    </div>
   );
 };

@@ -109,7 +109,7 @@ export default function RootLayout({
       <body className={`${montserrat.variable} ${gordita.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <Navbar />
-          <main className="flex min-h-screen flex-col py-32 md:py-40 px-8 md:px-24">
+          <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24">
             {children}
           </main>
         </ThemeProvider>

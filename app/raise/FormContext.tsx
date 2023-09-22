@@ -3,12 +3,8 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import {
-  ECurrency,
-  EStep,
-  IFormContext,
-  IFormData,
-} from "@/lib/types/raise.type";
+import { ECurrency, EStep, IFormData } from "@/lib/schema/basic-details.schema";
+import { IFormContext } from "@/lib/types/raise.type";
 
 export const formDataDefaults: IFormData = {
   category: null,
@@ -17,8 +13,8 @@ export const formDataDefaults: IFormData = {
   imageUrl: "",
   pitchDeckUrl: "",
   videoUrl: "",
-  launchDate: new Date(),
-  fundraiseEndDate: new Date(),
+  launchDate: "",
+  fundraiseEndDate: "",
   fundingTiers: [],
   teamProfileUrls: [],
   projectStory: null,
@@ -31,7 +27,16 @@ export const formDataDefaults: IFormData = {
 };
 
 const FormContext = createContext<IFormContext>({
-  handleBack: () => {},
+  completion: {
+    [EStep.AGREEMENT]: false,
+    [EStep.CATEGORY]: false,
+    [EStep.BASIC_DETAILS]: false,
+    [EStep.REWARDS]: false,
+    [EStep.TEAM]: false,
+    [EStep.STORY]: false,
+    [EStep.MILESTONES]: false,
+  },
+  setCompletion: () => {},
   step: 1,
   setStep: () => {},
   formData: formDataDefaults,
@@ -45,15 +50,21 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
 
   const [formData, setFormData] = useState<IFormData>({ ...formDataDefaults });
   const [pageLoadingMessage, setPageLoadingMessage] = useState<string>("");
-
-  const handleBack = () => {
-    setStep(EStep.SUMMARY);
-  };
+  const [completion, setCompletion] = useState({
+    [EStep.AGREEMENT]: false,
+    [EStep.CATEGORY]: false,
+    [EStep.BASIC_DETAILS]: false,
+    [EStep.REWARDS]: false,
+    [EStep.TEAM]: false,
+    [EStep.STORY]: false,
+    [EStep.MILESTONES]: false,
+  });
 
   return (
     <FormContext.Provider
       value={{
-        handleBack,
+        completion,
+        setCompletion,
         step,
         setStep,
         formData,
