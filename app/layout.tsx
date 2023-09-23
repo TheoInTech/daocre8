@@ -55,48 +55,48 @@ export const metadata: Metadata = {
   },
   description: meta.description,
   keywords: meta.keywords,
-  openGraph: {
-    title: meta.longName,
-    description: meta.description,
-    url: process.env.NEXT_PUBLIC_HOST_URL,
-    siteName: meta.longName,
-    locale: "en-US",
-    type: "website",
-    images: [
-      {
-        url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
-        width: 2560,
-        height: 1440,
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  twitter: {
-    title: meta.longName,
-    card: "summary_large_image",
-    description: meta.description,
-    creator: "@_theindiehacker",
-    images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-  },
+  // openGraph: {
+  //   title: meta.longName,
+  //   description: meta.description,
+  //   url: process.env.NEXT_PUBLIC_HOST_URL,
+  //   siteName: meta.longName,
+  //   locale: "en-US",
+  //   type: "website",
+  //   images: [
+  //     {
+  //       url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
+  //       width: 2560,
+  //       height: 1440,
+  //     },
+  //   ],
+  // },
+  // robots: {
+  //   index: true,
+  //   follow: true,
+  //   googleBot: {
+  //     index: true,
+  //     follow: true,
+  //     "max-video-preview": -1,
+  //     "max-image-preview": "large",
+  //     "max-snippet": -1,
+  //   },
+  // },
+  // twitter: {
+  //   title: meta.longName,
+  //   card: "summary_large_image",
+  //   description: meta.description,
+  //   creator: "@_theindiehacker",
+  //   images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
+  // },
+  // viewport: {
+  //   width: "device-width",
+  //   initialScale: 1,
+  //   maximumScale: 1,
+  // },
+  // icons: {
+  //   icon: "/favicon.png",
+  //   apple: "/favicon.png",
+  // },
 };
 
 export default function RootLayout({
