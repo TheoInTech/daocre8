@@ -174,7 +174,7 @@ export const Team = () => {
               name="pastProjectUrl"
               render={({ field }) => (
                 <FormItem className="col-start-1">
-                  <FormLabel>Past Project URL</FormLabel>
+                  <FormLabel isOptional>Past Project URL</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="https://<your-project.com>"

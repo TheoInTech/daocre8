@@ -61,16 +61,12 @@ export const TeamSchema = z
   })
   .refine(
     (data) => {
-      if (data.undoxxed === false) {
-        // Check if any of the fields are empty when undoxxed is false
-        return data.name && data.about && data.linkedinUrl && data.xUrl;
-      }
-      return true; // If undoxxed is true, no additional validation is needed.
+      return data.undoxxed ||
+        (data.name && data.about && data.linkedinUrl && data.xUrl)
+        ? true
+        : false;
     },
-    {
-      message: "Some fields are required when undoxxed is false.",
-      path: [], // This will display the error at the root of the object.
-    }
+    { message: "Please fill in all required fields.", path: [] }
   );
 
 export const ProjectStorySchema = z.object({
@@ -99,7 +95,9 @@ export const BasicDetailsSchema = z
         message: "Launch Date can't be previous date",
       })
       .refine((val) => val !== "", { message: "Launch Date is required" }),
-    fundingAmount: z.number().min(1, "Funding amount must be greater than 0"),
+    fundingAmount: z.coerce
+      .number()
+      .min(1, "Funding amount must be greater than 0"),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
