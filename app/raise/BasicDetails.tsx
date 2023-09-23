@@ -144,7 +144,11 @@ export const BasicDetails = () => {
               <FormItem>
                 <FormLabel>Project Video</FormLabel>
                 <FormControl>
-                  <Input type="file" {...field} />
+                  <Input
+                    type="file"
+                    {...field}
+                    value={field.value === null ? "" : field.value}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
