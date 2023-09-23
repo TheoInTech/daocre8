@@ -5,10 +5,10 @@ export type TCompletion = Record<
   | EStep.AGREEMENT
   | EStep.CATEGORY
   | EStep.BASIC_DETAILS
-  | EStep.REWARDS
   | EStep.TEAM
   | EStep.STORY
-  | EStep.MILESTONES,
+  | EStep.MILESTONES
+  | EStep.REWARDS,
   boolean
 >;
 export interface IFormContext {

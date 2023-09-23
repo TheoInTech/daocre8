@@ -18,9 +18,6 @@ export const MultistepProgress = ({
     const finalResult = result >= 100 ? 100 : result;
 
     setWidth(finalResult);
-
-    console.log("currentStep", currentStep);
-    console.log("totalSteps", totalSteps);
   }, [currentStep, totalSteps]);
 
   return (

@@ -7,7 +7,7 @@ export const SummaryTitle = () => {
   return (
     <>
       <h4 className="font-semibold text-4xl">
-        {formData.name || "Your Project DAO"}
+        {formData.basicDetails.name || "Your Project DAO"}
       </h4>
       <h5 className="text-2xl">
         <span className="font-semibold capitalize">

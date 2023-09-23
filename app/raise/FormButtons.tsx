@@ -4,6 +4,7 @@ import { useFormState } from "@/app/raise/FormContext";
 import { Button } from "@/components/ui/button";
 import { MultistepProgress } from "@/components/ui/multistep-progress";
 import { EStep } from "@/lib/schema/basic-details.schema";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const FormButtons = ({
@@ -36,11 +37,13 @@ export const FormButtons = ({
       render = (
         <>
           <Button onClick={handleBack} variant={"outline"}>
+            <ChevronLeft className="w-4 h-4 mr-4" />
             Back
           </Button>
           <Button onClick={onSubmit} disabled={disabled}>
             {step === EStep.AGREEMENT && "Agree"}
             {step === EStep.CATEGORY && "Next"}
+            <ChevronRight className="w-4 h-4 ml-4" />
           </Button>
         </>
       );
@@ -53,10 +56,11 @@ export const FormButtons = ({
       render = (
         <>
           <Button onClick={handleBack} variant={"outline"}>
-            Back
+            <ChevronLeft className="w-4 h-4 mr-4" /> Back
           </Button>
           <Button onClick={onSubmit} type="submit" disabled={disabled}>
             Save
+            <ChevronRight className="w-4 h-4 ml-4" />
           </Button>
         </>
       );
@@ -65,7 +69,7 @@ export const FormButtons = ({
     default:
       render = (
         <Button onClick={handleBack} variant={"outline"}>
-          Back
+          <ChevronLeft className="w-4 h-4 mr-4" /> Back
         </Button>
       );
   }

@@ -9,19 +9,19 @@ import { CheckCircle, ChevronRight } from "lucide-react";
 
 const summaryButtons = [
   { label: "1 | Basic Details", step: EStep.BASIC_DETAILS },
-  { label: "2 | Rewards", step: EStep.REWARDS },
-  { label: "3 | The Team", step: EStep.TEAM },
-  { label: "4 | Project Story", step: EStep.STORY },
-  { label: "5 | Funding & Milestones", step: EStep.MILESTONES },
+  { label: "2 | The Team", step: EStep.TEAM },
+  { label: "3 | Project Story", step: EStep.STORY },
+  { label: "4 | Funding & Milestones", step: EStep.MILESTONES },
+  { label: "5 | Rewards", step: EStep.REWARDS },
 ];
 
 export const Summary = () => {
   const { setStep, completion } = useFormState();
 
   return (
-    <div className="flex flex-col gap-4 items-center h-full flex-grow">
+    <div className="flex flex-col gap-4 items-start justify-center h-full flex-grow w-full">
       <SummaryTitle />
-      <div className="flex flex-col gap-4 w-full">
+      <div className="grid grid-rows-5 md:grid-rows-3 grid-flow-col gap-4 w-full">
         {summaryButtons.map(({ label, step }) => (
           <div
             key={label}

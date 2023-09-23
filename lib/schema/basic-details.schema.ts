@@ -6,10 +6,10 @@ export enum EStep {
   CATEGORY,
   SUMMARY,
   BASIC_DETAILS,
-  REWARDS,
   TEAM,
   STORY,
   MILESTONES,
+  REWARDS,
   FINAL,
 }
 
@@ -48,16 +48,30 @@ export const FundingTierSchema = z.object({
   imageUrl: z.string(),
 });
 
-export const TeamSchema = z.object({
-  doxxed: z.boolean(),
-  name: z.string(),
-  about: z.string(),
-  linkedinUrl: z.string(),
-  githubUrl: z.string(),
-  xUrl: z.string(),
-  pastProjectUrl: z.string(),
-  othersProfiles: z.array(z.string()),
-});
+export const TeamSchema = z
+  .object({
+    undoxxed: z.boolean(),
+    name: z.string().optional(),
+    about: z.string().optional(),
+    linkedinUrl: z.string().optional(),
+    githubUrl: z.string().optional(),
+    xUrl: z.string().optional(),
+    pastProjectUrl: z.string().optional(),
+    teamProfileUrls: z.array(z.string()).optional(),
+  })
+  .refine(
+    (data) => {
+      if (data.undoxxed === false) {
+        // Check if any of the fields are empty when undoxxed is false
+        return data.name && data.about && data.linkedinUrl && data.xUrl;
+      }
+      return true; // If undoxxed is true, no additional validation is needed.
+    },
+    {
+      message: "Some fields are required when undoxxed is false.",
+      path: [], // This will display the error at the root of the object.
+    }
+  );
 
 export const ProjectStorySchema = z.object({
   imagesUrl: z.array(z.string()),
@@ -72,36 +86,36 @@ export const MilestoneSchema = z.object({
 
 export const BasicDetailsSchema = z
   .object({
-    name: z.string(),
-    location: z.union([z.nativeEnum(ELocation), z.literal(null)]),
-    imageUrl: z.string(),
-    pitchDeckUrl: z.string(),
+    name: z.string().nonempty("Project name is required"),
+    location: z
+      .union([z.nativeEnum(ELocation), z.literal(null)])
+      .refine((val) => val !== null, { message: "Location is required" }),
+    imageUrl: z.string().nonempty("Project image is required"),
+    pitchDeckUrl: z.string().nonempty("Pitch deck is required"),
     videoUrl: z.string().optional().nullable(),
-    launchDate: z.string().refine((val) => !isPreviousDate(val), {
-      message: "Launch Date can't be previous date",
-    }),
-    fundraiseEndDate: z.string().refine((val) => !isPreviousDate(val), {
-      message: "Fundraise End Date can't be previous date",
-    }),
+    launchDate: z
+      .string()
+      .refine((val) => !isPreviousDate(val), {
+        message: "Launch Date can't be previous date",
+      })
+      .refine((val) => val !== "", { message: "Launch Date is required" }),
+    fundraiseEndDate: z
+      .string()
+      .refine((val) => !isPreviousDate(val), {
+        message: "Fundraise End Date can't be previous date",
+      })
+      .refine((val) => val !== "", {
+        message: "Fundraise End Date is required",
+      }),
   })
   .required();
 
 export const FormDataSchema = z
   .object({
     category: z.union([z.nativeEnum(ECategory), z.literal(null)]),
-    name: z.string(),
-    location: z.union([z.nativeEnum(ELocation), z.literal(null)]),
-    imageUrl: z.string(),
-    pitchDeckUrl: z.string(),
-    videoUrl: z.string().optional().nullable(),
-    launchDate: z.string().refine((val) => !isPreviousDate(val), {
-      message: "Launch Date can't be previous date",
-    }),
-    fundraiseEndDate: z.string().refine((val) => !isPreviousDate(val), {
-      message: "Fundraise End Date can't be previous date",
-    }),
+    basicDetails: BasicDetailsSchema,
+    team: TeamSchema,
     fundingTiers: z.array(FundingTierSchema),
-    teamProfileUrls: z.array(z.string()),
     projectStory: z.union([ProjectStorySchema, z.literal(null)]),
     walletAddress: z.string(),
     walletIsConfirmed: z.boolean(),

@@ -43,6 +43,7 @@ export const BasicDetails = () => {
   // form
   const form = useForm<IBasicDetails>({
     resolver: zodResolver(BasicDetailsSchema),
+    defaultValues: formData.basicDetails,
   });
   const locationOptions = Object.entries(ELocation);
 
@@ -52,6 +53,8 @@ export const BasicDetails = () => {
       ...formData,
       ...values,
     });
+
+    console.log("values", values);
 
     setCompletion({ ...completion, [EStep.BASIC_DETAILS]: true });
     setStep(EStep.SUMMARY);
