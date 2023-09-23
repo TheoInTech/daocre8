@@ -99,6 +99,7 @@ export const BasicDetailsSchema = z
         message: "Launch Date can't be previous date",
       })
       .refine((val) => val !== "", { message: "Launch Date is required" }),
+    fundingAmount: z.number().min(1, "Funding amount must be greater than 0"),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
@@ -120,7 +121,6 @@ export const FormDataSchema = z
     walletAddress: z.string(),
     walletIsConfirmed: z.boolean(),
     acceptedCurrency: z.nativeEnum(ECurrency),
-    fundingAmount: z.number(),
     capitalPercentage: z.number(),
     milestones: z.array(MilestoneSchema),
   })

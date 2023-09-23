@@ -51,7 +51,7 @@ export const BasicDetails = () => {
   const handleSubmit = (values: IBasicDetails) => {
     setFormData({
       ...formData,
-      ...values,
+      basicDetails: values,
     });
 
     console.log("values", values);
@@ -142,7 +142,7 @@ export const BasicDetails = () => {
             name="videoUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Project Video</FormLabel>
+                <FormLabel isOptional>Project Video</FormLabel>
                 <FormControl>
                   <Input
                     type="file"
@@ -189,6 +189,21 @@ export const BasicDetails = () => {
                     />
                   </PopoverContent>
                 </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Fund Raise Amount */}
+          <FormField
+            control={form.control}
+            name="fundingAmount"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Fund Raise Amount</FormLabel>
+                <FormControl>
+                  <Input placeholder="$1000" type="number" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

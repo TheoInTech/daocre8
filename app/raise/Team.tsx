@@ -31,7 +31,7 @@ export const Team = () => {
   const handleSubmit = (values: ITeam) => {
     setFormData({
       ...formData,
-      ...values,
+      team: values,
     });
 
     console.log("values", values);
@@ -78,7 +78,12 @@ export const Team = () => {
                 <FormItem className="col-start-1">
                   <FormLabel>Your name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" autoFocus {...field} />
+                    <Input
+                      placeholder="John Doe"
+                      autoFocus
+                      disabled={form.getValues("undoxxed")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,6 +102,7 @@ export const Team = () => {
                       placeholder="I'm an entrepreneur who has..."
                       className="resize-none h-[12rem]"
                       maxLength={500}
+                      disabled={form.getValues("undoxxed")}
                       {...field}
                     />
                   </FormControl>
@@ -115,6 +121,7 @@ export const Team = () => {
                   <FormControl>
                     <Input
                       placeholder="https://www.linkedin.com/in/<your-profile>"
+                      disabled={form.getValues("undoxxed")}
                       {...field}
                     />
                   </FormControl>
@@ -133,6 +140,7 @@ export const Team = () => {
                   <FormControl>
                     <Input
                       placeholder="https://github.com/<your-profile>"
+                      disabled={form.getValues("undoxxed")}
                       {...field}
                     />
                   </FormControl>
@@ -151,6 +159,7 @@ export const Team = () => {
                   <FormControl>
                     <Input
                       placeholder="https://x.com/<your-profile>"
+                      disabled={form.getValues("undoxxed")}
                       {...field}
                     />
                   </FormControl>
@@ -169,6 +178,7 @@ export const Team = () => {
                   <FormControl>
                     <Input
                       placeholder="https://<your-project.com>"
+                      disabled={form.getValues("undoxxed")}
                       {...field}
                     />
                   </FormControl>

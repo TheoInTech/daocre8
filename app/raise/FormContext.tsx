@@ -15,6 +15,7 @@ export const formDataDefaults: IFormData = {
     pitchDeckUrl: "",
     videoUrl: "",
     launchDate: "",
+    fundingAmount: 0,
     fundraiseEndDate: "",
   },
   team: {
@@ -32,7 +33,6 @@ export const formDataDefaults: IFormData = {
   walletAddress: "",
   walletIsConfirmed: false,
   acceptedCurrency: ECurrency.SOL,
-  fundingAmount: 0,
   capitalPercentage: 0,
   milestones: [],
 };
