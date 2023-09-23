@@ -48,7 +48,7 @@ const gordita = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
+  // metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
   title: {
     default: meta.longName,
     template: `%s | ${meta.longName}`,
