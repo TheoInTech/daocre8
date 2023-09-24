@@ -1,4 +1,4 @@
-import { EStep, IFormData } from "@/lib/schema/basic-details.schema";
+import { EStep, IFormData } from "@/lib/schema/raise.schema";
 import { Dispatch, SetStateAction } from "react";
 
 export type TCompletion = Record<

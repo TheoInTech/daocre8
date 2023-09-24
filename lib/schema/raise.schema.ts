@@ -42,16 +42,47 @@ export enum ECurrency {
   USD = "USD",
 }
 
-export const FundingTierSchema = z.array(
-  z
-    .object({
-      name: z.string().nonempty("Tier name is required"),
-      amountInUsd: z.coerce.number().min(1, "Amount must be greater than 0"),
-      description: z.string().nonempty("Tier description is required"),
-      imageUrl: z.string().nonempty("Tier image is required"),
-    })
-    .required()
-);
+const MAX_FILE_SIZE = 500000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+
+export const ImageSchema = z
+  .any()
+  .refine((files) => files?.length == 1, "Image is required.")
+  .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+  .refine(
+    (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+    ".jpg, .jpeg, .png and .webp files are accepted."
+  );
+
+export const ImageSchemaOptional = z
+  .any()
+  .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+  .refine(
+    (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+    ".jpg, .jpeg, .png and .webp files are accepted."
+  );
+
+export const FundingTierSchema = z
+  .object({
+    name: z.string().nonempty("Tier name is required"),
+    amountInUsd: z.coerce.number().min(1, "Amount must be greater than 0"),
+    description: z
+      .string()
+      .nonempty("Tier description is required")
+      .max(250, "Tier description must be less than 200 characters"),
+    imageUrl: ImageSchema,
+  })
+  .required();
+
+// just used for the form page
+export const FundingTierSchemaArray = z
+  .object({ fundingTiers: z.array(FundingTierSchema) })
+  .required();
 
 export const TeamSchema = z
   .object({
@@ -94,9 +125,9 @@ export const BasicDetailsSchema = z
     location: z
       .union([z.nativeEnum(ELocation), z.literal(null)])
       .refine((val) => val !== null, { message: "Location is required" }),
-    imageUrl: z.string().nonempty("Project image is required"),
-    pitchDeckUrl: z.string().nonempty("Pitch deck is required"),
-    videoUrl: z.string().optional().nullable(),
+    imageUrl: ImageSchema,
+    pitchDeckUrl: ImageSchema,
+    videoUrl: ImageSchemaOptional.optional(),
     launchDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
@@ -117,23 +148,22 @@ export const BasicDetailsSchema = z
   })
   .required();
 
-export const FormDataSchema = z
-  .object({
-    category: z.union([z.nativeEnum(ECategory), z.literal(null)]),
-    basicDetails: BasicDetailsSchema,
-    team: TeamSchema,
-    fundingTiers: FundingTierSchema,
-    projectStory: z.union([ProjectStorySchema, z.literal(null)]),
-    walletAddress: z.string(),
-    walletIsConfirmed: z.boolean(),
-    acceptedCurrency: z.nativeEnum(ECurrency),
-    capitalPercentage: z.number(),
-    milestones: z.array(MilestoneSchema),
-  })
-  .required();
+export const FormDataSchema = z.object({
+  category: z.union([z.nativeEnum(ECategory), z.literal(null)]),
+  basicDetails: BasicDetailsSchema,
+  team: TeamSchema,
+  fundingTiers: z.array(FundingTierSchema),
+  projectStory: z.union([ProjectStorySchema, z.literal(null)]),
+  walletAddress: z.string(),
+  walletIsConfirmed: z.boolean(),
+  acceptedCurrency: z.nativeEnum(ECurrency),
+  capitalPercentage: z.number(),
+  milestones: z.array(MilestoneSchema),
+});
 
 // Infer the types from Zod schemas
 export type IFundingTier = z.infer<typeof FundingTierSchema>;
+export type IFundingTierArray = z.infer<typeof FundingTierSchemaArray>;
 export type ITeam = z.infer<typeof TeamSchema>;
 export type IProjectStory = z.infer<typeof ProjectStorySchema>;
 export type IMilestone = z.infer<typeof MilestoneSchema>;

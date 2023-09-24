@@ -8,7 +8,7 @@ import {
   EStep,
   IFormData,
   IFundingTier,
-} from "@/lib/schema/basic-details.schema";
+} from "@/lib/schema/raise.schema";
 import { IFormContext } from "@/lib/types/raise.type";
 
 export const formDataDefaults: IFormData = {
@@ -40,7 +40,7 @@ export const formDataDefaults: IFormData = {
       description: "",
       imageUrl: "",
     },
-  ] as IFundingTier,
+  ] as Array<IFundingTier>,
   projectStory: null,
   walletAddress: "",
   walletIsConfirmed: false,

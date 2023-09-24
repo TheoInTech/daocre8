@@ -3,7 +3,7 @@
 import { useFormState } from "@/app/raise/FormContext";
 import { Button } from "@/components/ui/button";
 import { MultistepProgress } from "@/components/ui/multistep-progress";
-import { EStep } from "@/lib/schema/basic-details.schema";
+import { EStep } from "@/lib/schema/raise.schema";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +12,7 @@ export const FormButtons = ({
   onSubmit,
 }: {
   disabled?: boolean;
-  onSubmit: () => void;
+  onSubmit: any;
 }) => {
   const { setStep, step, completion } = useFormState();
   const router = useRouter();
