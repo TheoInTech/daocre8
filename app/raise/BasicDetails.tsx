@@ -24,6 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import {
   BasicDetailsSchema,
   ELocation,
@@ -34,11 +36,13 @@ import { cn } from "@/lib/utils/cn";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 
 export const BasicDetails = () => {
   const { setFormData, formData, setStep, setCompletion, completion } =
     useFormState();
+  const { toast } = useToast();
 
   // form
   const form = useForm<IBasicDetails>({
@@ -60,11 +64,36 @@ export const BasicDetails = () => {
     setStep(EStep.SUMMARY);
   };
 
+  const handleSelectFile = (
+    e: ChangeEvent<HTMLInputElement>,
+    key: "imageUrl" | "videoUrl" | "pdfUrl"
+  ) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+
+    const file = e.target.files[0];
+    console.log("file", file);
+
+    try {
+      form.setValue(key, file);
+
+      console.log("form", form.getValues(key));
+    } catch (error: any) {
+      console.error("Error selecting media: ", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error?.message || error || "Error selecting media",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 h-full flex-grow w-full">
       <SummaryTitle />
       <Form {...form}>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
           {/* Project name */}
           <FormField
             control={form.control}
@@ -106,6 +135,26 @@ export const BasicDetails = () => {
             )}
           />
 
+          {/* Inspiration */}
+          <FormField
+            control={form.control}
+            name="inspiration"
+            render={({ field }) => (
+              <FormItem className="col-span-1 md:col-span-2">
+                <FormLabel>Inspiration behind the project</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="This project is my inspiration because..."
+                    className="resize-none"
+                    maxLength={250}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {/* Project Image */}
           <FormField
             control={form.control}
@@ -114,7 +163,13 @@ export const BasicDetails = () => {
               <FormItem>
                 <FormLabel>Project Image</FormLabel>
                 <FormControl>
-                  <Input type="file" {...field} />
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleSelectFile(e, "imageUrl")
+                    }
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -124,12 +179,18 @@ export const BasicDetails = () => {
           {/* Pitch Deck */}
           <FormField
             control={form.control}
-            name="pitchDeckUrl"
+            name="pdfUrl"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Pitch Deck</FormLabel>
                 <FormControl>
-                  <Input type="file" {...field} />
+                  <Input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleSelectFile(e, "pdfUrl")
+                    }
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,8 +207,10 @@ export const BasicDetails = () => {
                 <FormControl>
                   <Input
                     type="file"
-                    {...field}
-                    value={field.value === null ? "" : field.value}
+                    accept="video/*"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      handleSelectFile(e, "videoUrl")
+                    }
                   />
                 </FormControl>
                 <FormMessage />

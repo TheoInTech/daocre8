@@ -52,21 +52,24 @@ const ACCEPTED_IMAGE_TYPES = [
 
 export const ImageSchema = z
   .any()
-  .refine((files) => files?.length == 1, "Image is required.")
-  .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+  .refine((file) => file !== undefined, "Image is required.")
+  .refine((file) => file?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
   .refine(
-    (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+    (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
     ".jpg, .jpeg, .png and .webp files are accepted."
   );
 
 export const ImageSchemaOptional = z
   .any()
-  .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+  .optional()
   .refine(
-    (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-    ".jpg, .jpeg, .png and .webp files are accepted."
+    (file) => file === undefined || file.size <= MAX_FILE_SIZE,
+    `Max file size is 5MB.`
   )
-  .optional();
+  .refine(
+    (file) => file === undefined || ACCEPTED_IMAGE_TYPES.includes(file.type),
+    ".jpg, .jpeg, .png and .webp files are accepted."
+  );
 
 const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB in bytes
 const ACCEPTED_VIDEO_TYPES = [
@@ -79,25 +82,44 @@ const ACCEPTED_VIDEO_TYPES = [
 
 export const VideoSchema = z
   .any()
-  .refine((files) => files?.length === 1, "Video is required.")
+  .refine((file) => file !== undefined, "Video is required.")
+  .refine((files) => files?.size <= MAX_VIDEO_SIZE, `Max file size is 100MB.`)
   .refine(
-    (files) => files?.[0]?.size <= MAX_VIDEO_SIZE,
-    `Max file size is 100MB.`
-  )
-  .refine(
-    (files) => ACCEPTED_VIDEO_TYPES.includes(files?.[0]?.type),
+    (file) => ACCEPTED_VIDEO_TYPES.includes(file?.type),
     ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
   );
 
 export const VideoSchemaOptional = z
   .any()
+  .refine((file) => file?.size <= MAX_VIDEO_SIZE, `Max file size is 100MB.`)
   .refine(
-    (files) => files?.[0]?.size <= MAX_VIDEO_SIZE,
-    `Max file size is 100MB.`
+    (file) => ACCEPTED_VIDEO_TYPES.includes(file?.type),
+    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
+  )
+  .nullable()
+  .optional();
+
+const MAX_PDF_SIZE = 10 * 1024 * 1024; // 10 MB in bytes
+const ACCEPTED_PDF_TYPE = ["application/pdf"];
+
+export const PDFSchema = z
+  .any()
+  .refine((file) => file !== undefined, "PDF is required.")
+  .refine((file) => file?.size <= MAX_PDF_SIZE, `Max file size is 10MB.`)
+  .refine(
+    (file) => ACCEPTED_PDF_TYPE.includes(file?.type),
+    ".pdf files are accepted."
+  );
+
+export const PDFSchemaOptional = z
+  .any()
+  .refine(
+    (file) => file === undefined || file?.size <= MAX_PDF_SIZE,
+    `Max file size is 10MB.`
   )
   .refine(
-    (files) => ACCEPTED_VIDEO_TYPES.includes(files?.[0]?.type),
-    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
+    (file) => file === undefined || ACCEPTED_PDF_TYPE.includes(file?.type),
+    ".pdf files are accepted."
   )
   .optional();
 
@@ -160,8 +182,9 @@ export const BasicDetailsSchema = z
       .union([z.nativeEnum(ELocation), z.literal(null)])
       .refine((val) => val !== null, { message: "Location is required" }),
     imageUrl: ImageSchema,
-    pitchDeckUrl: ImageSchema,
-    videoUrl: ImageSchemaOptional.optional(),
+    pdfUrl: PDFSchema,
+    videoUrl: VideoSchemaOptional.optional(),
+    inspiration: z.string().nonempty("Please tell us more about your story."),
     launchDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
@@ -187,7 +210,7 @@ export const FormDataSchema = z.object({
   basicDetails: BasicDetailsSchema,
   team: TeamSchema,
   fundingTiers: z.array(FundingTierSchema),
-  projectStory: ProjectStorySchema,
+  // projectStory: ProjectStorySchema,
   walletAddress: z.string(),
   walletIsConfirmed: z.boolean(),
   acceptedCurrency: z.nativeEnum(ECurrency),

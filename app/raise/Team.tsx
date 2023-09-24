@@ -44,7 +44,7 @@ export const Team = () => {
     <div className="flex flex-col gap-4 h-full flex-grow w-full">
       <SummaryTitle />
       <Form {...form}>
-        <form className="fle flex-col gap-8">
+        <form className="fle flex-col gap-8 py-4">
           {/* Undoxxed */}
           <FormField
             control={form.control}

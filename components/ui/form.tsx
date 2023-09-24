@@ -97,12 +97,7 @@ const FormLabel = React.forwardRef<
   const { error, formItemId } = useFormField();
 
   return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-destructive", className)}
-      htmlFor={formItemId}
-      {...props}
-    >
+    <Label ref={ref} className={cn(className)} htmlFor={formItemId} {...props}>
       {children}
       {isOptional ? (
         <span className="italic ml-1 text-gray-400">(optional)</span>

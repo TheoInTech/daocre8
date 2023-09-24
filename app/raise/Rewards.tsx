@@ -82,7 +82,7 @@ export const Rewards = () => {
       <SummaryTitle />
       <Form {...form}>
         <form>
-          <div className="fle flex-col mt-4 space-y-8 h-full">
+          <div className="fle flex-col py-4 space-y-8 h-full">
             {fields.map((field, index) => {
               return (
                 <div

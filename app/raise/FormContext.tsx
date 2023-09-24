@@ -16,8 +16,9 @@ export const formDataDefaults: IFormData = {
   basicDetails: {
     name: "",
     location: null,
+    inspiration: "",
     imageUrl: "",
-    pitchDeckUrl: "",
+    pdfUrl: "",
     videoUrl: "",
     launchDate: "",
     fundingAmount: 0,
@@ -41,11 +42,11 @@ export const formDataDefaults: IFormData = {
       imageUrl: "",
     },
   ] as Array<IFundingTier>,
-  projectStory: {
-    imageUrl: "",
-    videoUrl: "",
-    inspiration: "",
-  },
+  // projectStory: {
+  //   imageUrl: "",
+  //   videoUrl: "",
+  //   inspiration: "",
+  // },
   walletAddress: "",
   walletIsConfirmed: false,
   acceptedCurrency: ECurrency.SOL,
@@ -60,7 +61,7 @@ const FormContext = createContext<IFormContext>({
     [EStep.BASIC_DETAILS]: false,
     [EStep.REWARDS]: false,
     [EStep.TEAM]: false,
-    [EStep.STORY]: false,
+    // [EStep.STORY]: false,
     [EStep.MILESTONES]: false,
   },
   setCompletion: () => {},
@@ -83,7 +84,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     [EStep.BASIC_DETAILS]: false,
     [EStep.REWARDS]: false,
     [EStep.TEAM]: false,
-    [EStep.STORY]: false,
+    // [EStep.STORY]: false,
     [EStep.MILESTONES]: false,
   });
 

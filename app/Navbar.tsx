@@ -23,7 +23,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="fixed flex left-0 top-0 right-0 px-4 md:px-20 text-lg py-4 bg-black bg-opacity-20 items-center justify-between z-50 backdrop-blur-sm shadow-md">
+    <div className="fixed flex left-0 top-0 right-0 px-4 md:px-20 text-lg py-4 bg-black bg-opacity-40 items-center justify-between z-50 backdrop-blur-sm shadow-md">
       <Link href="/" passHref className="hover:bg-muted/20 p-4 rounded-lg">
         <LogoIcon className="h-8 w-auto" />
       </Link>
