@@ -1,11 +1,13 @@
 import "@/app/globals.css";
 import meta from "@/lib/metadata.json";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 // components
 import { Navbar } from "@/app/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const montserrat = localFont({
   src: [
@@ -111,6 +113,8 @@ export default function RootLayout({
           <Navbar />
           <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24">
             {children}
+            <Toaster />
+            <Analytics />
           </main>
         </ThemeProvider>
       </body>
