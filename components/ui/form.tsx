@@ -104,8 +104,10 @@ const FormLabel = React.forwardRef<
       {...props}
     >
       {children}
-      {isOptional && (
-        <span className="italic ml-2 text-gray-400">(optional)</span>
+      {isOptional ? (
+        <span className="italic ml-1 text-gray-400">(optional)</span>
+      ) : (
+        <span className="text-destructive">*</span>
       )}
     </Label>
   );
