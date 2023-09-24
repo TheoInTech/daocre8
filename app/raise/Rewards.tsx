@@ -53,7 +53,6 @@ export const Rewards = () => {
     setStep(EStep.SUMMARY);
   };
 
-  // handleSelectImage
   const handleSelectFile = (
     e: ChangeEvent<HTMLInputElement>,
     index: number,
@@ -161,17 +160,17 @@ export const Rewards = () => {
                             <Input
                               type="file"
                               accept="image/*"
-                              {...field}
+                              //   {...field}
                               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 handleSelectFile(e, index, "imageUrl")
                               }
                             />
                           </FormControl>
                           <FormMessage>
-                            {/* {
+                            {
                               form?.formState?.errors?.fundingTiers?.[index]
-                                ?.imageUrl?.message
-                            } */}
+                                ?.imageUrl?.message as string
+                            }
                           </FormMessage>
                         </FormItem>
                       )}
@@ -216,6 +215,7 @@ export const Rewards = () => {
                   imageUrl: "",
                 });
               }}
+              size={"sm"}
             >
               <Plus className="mr-2" /> Add New Tier
             </Button>
