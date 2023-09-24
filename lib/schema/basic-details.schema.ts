@@ -6,10 +6,10 @@ export enum EStep {
   CATEGORY,
   SUMMARY,
   BASIC_DETAILS,
+  REWARDS,
   TEAM,
   STORY,
   MILESTONES,
-  REWARDS,
   FINAL,
 }
 
@@ -42,11 +42,16 @@ export enum ECurrency {
   USD = "USD",
 }
 
-export const FundingTierSchema = z.object({
-  amountInUsd: z.number(),
-  description: z.string(),
-  imageUrl: z.string(),
-});
+export const FundingTierSchema = z.array(
+  z
+    .object({
+      name: z.string().nonempty("Tier name is required"),
+      amountInUsd: z.coerce.number().min(1, "Amount must be greater than 0"),
+      description: z.string().nonempty("Tier description is required"),
+      imageUrl: z.string().nonempty("Tier image is required"),
+    })
+    .required()
+);
 
 export const TeamSchema = z
   .object({
@@ -66,7 +71,10 @@ export const TeamSchema = z
         ? true
         : false;
     },
-    { message: "Please fill in all required fields.", path: [] }
+    {
+      message: "Please fill in all required fields if you want to be doxxed",
+      path: ["undoxxed"],
+    }
   );
 
 export const ProjectStorySchema = z.object({
@@ -92,19 +100,19 @@ export const BasicDetailsSchema = z
     launchDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
-        message: "Launch Date can't be previous date",
+        message: "Launch date can't be previous date",
       })
-      .refine((val) => val !== "", { message: "Launch Date is required" }),
+      .refine((val) => val !== "", { message: "Launch date is required" }),
     fundingAmount: z.coerce
       .number()
       .min(1, "Funding amount must be greater than 0"),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
-        message: "Fundraise End Date can't be previous date",
+        message: "Fundraise's end date can't be previous date",
       })
       .refine((val) => val !== "", {
-        message: "Fundraise End Date is required",
+        message: "Fundraise's end date is required",
       }),
   })
   .required();
@@ -114,7 +122,7 @@ export const FormDataSchema = z
     category: z.union([z.nativeEnum(ECategory), z.literal(null)]),
     basicDetails: BasicDetailsSchema,
     team: TeamSchema,
-    fundingTiers: z.array(FundingTierSchema),
+    fundingTiers: FundingTierSchema,
     projectStory: z.union([ProjectStorySchema, z.literal(null)]),
     walletAddress: z.string(),
     walletIsConfirmed: z.boolean(),

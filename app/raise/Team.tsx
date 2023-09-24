@@ -63,19 +63,19 @@ export const Team = () => {
                     By choosing to remain anonymous, certain funders may look
                     past your project
                   </FormDescription>
+                  <FormMessage />
                 </div>
-                <FormMessage />
               </FormItem>
             )}
           />
 
-          <div className="grid grid-rows-5 grid-cols-1 md:grid-cols-2 grid-flow-col my-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 grid-flow-row md:grid-flow-col my-4 gap-8">
             {/* Founder's name */}
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
-                <FormItem className="col-start-1">
+                <FormItem className="md:col-start-1">
                   <FormLabel>Your name</FormLabel>
                   <FormControl>
                     <Input
@@ -95,7 +95,7 @@ export const Team = () => {
               control={form.control}
               name="about"
               render={({ field }) => (
-                <FormItem className="row-span-5 col-start-2">
+                <FormItem className="row-start-2 md:row-span-5 md:col-start-2">
                   <FormLabel>About yourself</FormLabel>
                   <FormControl>
                     <Textarea
@@ -116,7 +116,7 @@ export const Team = () => {
               control={form.control}
               name="linkedinUrl"
               render={({ field }) => (
-                <FormItem className="col-start-1">
+                <FormItem className="md:col-start-1">
                   <FormLabel>LinkedIn profile</FormLabel>
                   <FormControl>
                     <Input
@@ -135,7 +135,7 @@ export const Team = () => {
               control={form.control}
               name="githubUrl"
               render={({ field }) => (
-                <FormItem className="col-start-1">
+                <FormItem className="md:col-start-1">
                   <FormLabel isOptional>Github profile</FormLabel>
                   <FormControl>
                     <Input
@@ -154,7 +154,7 @@ export const Team = () => {
               control={form.control}
               name="xUrl"
               render={({ field }) => (
-                <FormItem className="col-start-1">
+                <FormItem className="md:col-start-1">
                   <FormLabel>X profile</FormLabel>
                   <FormControl>
                     <Input
@@ -173,7 +173,7 @@ export const Team = () => {
               control={form.control}
               name="pastProjectUrl"
               render={({ field }) => (
-                <FormItem className="col-start-1">
+                <FormItem className="md:col-start-1">
                   <FormLabel isOptional>Past Project URL</FormLabel>
                   <FormControl>
                     <Input

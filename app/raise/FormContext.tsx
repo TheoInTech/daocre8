@@ -3,7 +3,12 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ECurrency, EStep, IFormData } from "@/lib/schema/basic-details.schema";
+import {
+  ECurrency,
+  EStep,
+  IFormData,
+  IFundingTier,
+} from "@/lib/schema/basic-details.schema";
 import { IFormContext } from "@/lib/types/raise.type";
 
 export const formDataDefaults: IFormData = {
@@ -28,7 +33,14 @@ export const formDataDefaults: IFormData = {
     pastProjectUrl: "",
     teamProfileUrls: [],
   },
-  fundingTiers: [],
+  fundingTiers: [
+    {
+      name: "",
+      amountInUsd: 0,
+      description: "",
+      imageUrl: "",
+    },
+  ] as IFundingTier,
   projectStory: null,
   walletAddress: "",
   walletIsConfirmed: false,
