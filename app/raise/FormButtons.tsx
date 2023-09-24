@@ -75,7 +75,7 @@ export const FormButtons = ({
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 px-8 md:px-16 py-4 border border-t-border flex justify-between w-full gap-4 md:gap-8 z-50 backdrop-blur-sm bg-white bg-opacity-40 shadow-2xl">
+    <div className="fixed bottom-0 left-0 right-0 px-8 md:px-16 py-4 border border-t-border flex justify-between w-full gap-4 md:gap-8 z-50 backdrop-blur-sm bg-black bg-opacity-20 shadow-2xl">
       <MultistepProgress
         currentStep={Object.values(completion).filter(Boolean).length}
         totalSteps={Object.keys(completion).length}

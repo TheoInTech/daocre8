@@ -41,7 +41,11 @@ export const formDataDefaults: IFormData = {
       imageUrl: "",
     },
   ] as Array<IFundingTier>,
-  projectStory: null,
+  projectStory: {
+    imageUrl: "",
+    videoUrl: "",
+    inspiration: "",
+  },
   walletAddress: "",
   walletIsConfirmed: false,
   acceptedCurrency: ECurrency.SOL,

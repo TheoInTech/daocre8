@@ -1,4 +1,4 @@
-import { isPreviousDate } from "@/lib/utils";
+import { isPreviousDate } from "@/lib/utils/isPreviousDate";
 import { z } from "zod";
 
 export enum EStep {
@@ -65,7 +65,41 @@ export const ImageSchemaOptional = z
   .refine(
     (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
     ".jpg, .jpeg, .png and .webp files are accepted."
+  )
+  .optional();
+
+const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB in bytes
+const ACCEPTED_VIDEO_TYPES = [
+  "video/mp4",
+  "video/mov",
+  "video/avi",
+  "video/mkv",
+  "video/webm",
+];
+
+export const VideoSchema = z
+  .any()
+  .refine((files) => files?.length === 1, "Video is required.")
+  .refine(
+    (files) => files?.[0]?.size <= MAX_VIDEO_SIZE,
+    `Max file size is 100MB.`
+  )
+  .refine(
+    (files) => ACCEPTED_VIDEO_TYPES.includes(files?.[0]?.type),
+    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
   );
+
+export const VideoSchemaOptional = z
+  .any()
+  .refine(
+    (files) => files?.[0]?.size <= MAX_VIDEO_SIZE,
+    `Max file size is 100MB.`
+  )
+  .refine(
+    (files) => ACCEPTED_VIDEO_TYPES.includes(files?.[0]?.type),
+    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
+  )
+  .optional();
 
 export const FundingTierSchema = z
   .object({
@@ -109,9 +143,9 @@ export const TeamSchema = z
   );
 
 export const ProjectStorySchema = z.object({
-  imagesUrl: z.array(z.string()),
-  videosUrl: z.array(z.string()),
-  inspiration: z.string(),
+  imageUrl: ImageSchema,
+  videoUrl: VideoSchemaOptional,
+  inspiration: z.string().nonempty("Please tell us more about your story."),
 });
 
 export const MilestoneSchema = z.object({
@@ -153,7 +187,7 @@ export const FormDataSchema = z.object({
   basicDetails: BasicDetailsSchema,
   team: TeamSchema,
   fundingTiers: z.array(FundingTierSchema),
-  projectStory: z.union([ProjectStorySchema, z.literal(null)]),
+  projectStory: ProjectStorySchema,
   walletAddress: z.string(),
   walletIsConfirmed: z.boolean(),
   acceptedCurrency: z.nativeEnum(ECurrency),
