@@ -12,7 +12,7 @@ import { Rewards } from "@/app/raise/Rewards";
 import { Summary } from "@/app/raise/Summary";
 import { Team } from "@/app/raise/Team";
 // types
-import { EStep, IFormData } from "@/lib/schema/basic-details.schema";
+import { EStep, IFormData } from "@/lib/schema/raise.schema";
 
 const RaisePage = () => {
   const {

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { EStep, ITeam, TeamSchema } from "@/lib/schema/basic-details.schema";
+import { EStep, ITeam, TeamSchema } from "@/lib/schema/raise.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 

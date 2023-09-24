@@ -1,6 +1,6 @@
 import { FormButtons } from "@/app/raise/FormButtons";
 import { useFormState } from "@/app/raise/FormContext";
-import { EStep } from "@/lib/schema/basic-details.schema";
+import { EStep } from "@/lib/schema/raise.schema";
 
 export const Agreement = () => {
   const { setStep, completion, setCompletion } = useFormState();

@@ -2,7 +2,7 @@ import { FormButtons } from "@/app/raise/FormButtons";
 import { useFormState } from "@/app/raise/FormContext";
 import { SummaryTitle } from "@/app/raise/SummaryTitle";
 import { Button } from "@/components/ui/button";
-import { EStep } from "@/lib/schema/basic-details.schema";
+import { EStep } from "@/lib/schema/raise.schema";
 import { TCompletion } from "@/lib/types/raise.type";
 import { cn } from "@/lib/utils";
 import { CheckCircle, ChevronRight } from "lucide-react";

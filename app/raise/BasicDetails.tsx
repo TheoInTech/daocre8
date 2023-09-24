@@ -29,7 +29,7 @@ import {
   ELocation,
   EStep,
   IBasicDetails,
-} from "@/lib/schema/basic-details.schema";
+} from "@/lib/schema/raise.schema";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";

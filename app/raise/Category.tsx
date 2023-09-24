@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ECategory, EStep } from "@/lib/schema/basic-details.schema";
+import { ECategory, EStep } from "@/lib/schema/raise.schema";
 import { useState } from "react";
 
 export const Category = () => {
