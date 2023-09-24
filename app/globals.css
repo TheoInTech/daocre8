@@ -13,28 +13,28 @@
     --popover: 0 0% 90%;
     --popover-foreground: 0 0% 20%;
 
-    --primary: 215 100% 34%;
-    --primary-foreground: 0 0% 90%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 20%;
 
-    --secondary: 218 91% 60%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 0 0% 20%;
 
     --muted: 0 0% 90%;
     --muted-foreground: 0 0% 20%;
 
-    --accent: 51 100% 50%;
+    --accent: 60 100% 50%;
     --accent-foreground: 0 0% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 90%;
 
-    --border: 0 0% 80%;
+    --border: 0 0% 30%;
     --input: 214.3 31.8% 91.4%;
     --ring: 0 0% 20%;
 
     --radius: 0.5rem;
 
-    --success: 121 39% 58%;
+    --success: 120 100% 50%;
     --info: 177 60% 69%;
     --warning: 26 80% 63%;
   }
@@ -74,14 +74,24 @@
   }
 }
 
+@layer components {
+  .primary-gradient {
+    @apply bg-gradient-to-br from-primary/70 to-secondary;
+  }
+  .primary-gradient-2 {
+    @apply bg-gradient-to-r from-primary/70 to-secondary;
+  }
+  .secondary-gradient {
+    @apply bg-gradient-to-br from-[#130b1f] via-[#411950] to-[#660166];
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    @apply font-body;
-    @apply h-full;
+    @apply secondary-gradient text-muted h-full font-body;
   }
 
   h1,
@@ -124,14 +134,14 @@ html {
 
 /* Scrollbar handle (the moving part) */
 ::-webkit-scrollbar-thumb {
-  background-color: hsl(0 0% 20%); /* Gray color */
+  background-color: hsl(180 100% 50%); /* Gray color */
   border-radius: 4px; /* Slightly rounded corners */
 }
 
 /* Hide scrollbar for Firefox */
 body {
   scrollbar-width: thin; /* Make it thin */
-  scrollbar-color: hsl(0 0% 20%) transparent; /* Thumb gray and track transparent */
+  scrollbar-color: hsl(180 100% 50%) transparent; /* Thumb gray and track transparent */
 }
 
 /* Hide scrollbar for Internet Explorer and Edge */
