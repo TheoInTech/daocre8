@@ -15,7 +15,7 @@ export const Agreement = () => {
       <h4 className="font-semibold text-4xl text-center md:text-left">
         Reminders before we begin:
       </h4>
-      <ul className="my-8 ml-8 md:ml-20 list-disc [&>li]:mt-8 text-2xl">
+      <ul className="my-8 ml-8 md:ml-20 list-disc [&>li]:mt-8 text-xl md:text-2xl">
         <li>Project&apos;s rewards must be awesome</li>
         <li>Projects should be transparent</li>
         <li>Project should not offer investment returns</li>

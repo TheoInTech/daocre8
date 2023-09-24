@@ -200,9 +200,9 @@ export const BasicDetails = () => {
             name="fundingAmount"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Fund Raise Amount</FormLabel>
+                <FormLabel>Fund Raise Amount (USD)</FormLabel>
                 <FormControl>
-                  <Input placeholder="$1000" type="number" {...field} />
+                  <Input placeholder="1000" type="number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

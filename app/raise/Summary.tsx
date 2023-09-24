@@ -9,10 +9,10 @@ import { CheckCircle, ChevronRight } from "lucide-react";
 
 const summaryButtons = [
   { label: "1 | Basic Details", step: EStep.BASIC_DETAILS },
-  { label: "2 | The Team", step: EStep.TEAM },
-  { label: "3 | Project Story", step: EStep.STORY },
-  { label: "4 | Funding & Milestones", step: EStep.MILESTONES },
-  { label: "5 | Rewards", step: EStep.REWARDS },
+  { label: "2 | Rewards", step: EStep.REWARDS },
+  { label: "3 | The Team", step: EStep.TEAM },
+  { label: "4 | Project Story", step: EStep.STORY },
+  { label: "5 | Funding & Milestones", step: EStep.MILESTONES },
 ];
 
 export const Summary = () => {
