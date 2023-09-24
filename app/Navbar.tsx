@@ -44,7 +44,7 @@ export const Navbar = () => {
         </div>
 
         <div
-          className={`fixed flex flex-col top-24 items-end gap-8 left-0 w-full p-8 bg-black/95 z-40 transition-transform duration-300 ease-in-out transform ${
+          className={`fixed flex flex-col top-24 items-end md:items-center p-8 md:p-0 gap-8 left-0 w-full bg-black/95 z-40 transition-transform duration-300 ease-in-out transform ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           } md:static md:w-auto md:bg-transparent md:flex-row md:gap-16 md:transform-none`}
         >
