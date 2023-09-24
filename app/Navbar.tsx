@@ -4,6 +4,7 @@ import { useState } from "react";
 // next
 import Link from "next/link";
 // components
+import { ConnectWallet } from "@/app/ConnectWallet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LogoIcon from "@/public/logo.svg";
 import { Menu } from "lucide-react";
@@ -50,7 +51,8 @@ export const Navbar = () => {
         ))}
       </div>
 
-      <div className="flex gap-16 justify-end items-center">
+      <div className="flex relative gap-8 justify-end items-center h-full">
+        <ConnectWallet />
         <Avatar className="h-14 w-14">
           {/* TODO: Change to actual avatar or NFT */}
           <AvatarImage src="/" alt="8" />

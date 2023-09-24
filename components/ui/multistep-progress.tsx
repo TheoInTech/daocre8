@@ -14,7 +14,7 @@ export const MultistepProgress = ({
 
   useEffect(() => {
     const progress = Math.ceil((100 / totalSteps) * currentStep);
-    const result = Math.max(totalSteps, Math.floor(progress / totalSteps) * 10);
+    const result = Math.max(10, Math.floor(progress / 10) * 10);
     const finalResult = result >= 100 ? 100 : result;
 
     setWidth(finalResult);
