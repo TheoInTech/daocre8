@@ -1,5 +1,10 @@
 import { FormProvider } from "@/app/raise/FormContext";
+import type { Metadata } from "next";
 import { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Raise",
+};
 
 const RaiseLayout = ({ children }: { children: ReactNode }) => {
   return (
