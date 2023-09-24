@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 // components
 import { Navbar } from "@/app/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Particles } from "@/components/ui/particles";
 import { Toaster } from "@/components/ui/toaster";
 
 const montserrat = localFont({
@@ -50,55 +51,55 @@ const gordita = localFont({
 });
 
 export const metadata: Metadata = {
-  // metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
   title: {
     default: meta.longName,
     template: `%s | ${meta.longName}`,
   },
   description: meta.description,
   keywords: meta.keywords,
-  // openGraph: {
-  //   title: meta.longName,
-  //   description: meta.description,
-  //   url: process.env.NEXT_PUBLIC_HOST_URL,
-  //   siteName: meta.longName,
-  //   locale: "en-US",
-  //   type: "website",
-  //   images: [
-  //     {
-  //       url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
-  //       width: 2560,
-  //       height: 1440,
-  //     },
-  //   ],
-  // },
-  // robots: {
-  //   index: true,
-  //   follow: true,
-  //   googleBot: {
-  //     index: true,
-  //     follow: true,
-  //     "max-video-preview": -1,
-  //     "max-image-preview": "large",
-  //     "max-snippet": -1,
-  //   },
-  // },
-  // twitter: {
-  //   title: meta.longName,
-  //   card: "summary_large_image",
-  //   description: meta.description,
-  //   creator: "@_theindiehacker",
-  //   images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
-  // },
-  // viewport: {
-  //   width: "device-width",
-  //   initialScale: 1,
-  //   maximumScale: 1,
-  // },
-  // icons: {
-  //   icon: "/favicon.png",
-  //   apple: "/favicon.png",
-  // },
+  openGraph: {
+    title: meta.longName,
+    description: meta.description,
+    url: process.env.NEXT_PUBLIC_HOST_URL,
+    siteName: meta.longName,
+    locale: "en-US",
+    type: "website",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
+        width: 2560,
+        height: 1440,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: meta.longName,
+    card: "summary_large_image",
+    description: meta.description,
+    creator: "@_theindiehacker",
+    images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  icons: {
+    icon: "/logo-icon.svg",
+    apple: "/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -112,6 +113,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <Navbar />
           <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24">
+            <Particles />
+
             {children}
             <Toaster />
             <Analytics />
