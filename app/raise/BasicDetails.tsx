@@ -30,7 +30,7 @@ import {
   EStep,
   IBasicDetails,
 } from "@/lib/schema/raise.schema";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -167,10 +167,7 @@ export const BasicDetails = () => {
                     <FormControl>
                       <Button
                         variant={"calendar"}
-                        className={cn(
-                          "p-4",
-                          !field.value && "text-muted-foreground"
-                        )}
+                        className={cn("p-4", !field.value && "text-muted")}
                       >
                         {field.value
                           ? format(new Date(field.value), "PPP")
@@ -221,10 +218,7 @@ export const BasicDetails = () => {
                     <FormControl>
                       <Button
                         variant={"calendar"}
-                        className={cn(
-                          "p-4",
-                          !field.value && "text-muted-foreground"
-                        )}
+                        className={cn("p-4", !field.value && "text-muted")}
                       >
                         {field.value
                           ? format(new Date(field.value), "PPP")

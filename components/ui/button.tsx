@@ -3,30 +3,31 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex items-center px-8 py-4 text-lg justify-center shadow-lg hover:scale-[102%] duration-300 ease-in-out rounded-lg transition-transform hover:-translate-y-[0.5px] text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center px-6 py-3 text-lg justify-center shadow-lg font-bold hover:scale-[102%] duration-300 ease-in-out rounded-[10rem] transition-transform hover:-translate-y-[0.5px] text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "primary-gradient text-muted hover:primary-gradient-2",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-border bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-border bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+          "bg-secondary text-secondary-foreground text-muted hover:bg-secondary/80",
+        ghost:
+          "hover:bg-accent text-accent-foreground hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         calendar:
-          "border border-border shadow-lg bg-white/40 p-4 text-lg font-normal rounded-md",
+          "border border-border shadow-lg bg-white/40 p-4 text-lg font-normal rounded-[10rem]",
       },
       size: {
-        default: "px-8 py-4",
-        xs: "h-7 rounded-md px-2 text-xs",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-lg px-8",
+        default: "px-8 py-4 text-lg",
+        xs: "h-7 px-3 text-xs",
+        sm: "h-9 px-5",
+        lg: "h-11 px-9",
         icon: "h-10 w-10",
       },
     },

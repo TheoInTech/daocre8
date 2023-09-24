@@ -4,7 +4,7 @@ import { SummaryTitle } from "@/app/raise/SummaryTitle";
 import { Button } from "@/components/ui/button";
 import { EStep } from "@/lib/schema/raise.schema";
 import { TCompletion } from "@/lib/types/raise.type";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 import { CheckCircle, ChevronRight } from "lucide-react";
 
 const summaryButtons = [
@@ -28,7 +28,7 @@ export const Summary = () => {
             className="flex items-center justify-between w-full gap-4"
           >
             <Button
-              variant={"secondary"}
+              variant={"default"}
               onClick={() => setStep(step)}
               className="w-full flex justify-between p-4"
             >
