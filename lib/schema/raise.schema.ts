@@ -52,7 +52,7 @@ const ACCEPTED_IMAGE_TYPES = [
 
 export const ImageSchema = z
   .any()
-  .refine((file) => file !== undefined, "Image is required.")
+  .refine((file) => !!file, "Image is required.")
   .refine((file) => file?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
   .refine(
     (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
@@ -63,11 +63,11 @@ export const ImageSchemaOptional = z
   .any()
   .optional()
   .refine(
-    (file) => file === undefined || file.size <= MAX_FILE_SIZE,
+    (file) => !file || file.size <= MAX_FILE_SIZE,
     `Max file size is 5MB.`
   )
   .refine(
-    (file) => file === undefined || ACCEPTED_IMAGE_TYPES.includes(file.type),
+    (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
     ".jpg, .jpeg, .png and .webp files are accepted."
   );
 
@@ -82,7 +82,7 @@ const ACCEPTED_VIDEO_TYPES = [
 
 export const VideoSchema = z
   .any()
-  .refine((file) => file !== undefined, "Video is required.")
+  .refine((file) => !!file, "Video is required.")
   .refine((files) => files?.size <= MAX_VIDEO_SIZE, `Max file size is 100MB.`)
   .refine(
     (file) => ACCEPTED_VIDEO_TYPES.includes(file?.type),
@@ -91,20 +91,23 @@ export const VideoSchema = z
 
 export const VideoSchemaOptional = z
   .any()
-  .refine((file) => file?.size <= MAX_VIDEO_SIZE, `Max file size is 100MB.`)
-  .refine(
-    (file) => ACCEPTED_VIDEO_TYPES.includes(file?.type),
-    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
-  )
+  .optional()
   .nullable()
-  .optional();
+  .refine(
+    (file) => !file || file?.size <= MAX_VIDEO_SIZE,
+    `Max file size is 100MB.`
+  )
+  .refine(
+    (file) => !file || ACCEPTED_VIDEO_TYPES.includes(file?.type),
+    ".mp4, .mov, .avi, .mkv, and .webm files are accepted."
+  );
 
 const MAX_PDF_SIZE = 10 * 1024 * 1024; // 10 MB in bytes
 const ACCEPTED_PDF_TYPE = ["application/pdf"];
 
 export const PDFSchema = z
   .any()
-  .refine((file) => file !== undefined, "PDF is required.")
+  .refine((file) => !!file, "PDF is required.")
   .refine((file) => file?.size <= MAX_PDF_SIZE, `Max file size is 10MB.`)
   .refine(
     (file) => ACCEPTED_PDF_TYPE.includes(file?.type),
@@ -113,15 +116,15 @@ export const PDFSchema = z
 
 export const PDFSchemaOptional = z
   .any()
+  .optional()
   .refine(
-    (file) => file === undefined || file?.size <= MAX_PDF_SIZE,
+    (file) => !file || file?.size <= MAX_PDF_SIZE,
     `Max file size is 10MB.`
   )
   .refine(
-    (file) => file === undefined || ACCEPTED_PDF_TYPE.includes(file?.type),
+    (file) => !file || ACCEPTED_PDF_TYPE.includes(file?.type),
     ".pdf files are accepted."
-  )
-  .optional();
+  );
 
 export const FundingTierSchema = z
   .object({
@@ -202,7 +205,7 @@ export const BasicDetailsSchema = z
       .refine((val) => val !== null, { message: "Location is required" }),
     imageUrl: ImageSchema,
     pdfUrl: PDFSchema,
-    videoUrl: VideoSchemaOptional.optional(),
+    videoUrl: VideoSchemaOptional,
     inspiration: z.string().nonempty("Please tell us more about your story."),
     launchDate: z
       .string()
