@@ -176,13 +176,13 @@ export const BasicDetails = () => {
             )}
           />
 
-          {/* Pitch Deck */}
+          {/* Info Deck */}
           <FormField
             control={form.control}
             name="pdfUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Pitch Deck</FormLabel>
+                <FormLabel>Info Deck</FormLabel>
                 <FormControl>
                   <Input
                     type="file"

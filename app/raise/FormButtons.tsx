@@ -73,9 +73,10 @@ export const FormButtons = ({
     case EStep.SUMMARY:
     default:
       render = (
-        <Button onClick={handleBack} variant={"outline"} size={"md"}>
-          <ChevronLeft className="w-5 h-5 mr-4" /> Back
-          {/* Check if all completion is true already */}
+        <>
+          <Button onClick={handleBack} variant={"outline"} size={"md"}>
+            <ChevronLeft className="w-5 h-5 mr-4" /> Back
+          </Button>
           {Object.values(completion).filter(Boolean).length ===
             Object.keys(completion).length && (
             <Button
@@ -88,7 +89,7 @@ export const FormButtons = ({
               <ChevronRight className="w-5 h-5 ml-4" />
             </Button>
           )}
-        </Button>
+        </>
       );
   }
 

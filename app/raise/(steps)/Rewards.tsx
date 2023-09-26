@@ -184,7 +184,7 @@ export const Rewards = () => {
                           <FormLabel>Description</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Get this useful tool for a 30% when you pledge..."
+                              placeholder="Get this useful tool for a 30% discount when you pledge..."
                               className="resize-none"
                               maxLength={250}
                               {...field}
