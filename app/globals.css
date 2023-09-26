@@ -34,7 +34,7 @@
 
     --radius: 0.5rem;
 
-    --success: 120 100% 50%;
+    --success: 120 100% 40%;
     --info: 177 60% 69%;
     --warning: 26 80% 63%;
   }
@@ -78,11 +78,20 @@
   .primary-gradient {
     @apply bg-gradient-to-br from-primary/70 to-secondary;
   }
-  .primary-gradient-2 {
-    @apply bg-gradient-to-r from-primary/70 to-secondary;
-  }
   .secondary-gradient {
     @apply bg-gradient-to-br from-[#130b1f] via-[#411950] to-[#660166];
+  }
+  .text-gradient-primary {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary/70 to-secondary w-fit;
+  }
+  .text-gradient-blue {
+    @apply text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary/50 w-fit;
+  }
+  .text-gradient-violet {
+    @apply text-transparent bg-clip-text bg-gradient-to-b from-secondary to-secondary/50 w-fit;
+  }
+  .text-gradient-yellow {
+    @apply text-transparent bg-clip-text bg-gradient-to-b from-accent to-accent/50 w-fit;
   }
 }
 
