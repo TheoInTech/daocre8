@@ -8,6 +8,8 @@ pub enum DAOCre8Error {
     NotAllowed,
     #[msg("Field can not be empty.")]
     FieldNotEmpty,
+    #[msg("Invalid poll input.")]
+    InvalidPollInput,
     #[msg("Invalid option index.")]
     InvalidOptionIndex,
     #[msg("Backer has already voted.")]

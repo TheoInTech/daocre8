@@ -229,7 +229,6 @@ export const FormDataSchema = z.object({
   basicDetails: BasicDetailsSchema,
   team: TeamSchema,
   fundingTiers: z.array(FundingTierSchema),
-  // projectStory: ProjectStorySchema,
   fundingAndMilestones: FundingAngMilestonesSchema,
 });
 
