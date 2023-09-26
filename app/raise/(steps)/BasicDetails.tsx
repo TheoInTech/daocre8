@@ -228,10 +228,7 @@ export const BasicDetails = () => {
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
-                      <Button
-                        variant={"calendar"}
-                        className={cn("p-4", !field.value && "text-muted")}
-                      >
+                      <Button variant={"calendar"} className={cn("p-4")}>
                         {field.value
                           ? format(new Date(field.value), "PPP")
                           : "-"}
@@ -254,21 +251,6 @@ export const BasicDetails = () => {
             )}
           />
 
-          {/* Fund Raise Amount */}
-          <FormField
-            control={form.control}
-            name="fundingAmount"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Fund Raise Amount (USD)</FormLabel>
-                <FormControl>
-                  <Input placeholder="1000" type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Fundraise End Date */}
           <FormField
             control={form.control}
@@ -279,10 +261,7 @@ export const BasicDetails = () => {
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
-                      <Button
-                        variant={"calendar"}
-                        className={cn("p-4", !field.value && "text-muted")}
-                      >
+                      <Button variant={"calendar"} className={cn("p-4")}>
                         {field.value
                           ? format(new Date(field.value), "PPP")
                           : "-"}

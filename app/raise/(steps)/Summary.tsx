@@ -21,7 +21,7 @@ export const Summary = () => {
   return (
     <div className="flex flex-col gap-4 items-start justify-center h-full flex-grow w-full">
       <SummaryTitle />
-      <div className="grid grid-rows-5 py-4 md:grid-rows-2 grid-flow-col gap-8 w-full">
+      <div className="grid grid-rows-4 py-4 md:grid-rows-2 md:grid-cols-2 grid-flow-col gap-8 w-full">
         {summaryButtons.map(({ label, step }) => (
           <div
             key={label}
@@ -31,9 +31,6 @@ export const Summary = () => {
               variant={"default"}
               onClick={() => setStep(step)}
               className="w-full flex justify-between p-4"
-              disabled={
-                step === EStep.MILESTONES && !completion[EStep.BASIC_DETAILS]
-              }
             >
               {label}
               <ChevronRight className="w-4 h-4" />
