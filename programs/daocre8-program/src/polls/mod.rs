@@ -3,7 +3,7 @@ use crate::errors::*;
 
 pub mod types;
 pub mod state;
-use {types::*, state::*};
+use { types::*, state::* };
 
 pub fn initialize_decision_making_poll(
     ctx: Context<InitializeDecisionMakingPoll>,
@@ -19,6 +19,7 @@ pub fn initialize_decision_making_poll(
     poll.options = options;
     poll.start_datetime = start_datetime;
     poll.end_datetime = end_datetime;
+    
     Ok(())
 }
 

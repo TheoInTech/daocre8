@@ -12,12 +12,11 @@ pub mod polls;
 use errors::*;
 use project_dao::InitializeProjectDao;
 use escrow::InitializeEscrow;
-use polls::{
-    state::VoteInDecisionMakingPoll,
-    state::VoteInMilestoneAchievementPoll,
-    state::InitializeDecisionMakingPoll,
-    state::InitializeMilestoneAchievementPoll,
-    types::PollType
+use polls::state::{
+    InitializeDecisionMakingPoll,
+    InitializeMilestoneAchievementPoll,
+    VoteInDecisionMakingPoll,
+    VoteInMilestoneAchievementPoll,
 };
 
 declare_id!("ATqP7TbxPzSYd2nTbXo1usji5Ftq4QRae93SvDzD89yy");
@@ -31,13 +30,12 @@ pub mod daocre8 {
         ctx: Context<InitializeProjectDao>,
         project_ipfs_hash: String,
     ) -> Result<()> {
-        project_dao::initialize_project_dao(ctx, project_ipfs_hash)
+        crate::project_dao::initialize_project_dao(ctx, project_ipfs_hash)
     }
 
     pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<()> {
-        escrow::initialize_escrow(ctx, amount)
+        crate::escrow::initialize_escrow(ctx, amount)
     }
-    
 
     pub fn initialize_decision_making_poll(
         ctx: Context<InitializeDecisionMakingPoll>,
@@ -46,7 +44,7 @@ pub mod daocre8 {
         start_datetime: i64,
         end_datetime: i64,
     ) -> Result<()> {
-        polls::initialize_decision_making_poll(
+        crate::polls::initialize_decision_making_poll(
             ctx,
             question,
             options,
@@ -61,7 +59,7 @@ pub mod daocre8 {
         start_datetime: i64,
         end_datetime: i64,
     ) -> Result<()> {
-        polls::initialize_milestone_achievement_poll(
+        crate::polls::initialize_milestone_achievement_poll(
             ctx,
             milestone_id,
             start_datetime,
@@ -73,13 +71,13 @@ pub mod daocre8 {
         ctx: Context<VoteInDecisionMakingPoll>,
         option_index: u8,
     ) -> Result<()> {
-        polls::vote_in_decision_making_poll(ctx, option_index)
+        crate::polls::vote_in_decision_making_poll(ctx, option_index)
     }
 
     pub fn vote_in_milestone_achievement_poll(
         ctx: Context<VoteInMilestoneAchievementPoll>,
         vote: bool,
     ) -> Result<()> {
-        polls::vote_in_milestone_achievement_poll(ctx, vote)
+        crate::polls::vote_in_milestone_achievement_poll(ctx, vote)
     }
 }
