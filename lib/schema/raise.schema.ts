@@ -2,15 +2,15 @@ import { isPreviousDate } from "@/lib/utils/isPreviousDate";
 import { z } from "zod";
 
 export enum EStep {
-  AGREEMENT,
-  CATEGORY,
-  SUMMARY,
-  BASIC_DETAILS,
-  REWARDS,
-  TEAM,
-  STORY,
-  MILESTONES,
-  FINAL,
+  AGREEMENT = "Agreement",
+  CATEGORY = "Category",
+  SUMMARY = "Summary",
+  BASIC_DETAILS = "Basic Details",
+  REWARDS = "Rewards",
+  TEAM = "Team",
+  STORY = "Project Story",
+  MILESTONES = "Funding & Milestones",
+  FINAL = "Final",
 }
 
 export enum ELocation {
@@ -179,7 +179,10 @@ export const MilestoneSchema = z.object({
 });
 
 export const FundingAngMilestonesSchema = z.object({
-  walletAddress: z.string().nonempty("Please connect your wallet"),
+  fundingAmount: z.coerce
+    .number()
+    .min(1, "Funding amount must be greater than 0"),
+  walletAddress: z.string().nonempty("Please connect your Solana wallet"),
   walletIsConfirmed: z.boolean().refine((val) => !!val, {
     message: "Please confirm your wallet address",
   }),
@@ -207,9 +210,6 @@ export const BasicDetailsSchema = z
         message: "Launch date can't be previous date",
       })
       .refine((val) => val !== "", { message: "Launch date is required" }),
-    fundingAmount: z.coerce
-      .number()
-      .min(1, "Funding amount must be greater than 0"),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {

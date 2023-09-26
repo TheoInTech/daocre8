@@ -14,8 +14,8 @@ export type TCompletion = Record<
 export interface IFormContext {
   completion: TCompletion;
   setCompletion: Dispatch<SetStateAction<TCompletion>>;
-  step: number;
-  setStep: Dispatch<SetStateAction<number>>;
+  step: EStep;
+  setStep: Dispatch<SetStateAction<EStep>>;
   formData: IFormData;
   setFormData: Dispatch<SetStateAction<IFormData>>;
   pageLoadingMessage: string;
