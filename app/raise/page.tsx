@@ -8,6 +8,7 @@ import { Agreement } from "@/app/raise/Agreement";
 import { BasicDetails } from "@/app/raise/BasicDetails";
 import { Category } from "@/app/raise/Category";
 import { useFormState } from "@/app/raise/FormContext";
+import { FundingAndMilestones } from "@/app/raise/FundingAndMilestones";
 import { Rewards } from "@/app/raise/Rewards";
 import { Summary } from "@/app/raise/Summary";
 import { Team } from "@/app/raise/Team";
@@ -49,6 +50,8 @@ const RaisePage = () => {
       return <Team />;
     // case EStep.STORY:
     //   return <ProjectStory />;
+    case EStep.MILESTONES:
+      return <FundingAndMilestones />;
     case EStep.AGREEMENT:
     default:
       return <Agreement />;

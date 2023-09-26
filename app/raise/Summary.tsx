@@ -31,6 +31,9 @@ export const Summary = () => {
               variant={"default"}
               onClick={() => setStep(step)}
               className="w-full flex justify-between p-4"
+              disabled={
+                step === EStep.MILESTONES && !completion[EStep.BASIC_DETAILS]
+              }
             >
               {label}
               <ChevronRight className="w-4 h-4" />

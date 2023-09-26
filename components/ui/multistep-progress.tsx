@@ -22,7 +22,7 @@ export const MultistepProgress = ({
 
   return (
     <div
-      className={cn("h-1 absolute top-0 left-0 right-0 bg-secondary z-[999]")}
+      className={cn("h-1 absolute top-0 left-0 right-0 bg-primary z-[999]")}
       style={{ width: `${width}%` }}
     ></div>
   );

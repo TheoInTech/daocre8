@@ -47,11 +47,18 @@ export const formDataDefaults: IFormData = {
   //   videoUrl: "",
   //   inspiration: "",
   // },
-  walletAddress: "",
-  walletIsConfirmed: false,
-  acceptedCurrency: ECurrency.SOL,
-  capitalPercentage: 0,
-  milestones: [],
+  fundingAndMilestones: {
+    walletAddress: "",
+    walletIsConfirmed: false,
+    acceptedCurrency: ECurrency.SOL,
+    capitalPercentage: 0,
+    milestones: [
+      {
+        percentage: 0,
+        description: "",
+      },
+    ],
+  },
 };
 
 const FormContext = createContext<IFormContext>({

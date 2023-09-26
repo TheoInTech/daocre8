@@ -171,8 +171,24 @@ export const ProjectStorySchema = z.object({
 });
 
 export const MilestoneSchema = z.object({
-  percentage: z.number(),
-  description: z.string(),
+  percentage: z.coerce
+    .number()
+    .min(1, "Amount must be greater than 0")
+    .max(100, "Amount must be less than or equal to 100"),
+  description: z.string().nonempty("Milestone description is required"),
+});
+
+export const FundingAngMilestonesSchema = z.object({
+  walletAddress: z.string().nonempty("Please connect your wallet"),
+  walletIsConfirmed: z.boolean().refine((val) => !!val, {
+    message: "Please confirm your wallet address",
+  }),
+  acceptedCurrency: z.nativeEnum(ECurrency),
+  capitalPercentage: z.coerce
+    .number()
+    .min(1, "Amount must be greater than 0")
+    .max(100, "Amount must be less than or equal to 100"),
+  milestones: z.array(MilestoneSchema),
 });
 
 export const BasicDetailsSchema = z
@@ -211,11 +227,7 @@ export const FormDataSchema = z.object({
   team: TeamSchema,
   fundingTiers: z.array(FundingTierSchema),
   // projectStory: ProjectStorySchema,
-  walletAddress: z.string(),
-  walletIsConfirmed: z.boolean(),
-  acceptedCurrency: z.nativeEnum(ECurrency),
-  capitalPercentage: z.number(),
-  milestones: z.array(MilestoneSchema),
+  fundingAndMilestones: FundingAngMilestonesSchema,
 });
 
 // Infer the types from Zod schemas
@@ -224,5 +236,6 @@ export type IFundingTierArray = z.infer<typeof FundingTierSchemaArray>;
 export type ITeam = z.infer<typeof TeamSchema>;
 export type IProjectStory = z.infer<typeof ProjectStorySchema>;
 export type IMilestone = z.infer<typeof MilestoneSchema>;
+export type IFundingAngMilestones = z.infer<typeof FundingAngMilestonesSchema>;
 export type IFormData = z.infer<typeof FormDataSchema>;
 export type IBasicDetails = z.infer<typeof BasicDetailsSchema>;
