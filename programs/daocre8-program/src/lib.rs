@@ -30,11 +30,11 @@ pub mod daocre8 {
         ctx: Context<InitializeProjectDao>,
         project_ipfs_hash: String,
     ) -> Result<()> {
-        crate::project_dao::initialize_project_dao(ctx, project_ipfs_hash)
+        project_dao::initialize_project_dao(ctx, project_ipfs_hash)
     }
 
     pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<()> {
-        crate::escrow::initialize_escrow(ctx, amount)
+        escrow::initialize_escrow(ctx, amount)
     }
 
     pub fn initialize_decision_making_poll(
@@ -44,7 +44,7 @@ pub mod daocre8 {
         start_datetime: i64,
         end_datetime: i64,
     ) -> Result<()> {
-        crate::polls::initialize_decision_making_poll(
+        polls::initialize_decision_making_poll(
             ctx,
             question,
             options,
@@ -59,7 +59,7 @@ pub mod daocre8 {
         start_datetime: i64,
         end_datetime: i64,
     ) -> Result<()> {
-        crate::polls::initialize_milestone_achievement_poll(
+        polls::initialize_milestone_achievement_poll(
             ctx,
             milestone_id,
             start_datetime,
@@ -71,13 +71,13 @@ pub mod daocre8 {
         ctx: Context<VoteInDecisionMakingPoll>,
         option_index: u8,
     ) -> Result<()> {
-        crate::polls::vote_in_decision_making_poll(ctx, option_index)
+        polls::vote_in_decision_making_poll(ctx, option_index)
     }
 
     pub fn vote_in_milestone_achievement_poll(
         ctx: Context<VoteInMilestoneAchievementPoll>,
         vote: bool,
     ) -> Result<()> {
-        crate::polls::vote_in_milestone_achievement_poll(ctx, vote)
+        polls::vote_in_milestone_achievement_poll(ctx, vote)
     }
 }
