@@ -21,7 +21,6 @@ export const formDataDefaults: IFormData = {
     pdfUrl: "",
     videoUrl: "",
     launchDate: "",
-    fundingAmount: 0,
     fundraiseEndDate: "",
   },
   team: {
@@ -48,6 +47,7 @@ export const formDataDefaults: IFormData = {
   //   inspiration: "",
   // },
   fundingAndMilestones: {
+    fundingAmount: 0,
     walletAddress: "",
     walletIsConfirmed: false,
     acceptedCurrency: ECurrency.SOL,
@@ -72,7 +72,7 @@ const FormContext = createContext<IFormContext>({
     [EStep.MILESTONES]: false,
   },
   setCompletion: () => {},
-  step: 1,
+  step: EStep.AGREEMENT,
   setStep: () => {},
   formData: formDataDefaults,
   setFormData: () => {},
