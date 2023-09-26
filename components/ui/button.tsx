@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "primary-gradient text-muted hover:brightness-110",
+        default: "primary-gradient text-white hover:brightness-110",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -21,7 +21,7 @@ const buttonVariants = cva(
           "hover:bg-accent text-accent-foreground hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         calendar:
-          "border border-border shadow-lg bg-white/40 p-4 text-lg font-normal rounded-[10rem]",
+          "border border-border shadow-lg bg-muted text-muted-foreground p-4 text-lg font-normal rounded-[10rem]",
       },
       size: {
         default: "px-8 py-4 text-lg",
