@@ -3,7 +3,7 @@ use crate::errors::*;
 
 pub mod types;
 pub mod state;
-use { types::*, state::* };
+pub use { types::*, state::* };
 
 pub fn initialize_decision_making_poll(
     ctx: Context<InitializeDecisionMakingPoll>,

@@ -3,7 +3,7 @@ use crate::errors::*;
 
 pub mod state;
 pub mod constants;
-use {state::*, constants::*};
+pub use {state::*, constants::*};
 
 pub fn initialize_project_dao(
     ctx: Context<InitializeProjectDao>,

@@ -6,7 +6,7 @@ use solana_program::{
 use crate::errors::*;
 
 pub mod state;
-use state::*;
+pub use state::*;
 
 pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<()> {
     let escrow_account = &mut ctx.accounts.escrow_account;
