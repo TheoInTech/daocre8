@@ -9,7 +9,7 @@ import {
   IFormData,
   IFundingTier,
 } from "@/lib/schema/raise.schema";
-import { IFormContext } from "@/lib/types/raise.type";
+import { IFormContext } from "@/lib/types/raise.types";
 
 export const formDataDefaults: IFormData = {
   category: null,

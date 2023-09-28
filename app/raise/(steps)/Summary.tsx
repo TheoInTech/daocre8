@@ -3,7 +3,7 @@ import { useFormState } from "@/app/raise/FormContext";
 import { SummaryTitle } from "@/app/raise/SummaryTitle";
 import { Button } from "@/components/ui/button";
 import { EStep } from "@/lib/schema/raise.schema";
-import { TCompletion } from "@/lib/types/raise.type";
+import { TCompletion } from "@/lib/types/raise.types";
 import { cn } from "@/lib/utils/cn";
 import { CheckCircle, ChevronRight } from "lucide-react";
 import { useState } from "react";

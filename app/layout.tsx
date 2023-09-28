@@ -9,7 +9,8 @@ import { Navbar } from "@/app/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Particles } from "@/components/ui/particles";
 import { Toaster } from "@/components/ui/toaster";
-import { WalletConnectProvider } from "@/lib/providers/WalletConnectProvider";
+import { ProgramProvider, WalletConnectProvider } from "@/lib/providers";
+// styles
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 const montserrat = localFont({
@@ -113,15 +114,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.variable} ${gordita.variable}`}>
         <WalletConnectProvider>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <Navbar />
-            <Particles />
-            <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24 z-10">
-              {children}
-              <Toaster />
-              <Analytics />
-            </main>
-          </ThemeProvider>
+          <ProgramProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+              <Navbar />
+              <Particles />
+              <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24 z-10">
+                {children}
+                <Toaster />
+                <Analytics />
+              </main>
+            </ThemeProvider>
+          </ProgramProvider>
         </WalletConnectProvider>
       </body>
     </html>

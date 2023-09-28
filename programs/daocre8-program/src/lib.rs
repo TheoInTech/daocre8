@@ -11,7 +11,7 @@ use escrow::*;
 use project_dao::*;
 use polls::*;
 
-declare_id!("ATqP7TbxPzSYd2nTbXo1usji5Ftq4QRae93SvDzD89yy");
+declare_id!("9vbWbujKchpAxbM7VbwdABXiURvEHbkFi32pMzPVtXci");
 
 #[program]
 pub mod daocre8 {
