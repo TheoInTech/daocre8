@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 use crate::errors::*;
 
-pub mod types;
 pub mod state;
-pub use crate::polls::{ types::*, state::* };
+pub mod types;
+pub use crate::polls::{ state::*, types::* };
 
 pub fn initialize_decision_making_poll(
     ctx: Context<InitializeDecisionMakingPoll>,

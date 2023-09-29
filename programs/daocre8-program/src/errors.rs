@@ -14,4 +14,8 @@ pub enum DAOCre8Error {
     InvalidOptionIndex,
     #[msg("Backer has already voted.")]
     VoterAlreadyVoted,
+    #[msg("Please deposit exactly 1 SOL.")]
+    InvalidDeposit,
+    #[msg("Project ID does not match any records")]
+    ProjectIdMismatch,
 }

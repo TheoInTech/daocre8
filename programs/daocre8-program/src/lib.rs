@@ -6,7 +6,7 @@ pub mod escrow;
 pub mod polls;
 pub mod project_dao;
 
-use crate::{ errors::*, escrow::*, project_dao::*, polls::* };
+use crate::{ errors::*, escrow::*, polls::*, project_dao::* };
 
 declare_id!("9vbWbujKchpAxbM7VbwdABXiURvEHbkFi32pMzPVtXci");
 

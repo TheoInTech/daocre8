@@ -1,13 +1,13 @@
 use anchor_lang::prelude::*;
 use crate::errors::*;
 
-pub mod state;
 pub mod constants;
-pub use {state::*, constants::*};
+pub mod state;
+pub use ::{ constants::*, state::* };
 
 pub fn initialize_project_dao(
     ctx: Context<InitializeProjectDao>,
-    project_ipfs_hash: String,
+    project_ipfs_hash: String
 ) -> Result<()> {
     if project_ipfs_hash.is_empty() {
         return Err(DAOCre8Error::FieldNotEmpty.into());
