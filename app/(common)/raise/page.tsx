@@ -1,8 +1,6 @@
 "use client";
 
 // packages
-import { useEffect } from "react";
-import secureLocalStorage from "react-secure-storage";
 // raise
 import { Agreement } from "@/common/raise/(steps)/Agreement";
 import { BasicDetails } from "@/common/raise/(steps)/BasicDetails";
@@ -14,29 +12,10 @@ import { Summary } from "@/common/raise/(steps)/Summary";
 import { Team } from "@/common/raise/(steps)/Team";
 import { useFormState } from "@/common/raise/FormContext";
 // types
-import { EStep, IFormData } from "@/lib/schema/raise.schema";
+import { EStep } from "@/lib/schema/raise.schema";
 
 const RaisePage = () => {
-  const {
-    step,
-    setStep,
-    setFormData,
-    formData: { basicDetails },
-  } = useFormState();
-  const { name } = basicDetails;
-
-  useEffect(() => {
-    if (secureLocalStorage.getItem(`onboarding-${name}`)) {
-      const onboarding: IFormData & {
-        step: number;
-      } = JSON.parse(
-        (secureLocalStorage.getItem(`onboarding-${name}`) as string) ?? ""
-      );
-
-      setStep(EStep.SUMMARY);
-      setFormData(onboarding);
-    }
-  }, [name, setFormData, setStep]);
+  const { step } = useFormState();
 
   switch (step) {
     case EStep.CATEGORY:

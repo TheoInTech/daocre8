@@ -1,5 +1,6 @@
 import { useFormState } from "@/common/raise/FormContext";
 import { Separator } from "@/components/ui/separator";
+import { EStep } from "@/lib/schema/raise.schema";
 
 export const SummaryTitle = () => {
   const { formData, step } = useFormState();
@@ -16,7 +17,9 @@ export const SummaryTitle = () => {
         category
       </h5>
       <Separator />
-      <h6 className="text-xl font-medium text-gradient-yellow">{step}</h6>
+      {step !== EStep.FINAL && (
+        <h6 className="text-xl font-medium text-gradient-yellow">{step}</h6>
+      )}
     </>
   );
 };
