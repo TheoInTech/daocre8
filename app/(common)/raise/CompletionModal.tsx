@@ -34,10 +34,10 @@ export const CompletionModal = ({
               (either succeeds or fails).
             </p>
             <p>
-              Once your project is created, you&apos;ll receive an exclusive
-              <strong>Creator NFT</strong> that you can use to access your
-              project dashboard, DAOCre-8&apos;s exclusive creator events, and
-              many more!
+              Once your project is created, you&apos;ll receive an exclusive{" "}
+              <strong>Creator Badge NFT</strong> that you can use to access your
+              project dashboard, analytics, insights, DAOCre-8&apos;s exclusive
+              creator events, and many more!
             </p>
           </AlertDialogDescription>
         </AlertDialogHeader>

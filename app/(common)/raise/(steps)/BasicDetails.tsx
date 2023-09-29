@@ -144,7 +144,7 @@ export const BasicDetails = () => {
                 <FormLabel>Inspiration behind the project</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="This project is my inspiration because..."
+                    placeholder="I'm doing this project because..."
                     className="resize-none"
                     maxLength={250}
                     {...field}

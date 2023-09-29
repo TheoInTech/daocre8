@@ -89,6 +89,8 @@ export const FundingAndMilestones = () => {
   useEffect(() => {
     if (publicKey) {
       form.setValue("walletAddress", publicKey.toBase58());
+    } else {
+      form.setValue("walletAddress", "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publicKey]);

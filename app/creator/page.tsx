@@ -7,7 +7,7 @@ const CreatorPage = () => {
       <CreatorTitle
         title={"Creator Profile"}
         subtitle={
-          "Monitor your AI-powered insights, analytics, projects, funding and more."
+          "Monitor your AI-powered projects' insights, analytics, funding and more."
         }
       />
 
