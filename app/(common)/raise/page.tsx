@@ -7,6 +7,7 @@ import secureLocalStorage from "react-secure-storage";
 import { Agreement } from "@/common/raise/(steps)/Agreement";
 import { BasicDetails } from "@/common/raise/(steps)/BasicDetails";
 import { Category } from "@/common/raise/(steps)/Category";
+import { Final } from "@/common/raise/(steps)/Final";
 import { FundingAndMilestones } from "@/common/raise/(steps)/FundingAndMilestones";
 import { Rewards } from "@/common/raise/(steps)/Rewards";
 import { Summary } from "@/common/raise/(steps)/Summary";
@@ -48,10 +49,10 @@ const RaisePage = () => {
       return <Rewards />;
     case EStep.TEAM:
       return <Team />;
-    // case EStep.STORY:
-    //   return <ProjectStory />;
     case EStep.MILESTONES:
       return <FundingAndMilestones />;
+    case EStep.FINAL:
+      return <Final />;
     case EStep.AGREEMENT:
     default:
       return <Agreement />;

@@ -5,8 +5,9 @@ pub mod errors;
 pub mod escrow;
 pub mod polls;
 pub mod project_dao;
+pub mod creator_nft;
 
-use crate::{ errors::*, escrow::*, polls::*, project_dao::* };
+use crate::{ errors::*, escrow::*, polls::*, project_dao::*, creator_nft::* };
 
 declare_id!("9vbWbujKchpAxbM7VbwdABXiURvEHbkFi32pMzPVtXci");
 
@@ -23,11 +24,26 @@ pub mod daocre8 {
         Ok(())
     }
 
+    // Escrow
     pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<()> {
         escrow::initialize_escrow(ctx, amount);
         Ok(())
     }
 
+    pub fn initialize_recipient(
+        ctx: Context<InitializeRecipient>,
+        recipient: Pubkey
+    ) -> Result<()> {
+        escrow::initialize_recipient(ctx, recipient);
+        Ok(())
+    }
+
+    pub fn update_recipient(ctx: Context<UpdateRecipient>, new_recipient: Pubkey) -> Result<()> {
+        escrow::update_recipient(ctx, new_recipient);
+        Ok(())
+    }
+
+    // Polls
     pub fn initialize_decision_making_poll(
         ctx: Context<InitializeDecisionMakingPoll>,
         question: String,
@@ -73,6 +89,27 @@ pub mod daocre8 {
         vote: bool
     ) -> Result<()> {
         polls::vote_in_milestone_achievement_poll(ctx, vote);
+        Ok(())
+    }
+
+    // Creator NFT
+    pub fn initialize_creator_nft_collection(
+        ctx: Context<InitializeCreatorNFTCollection>,
+        title: String,
+        description: String,
+        image_uri: String
+    ) -> ProgramResult {
+        creator_nft::initialize_creator_nft_collection(ctx, title, description, image_uri);
+        Ok(())
+    }
+
+    pub fn mint_creator_nft(ctx: Context<MintCreatorNFT>, project_dao_id: Pubkey) -> ProgramResult {
+        creator_nft::mint_creator_nft(ctx, project_dao_id);
+        Ok(())
+    }
+
+    pub fn upgrade_creator_nft_rarity(ctx: Context<UpgradeCreatorNFTRarity>) -> ProgramResult {
+        creator_nft::upgrade_creator_nft_rarity(ctx);
         Ok(())
     }
 }

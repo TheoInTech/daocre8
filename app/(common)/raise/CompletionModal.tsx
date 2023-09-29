@@ -43,7 +43,7 @@ export const CompletionModal = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel onClick={closeModal}>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Confirm</AlertDialogAction>
+          <AlertDialogAction onClick={onConfirm}>Confirm</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
