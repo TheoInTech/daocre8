@@ -1,13 +1,13 @@
 import { CreatorTitle } from "@/creator/CreatorTitle";
 import { NoProjects } from "@/creator/NoProjects";
 
-const CreatorPage = () => {
+const BackedProjectsPage = () => {
   return (
     <>
       <CreatorTitle
-        title={"Creator Profile"}
+        title={"Backed Projects"}
         subtitle={
-          "Monitor your AI-powered insights, analytics, projects, funding and more."
+          "Manage your backed projects, vote on milestones and see project updates."
         }
       />
 
@@ -16,4 +16,4 @@ const CreatorPage = () => {
   );
 };
 
-export default CreatorPage;
+export default BackedProjectsPage;

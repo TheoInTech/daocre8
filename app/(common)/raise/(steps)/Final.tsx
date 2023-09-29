@@ -29,7 +29,7 @@ export const Final = () => {
             monitoring, milestones, creator events and more!
           </p>
           <Button asChild className="my-4">
-            <Link href={"/creator"}>Go to Creator Dashboard</Link>
+            <Link href={"/creator"}>Go to your Creator Profile</Link>
           </Button>
         </div>
       </div>

@@ -1,13 +1,13 @@
 import { CreatorTitle } from "@/creator/CreatorTitle";
 import { NoProjects } from "@/creator/NoProjects";
 
-const CreatorPage = () => {
+const YourProjectsPage = () => {
   return (
     <>
       <CreatorTitle
-        title={"Creator Profile"}
+        title={"Your Projects"}
         subtitle={
-          "Monitor your AI-powered insights, analytics, projects, funding and more."
+          "Manage your projects, milestones, polls and monitor funding status."
         }
       />
 
@@ -16,4 +16,4 @@ const CreatorPage = () => {
   );
 };
 
-export default CreatorPage;
+export default YourProjectsPage;

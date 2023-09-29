@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils/cn";
 import LogoIcon from "@/public/logo.svg";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Menu } from "lucide-react";
@@ -63,7 +64,11 @@ export const Navbar = () => {
               <Link
                 href={item.href}
                 passHref
-                className="hover:bg-muted/20 p-4 rounded-lg block"
+                className={cn(
+                  "hover:bg-muted/20 p-3 rounded-lg block",
+                  window.location.pathname === item.href &&
+                    "border-b-2 rounded-none p-2 hover:bg-transparent border-primary cursor-default"
+                )}
                 onClick={handleMenuClick}
               >
                 {item.title}
