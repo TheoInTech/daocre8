@@ -3,6 +3,7 @@
 import { useState } from "react";
 // next
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 // components
 import { ConnectWallet } from "@/app/ConnectWallet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -32,6 +33,7 @@ const items: { title: string; href: string }[] = [
 
 export const Navbar = () => {
   const { publicKey } = useWallet();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -66,7 +68,7 @@ export const Navbar = () => {
                 passHref
                 className={cn(
                   "hover:bg-muted/20 p-3 rounded-lg block",
-                  window.location.pathname === item.href &&
+                  pathname === item.href &&
                     "border-b-2 rounded-none p-2 hover:bg-transparent border-primary cursor-default"
                 )}
                 onClick={handleMenuClick}
