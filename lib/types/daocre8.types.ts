@@ -44,8 +44,8 @@ export type Daocre8 = {
           isSigner: true;
         },
         {
-          name: "recipient";
-          isMut: false;
+          name: "recipientAccount";
+          isMut: true;
           isSigner: false;
         },
         {
@@ -63,6 +63,58 @@ export type Daocre8 = {
         {
           name: "amount";
           type: "u64";
+        }
+      ];
+    },
+    {
+      name: "initializeRecipient";
+      accounts: [
+        {
+          name: "recipientAccount";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "admin";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "recipient";
+          type: "publicKey";
+        }
+      ];
+    },
+    {
+      name: "updateRecipient";
+      accounts: [
+        {
+          name: "authority";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "recipientAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "escrowAccount";
+          isMut: true;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "newRecipient";
+          type: "publicKey";
         }
       ];
     },
@@ -191,9 +243,141 @@ export type Daocre8 = {
           type: "bool";
         }
       ];
+    },
+    {
+      name: "initializeCreatorNftCollection";
+      accounts: [
+        {
+          name: "nftCollection";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "authority";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "title";
+          type: "string";
+        },
+        {
+          name: "description";
+          type: "string";
+        },
+        {
+          name: "imageUri";
+          type: "string";
+        }
+      ];
+    },
+    {
+      name: "mintCreatorNft";
+      accounts: [
+        {
+          name: "nft";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "nftCollection";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "owner";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "projectDaoId";
+          type: "publicKey";
+        }
+      ];
+    },
+    {
+      name: "upgradeCreatorNftRarity";
+      accounts: [
+        {
+          name: "nftAccount";
+          isMut: true;
+          isSigner: false;
+        }
+      ];
+      args: [];
     }
   ];
   accounts: [
+    {
+      name: "creatorNftCollection";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "authority";
+            type: "publicKey";
+          },
+          {
+            name: "metadata";
+            type: {
+              defined: "CreatorMetadata";
+            };
+          }
+        ];
+      };
+    },
+    {
+      name: "creatorNft";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "collection";
+            type: "publicKey";
+          },
+          {
+            name: "owner";
+            type: "publicKey";
+          },
+          {
+            name: "projectDaoId";
+            type: "publicKey";
+          },
+          {
+            name: "rarity";
+            type: {
+              defined: "Rarity";
+            };
+          }
+        ];
+      };
+    },
+    {
+      name: "recipientAccount";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "recipient";
+            type: "publicKey";
+          }
+        ];
+      };
+    },
     {
       name: "escrowAccount";
       type: {
@@ -241,7 +425,7 @@ export type Daocre8 = {
             name: "voterMap";
             type: {
               vec: {
-                defined: "(Pubkey,u8)";
+                defined: "DecisionMakingPollVoterMap";
               };
             };
           },
@@ -277,7 +461,7 @@ export type Daocre8 = {
             name: "voterMap";
             type: {
               vec: {
-                defined: "(Pubkey,bool)";
+                defined: "MilestoneAchievementPollVoterMap";
               };
             };
           },
@@ -318,6 +502,81 @@ export type Daocre8 = {
     }
   ];
   types: [
+    {
+      name: "CreatorMetadata";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "title";
+            type: "string";
+          },
+          {
+            name: "description";
+            type: "string";
+          },
+          {
+            name: "imageUri";
+            type: "string";
+          }
+        ];
+      };
+    },
+    {
+      name: "DecisionMakingPollVoterMap";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "key";
+            type: "publicKey";
+          },
+          {
+            name: "vote";
+            type: "u8";
+          }
+        ];
+      };
+    },
+    {
+      name: "MilestoneAchievementPollVoterMap";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "key";
+            type: "publicKey";
+          },
+          {
+            name: "vote";
+            type: "bool";
+          }
+        ];
+      };
+    },
+    {
+      name: "Rarity";
+      type: {
+        kind: "enum";
+        variants: [
+          {
+            name: "Starter";
+          },
+          {
+            name: "Builder";
+          },
+          {
+            name: "Innovator";
+          },
+          {
+            name: "Visionary";
+          },
+          {
+            name: "Legend";
+          }
+        ];
+      };
+    },
     {
       name: "PollType";
       type: {
@@ -363,6 +622,16 @@ export type Daocre8 = {
       code: 6005;
       name: "VoterAlreadyVoted";
       msg: "Backer has already voted.";
+    },
+    {
+      code: 6006;
+      name: "InvalidDeposit";
+      msg: "Please deposit exactly 1 SOL.";
+    },
+    {
+      code: 6007;
+      name: "ProjectIdMismatch";
+      msg: "Project ID does not match any records";
     }
   ];
 };
@@ -414,8 +683,8 @@ export const IDL: Daocre8 = {
           isSigner: true,
         },
         {
-          name: "recipient",
-          isMut: false,
+          name: "recipientAccount",
+          isMut: true,
           isSigner: false,
         },
         {
@@ -433,6 +702,58 @@ export const IDL: Daocre8 = {
         {
           name: "amount",
           type: "u64",
+        },
+      ],
+    },
+    {
+      name: "initializeRecipient",
+      accounts: [
+        {
+          name: "recipientAccount",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "admin",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "recipient",
+          type: "publicKey",
+        },
+      ],
+    },
+    {
+      name: "updateRecipient",
+      accounts: [
+        {
+          name: "authority",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "recipientAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "escrowAccount",
+          isMut: true,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "newRecipient",
+          type: "publicKey",
         },
       ],
     },
@@ -562,8 +883,140 @@ export const IDL: Daocre8 = {
         },
       ],
     },
+    {
+      name: "initializeCreatorNftCollection",
+      accounts: [
+        {
+          name: "nftCollection",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "authority",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "title",
+          type: "string",
+        },
+        {
+          name: "description",
+          type: "string",
+        },
+        {
+          name: "imageUri",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "mintCreatorNft",
+      accounts: [
+        {
+          name: "nft",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "nftCollection",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "owner",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "projectDaoId",
+          type: "publicKey",
+        },
+      ],
+    },
+    {
+      name: "upgradeCreatorNftRarity",
+      accounts: [
+        {
+          name: "nftAccount",
+          isMut: true,
+          isSigner: false,
+        },
+      ],
+      args: [],
+    },
   ],
   accounts: [
+    {
+      name: "creatorNftCollection",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "authority",
+            type: "publicKey",
+          },
+          {
+            name: "metadata",
+            type: {
+              defined: "CreatorMetadata",
+            },
+          },
+        ],
+      },
+    },
+    {
+      name: "creatorNft",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "collection",
+            type: "publicKey",
+          },
+          {
+            name: "owner",
+            type: "publicKey",
+          },
+          {
+            name: "projectDaoId",
+            type: "publicKey",
+          },
+          {
+            name: "rarity",
+            type: {
+              defined: "Rarity",
+            },
+          },
+        ],
+      },
+    },
+    {
+      name: "recipientAccount",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "recipient",
+            type: "publicKey",
+          },
+        ],
+      },
+    },
     {
       name: "escrowAccount",
       type: {
@@ -611,7 +1064,7 @@ export const IDL: Daocre8 = {
             name: "voterMap",
             type: {
               vec: {
-                defined: "(Pubkey,u8)",
+                defined: "DecisionMakingPollVoterMap",
               },
             },
           },
@@ -647,7 +1100,7 @@ export const IDL: Daocre8 = {
             name: "voterMap",
             type: {
               vec: {
-                defined: "(Pubkey,bool)",
+                defined: "MilestoneAchievementPollVoterMap",
               },
             },
           },
@@ -688,6 +1141,81 @@ export const IDL: Daocre8 = {
     },
   ],
   types: [
+    {
+      name: "CreatorMetadata",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+          },
+          {
+            name: "description",
+            type: "string",
+          },
+          {
+            name: "imageUri",
+            type: "string",
+          },
+        ],
+      },
+    },
+    {
+      name: "DecisionMakingPollVoterMap",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "key",
+            type: "publicKey",
+          },
+          {
+            name: "vote",
+            type: "u8",
+          },
+        ],
+      },
+    },
+    {
+      name: "MilestoneAchievementPollVoterMap",
+      type: {
+        kind: "struct",
+        fields: [
+          {
+            name: "key",
+            type: "publicKey",
+          },
+          {
+            name: "vote",
+            type: "bool",
+          },
+        ],
+      },
+    },
+    {
+      name: "Rarity",
+      type: {
+        kind: "enum",
+        variants: [
+          {
+            name: "Starter",
+          },
+          {
+            name: "Builder",
+          },
+          {
+            name: "Innovator",
+          },
+          {
+            name: "Visionary",
+          },
+          {
+            name: "Legend",
+          },
+        ],
+      },
+    },
     {
       name: "PollType",
       type: {
@@ -733,6 +1261,16 @@ export const IDL: Daocre8 = {
       code: 6005,
       name: "VoterAlreadyVoted",
       msg: "Backer has already voted.",
+    },
+    {
+      code: 6006,
+      name: "InvalidDeposit",
+      msg: "Please deposit exactly 1 SOL.",
+    },
+    {
+      code: 6007,
+      name: "ProjectIdMismatch",
+      msg: "Project ID does not match any records",
     },
   ],
 };

@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-daocre8_program = "9vbWbujKchpAxbM7VbwdABXiURvEHbkFi32pMzPVtXci"
+daocre8_program = "8ojTegL1viqKDr3MqSXzBjjQUGHfVQ881ADxWYnozUaC"
 
 [registry]
 url = "https://api.apr.dev"

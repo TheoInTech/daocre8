@@ -11,18 +11,18 @@ pub enum Rarity {
 
 impl Rarity {
     pub fn upgrade_rarity(&mut self) {
-        match &self.rarity {
+        match self {
             Rarity::Starter => {
-                self.rarity = Rarity::Builder;
+                *self = Rarity::Builder;
             }
             Rarity::Builder => {
-                self.rarity = Rarity::Innovator;
+                *self = Rarity::Innovator;
             }
             Rarity::Innovator => {
-                self.rarity = Rarity::Visionary;
+                *self = Rarity::Visionary;
             }
             Rarity::Visionary => {
-                self.rarity = Rarity::Legend;
+                *self = Rarity::Legend;
             }
             Rarity::Legend => (),
         }
@@ -43,7 +43,7 @@ pub struct CreatorNFTCollection {
 }
 
 #[account]
-pub struct NFT {
+pub struct CreatorNFT {
     pub collection: Pubkey,
     pub owner: Pubkey,
     pub project_dao_id: Pubkey,

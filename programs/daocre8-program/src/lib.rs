@@ -1,15 +1,15 @@
 use anchor_lang::prelude::*;
 use solana_program::{ program::invoke, system_instruction };
 
+pub mod creator_nft;
 pub mod errors;
 pub mod escrow;
 pub mod polls;
 pub mod project_dao;
-pub mod creator_nft;
 
-use crate::{ errors::*, escrow::*, polls::*, project_dao::*, creator_nft::* };
+use crate::{ creator_nft::*, errors::*, escrow::*, polls::*, project_dao::* };
 
-declare_id!("9vbWbujKchpAxbM7VbwdABXiURvEHbkFi32pMzPVtXci");
+declare_id!("8ojTegL1viqKDr3MqSXzBjjQUGHfVQ881ADxWYnozUaC");
 
 #[program]
 pub mod daocre8 {
@@ -98,17 +98,17 @@ pub mod daocre8 {
         title: String,
         description: String,
         image_uri: String
-    ) -> ProgramResult {
+    ) -> Result<()> {
         creator_nft::initialize_creator_nft_collection(ctx, title, description, image_uri);
         Ok(())
     }
 
-    pub fn mint_creator_nft(ctx: Context<MintCreatorNFT>, project_dao_id: Pubkey) -> ProgramResult {
+    pub fn mint_creator_nft(ctx: Context<MintCreatorNFT>, project_dao_id: Pubkey) -> Result<()> {
         creator_nft::mint_creator_nft(ctx, project_dao_id);
         Ok(())
     }
 
-    pub fn upgrade_creator_nft_rarity(ctx: Context<UpgradeCreatorNFTRarity>) -> ProgramResult {
+    pub fn upgrade_creator_nft_rarity(ctx: Context<UpgradeCreatorNFTRarity>) -> Result<()> {
         creator_nft::upgrade_creator_nft_rarity(ctx);
         Ok(())
     }
