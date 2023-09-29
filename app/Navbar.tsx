@@ -6,7 +6,16 @@ import Link from "next/link";
 // components
 import { ConnectWallet } from "@/app/ConnectWallet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LogoIcon from "@/public/logo.svg";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { Menu } from "lucide-react";
 
 const items: { title: string; href: string }[] = [
@@ -21,6 +30,7 @@ const items: { title: string; href: string }[] = [
 ];
 
 export const Navbar = () => {
+  const { publicKey } = useWallet();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -61,12 +71,34 @@ export const Navbar = () => {
             </div>
           ))}
           <ConnectWallet />
-          <Avatar className="h-14 w-14">
-            {/* TODO: Change to actual avatar or NFT */}
-            <AvatarImage src="/" alt="8" />
-            {/* TODO: Change to name initials */}
-            <AvatarFallback className="bg-primary/20">TR</AvatarFallback>
-          </Avatar>
+          {publicKey && (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar className="h-14 w-14 hover:brightness-105 hover:scale-110 duration-300 ease-in-out">
+                  {/* TODO: Change to actual avatar or NFT */}
+                  <AvatarImage src="/" alt="8" />
+                  {/* TODO: Change to name initials */}
+                  <AvatarFallback className="bg-primary/20">TR</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href={"/creator"}>Creator Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={"/creator/your-projects"}>Your Projects</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={"/creator/backed-projects"}>Backed Projects</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={"/creator/settings"}>Settings</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
     </div>
