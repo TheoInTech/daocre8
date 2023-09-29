@@ -1,3 +1,5 @@
+"use client";
+
 import {
   PROGRAM_INTERFACE,
   PROGRAM_PUBKEY,
@@ -41,6 +43,7 @@ export const ProgramProvider = ({ children }: { children: ReactNode }) => {
       const provider = new AnchorProvider(connection, anchorWallet, {
         preflightCommitment: commitmentLevel,
       });
+
       return new Program(
         PROGRAM_INTERFACE,
         PROGRAM_PUBKEY,

@@ -1,5 +1,5 @@
-import { FormButtons } from "@/app/raise/FormButtons";
-import { useFormState } from "@/app/raise/FormContext";
+import { FormButtons } from "@/common/raise/FormButtons";
+import { useFormState } from "@/common/raise/FormContext";
 import { EStep } from "@/lib/schema/raise.schema";
 
 export const Agreement = () => {

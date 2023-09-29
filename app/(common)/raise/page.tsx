@@ -4,14 +4,14 @@
 import { useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 // raise
-import { Agreement } from "@/app/raise/(steps)/Agreement";
-import { BasicDetails } from "@/app/raise/(steps)/BasicDetails";
-import { Category } from "@/app/raise/(steps)/Category";
-import { FundingAndMilestones } from "@/app/raise/(steps)/FundingAndMilestones";
-import { Rewards } from "@/app/raise/(steps)/Rewards";
-import { Summary } from "@/app/raise/(steps)/Summary";
-import { Team } from "@/app/raise/(steps)/Team";
-import { useFormState } from "@/app/raise/FormContext";
+import { Agreement } from "@/common/raise/(steps)/Agreement";
+import { BasicDetails } from "@/common/raise/(steps)/BasicDetails";
+import { Category } from "@/common/raise/(steps)/Category";
+import { FundingAndMilestones } from "@/common/raise/(steps)/FundingAndMilestones";
+import { Rewards } from "@/common/raise/(steps)/Rewards";
+import { Summary } from "@/common/raise/(steps)/Summary";
+import { Team } from "@/common/raise/(steps)/Team";
+import { useFormState } from "@/common/raise/FormContext";
 // types
 import { EStep, IFormData } from "@/lib/schema/raise.schema";
 

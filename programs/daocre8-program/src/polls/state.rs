@@ -2,15 +2,27 @@ use anchor_lang::prelude::*;
 
 use crate::project_dao::state::ProjectDaoAccount;
 
+#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
+pub struct DecisionMakingPollVoterMap {
+    pub key: Pubkey,
+    pub vote: u8,
+}
+
 #[account]
 pub struct DecisionMakingPoll {
     pub authority: Pubkey, // Creator of the DAO
     pub project_dao_id: Pubkey, // ID of the parent DAO
     pub question: String, // Question to be polled out
     pub options: Vec<String>, // Options for the poll
-    pub voter_map: Vec<(Pubkey, u8)>, // Mapping of voter to their selected option index
+    pub voter_map: Vec<DecisionMakingPollVoterMap>, // Mapping of voter to their selected option index
     pub start_datetime: i64, // Unix time and date to start the poll
     pub end_datetime: i64, // Unix time and date to end the poll
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
+pub struct MilestoneAchievementPollVoterMap {
+    pub key: Pubkey,
+    pub vote: bool,
 }
 
 #[account]
@@ -18,7 +30,7 @@ pub struct MilestoneAchievementPoll {
     pub authority: Pubkey, // Creator of the DAO
     pub project_dao_id: Pubkey, // ID of the parent DAO
     pub milestone_id: u8, // Milestone of the DAO
-    pub voter_map: Vec<(Pubkey, bool)>, // Mapping of voter to their vote (Yes/No)
+    pub voter_map: Vec<MilestoneAchievementPollVoterMap>, // Mapping of voter to their vote (Yes/No)
     pub start_datetime: i64, // Unix time and date to start the poll
     pub end_datetime: i64, // Unix time and date to end the poll
 }

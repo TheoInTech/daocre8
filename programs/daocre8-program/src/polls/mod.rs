@@ -3,7 +3,7 @@ use crate::errors::*;
 
 pub mod types;
 pub mod state;
-pub use { types::*, state::* };
+pub use crate::polls::{ types::*, state::* };
 
 pub fn initialize_decision_making_poll(
     ctx: Context<InitializeDecisionMakingPoll>,
@@ -19,7 +19,7 @@ pub fn initialize_decision_making_poll(
     poll.options = options;
     poll.start_datetime = start_datetime;
     poll.end_datetime = end_datetime;
-    
+
     Ok(())
 }
 
@@ -37,8 +37,19 @@ pub fn vote_in_decision_making_poll(
     // Get the voter's public key
     let voter_pubkey = ctx.accounts.voter.key();
 
+    // Check if this voter has already voted
+    if decision_making_poll.voter_map.iter().any(|voter_map| voter_map.key == voter_pubkey) {
+        return Err(DAOCre8Error::VoterAlreadyVoted.into());
+    }
+
+    // Create a new DecisionMakingPollVoterMap instance
+    let new_vote = DecisionMakingPollVoterMap {
+        key: voter_pubkey,
+        vote: option_index,
+    };
+
     // Add the vote to the voter_map
-    decision_making_poll.voter_map.push((voter_pubkey, option_index));
+    decision_making_poll.voter_map.push(new_vote);
 
     msg!("Vote registered for option index {}", option_index);
 
@@ -71,12 +82,18 @@ pub fn vote_in_milestone_achievement_poll(
     let voter_pubkey = ctx.accounts.voter.key();
 
     // Check if this voter has already voted
-    if milestone_achievement_poll.voter_map.iter().any(|(pubkey, _)| pubkey == &voter_pubkey) {
+    if milestone_achievement_poll.voter_map.iter().any(|voter_map| voter_map.key == voter_pubkey) {
         return Err(DAOCre8Error::VoterAlreadyVoted.into());
     }
 
+    // Create a new MilestoneAchievementPollVoterMap instance
+    let new_vote = MilestoneAchievementPollVoterMap {
+        key: voter_pubkey,
+        vote,
+    };
+
     // Record the vote
-    milestone_achievement_poll.voter_map.push((voter_pubkey, vote));
+    milestone_achievement_poll.voter_map.push(new_vote);
 
     msg!("Vote registered: {}", if vote { "Yes" } else { "No" });
 

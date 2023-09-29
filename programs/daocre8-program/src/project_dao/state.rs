@@ -7,5 +7,5 @@ use crate::polls::types::PollType;
 pub struct ProjectDaoAccount {
     pub authority: Pubkey,
     pub project_ipfs_hash: String,
-    pub polls: Vec<PollType>,    // Polls
+    pub polls: Vec<PollType>, // Polls
 }
