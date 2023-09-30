@@ -4,7 +4,7 @@ const SettingsPage = () => {
   return (
     <>
       <CreatorTitle
-        title={"SettingsPage"}
+        title={"Settings"}
         subtitle={"Manage your profile settings."}
       />
     </>

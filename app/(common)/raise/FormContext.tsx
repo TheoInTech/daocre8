@@ -41,11 +41,6 @@ export const formDataDefaults: IFormData = {
       imageUrl: "",
     },
   ] as Array<IFundingTier>,
-  // projectStory: {
-  //   imageUrl: "",
-  //   videoUrl: "",
-  //   inspiration: "",
-  // },
   fundingAndMilestones: {
     fundingAmount: 0,
     walletAddress: "",
