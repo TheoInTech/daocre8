@@ -91,16 +91,16 @@ export const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild onClick={handleMenuClick}>
                   <Link href={"/creator"}>Creator Profile</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild onClick={handleMenuClick}>
                   <Link href={"/creator/your-projects"}>Your Projects</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild onClick={handleMenuClick}>
                   <Link href={"/creator/backed-projects"}>Backed Projects</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild onClick={handleMenuClick}>
                   <Link href={"/creator/settings"}>Settings</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

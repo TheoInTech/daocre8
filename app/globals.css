@@ -93,6 +93,9 @@
   .text-gradient-yellow {
     @apply text-transparent bg-clip-text bg-gradient-to-b from-accent to-accent/50 w-fit;
   }
+  .card-glass {
+    @apply bg-muted/5 backdrop-blur-[2px] border border-border rounded-lg shadow-lg p-8;
+  }
 }
 
 @layer base {
