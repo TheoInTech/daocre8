@@ -152,7 +152,11 @@ export const TeamSchema = z
     githubUrl: z.string().optional(),
     xUrl: z.string().optional(),
     pastProjectUrl: z.string().optional(),
-    teamProfileUrls: z.array(z.string()).optional(),
+    teamProfileUrls: z.array(
+      z.object({
+        url: z.string().optional(),
+      })
+    ),
   })
   .refine(
     (data) => {
@@ -181,6 +185,15 @@ export const MilestoneSchema = z.object({
   description: z.string().nonempty("Milestone description is required"),
 });
 
+export const StretchGoalSchema = z.object({
+  percentage: z.coerce
+    .number()
+    .refine((val) => !val || (val > 0 && val <= 100), {
+      message: "Amount must be 0 to 100",
+    }),
+  description: z.string(),
+});
+
 export const FundingAngMilestonesSchema = z.object({
   fundingAmount: z.coerce
     .number()
@@ -195,6 +208,7 @@ export const FundingAngMilestonesSchema = z.object({
     .min(1, "Amount must be greater than 0")
     .max(100, "Amount must be less than or equal to 100"),
   milestones: z.array(MilestoneSchema),
+  stretchGoals: z.array(StretchGoalSchema),
 });
 
 export const BasicDetailsSchema = z

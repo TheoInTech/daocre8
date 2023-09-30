@@ -85,10 +85,7 @@ export const Rewards = () => {
           <div className="fle flex-col py-4 space-y-8 h-full">
             {fields.map((field, index) => {
               return (
-                <div
-                  key={field.id}
-                  className="flex flex-col gap-4 rounded-lg shadow-md p-8 border border-border"
-                >
+                <div key={field.id} className="flex flex-col gap-4 card-glass">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">
                       Funding Tier # {index + 1}

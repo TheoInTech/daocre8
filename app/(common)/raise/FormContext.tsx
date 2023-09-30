@@ -31,7 +31,11 @@ export const formDataDefaults: IFormData = {
     githubUrl: "",
     xUrl: "",
     pastProjectUrl: "",
-    teamProfileUrls: [],
+    teamProfileUrls: [
+      {
+        url: "",
+      },
+    ],
   },
   fundingTiers: [
     {
@@ -48,6 +52,12 @@ export const formDataDefaults: IFormData = {
     acceptedCurrency: ECurrency.SOL,
     capitalPercentage: 0,
     milestones: [
+      {
+        percentage: 0,
+        description: "",
+      },
+    ],
+    stretchGoals: [
       {
         percentage: 0,
         description: "",

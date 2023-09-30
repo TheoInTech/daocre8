@@ -1,6 +1,7 @@
 import { FormButtons } from "@/common/raise/FormButtons";
 import { useFormState } from "@/common/raise/FormContext";
 import { SummaryTitle } from "@/common/raise/SummaryTitle";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -13,28 +14,43 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import useZodForm from "@/lib/hooks/useZodForm";
 import { EStep, ITeam, TeamSchema } from "@/lib/schema/raise.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Plus } from "lucide-react";
+import { useFieldArray } from "react-hook-form";
 
 export const Team = () => {
   const { setFormData, formData, setStep, setCompletion, completion } =
     useFormState();
 
   // form
-  const form = useForm<ITeam>({
-    resolver: zodResolver(TeamSchema),
+  const form = useZodForm({
+    schema: TeamSchema,
     defaultValues: formData.team,
+    mode: "onChange",
+  });
+
+  const { fields, remove, append } = useFieldArray({
+    control: form.control,
+    name: "teamProfileUrls",
   });
 
   // methods
   const handleSubmit = (values: ITeam) => {
-    setFormData({
-      ...formData,
-      team: values,
-    });
-
-    console.log("values", values);
+    if (values.undoxxed) {
+      setFormData({
+        ...formData,
+        team: {
+          ...formData.team,
+          undoxxed: true,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        team: values,
+      });
+    }
 
     setCompletion({ ...completion, [EStep.TEAM]: true });
     setStep(EStep.SUMMARY);
@@ -50,7 +66,7 @@ export const Team = () => {
             control={form.control}
             name="undoxxed"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 card-glass p-4">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
@@ -186,6 +202,67 @@ export const Team = () => {
                 </FormItem>
               )}
             />
+
+            {/* Team Member Profiles */}
+            <div className="flex flex-col space-y-4 md:col-start-1">
+              {fields.map((field, index) => {
+                return (
+                  <div
+                    key={field.id}
+                    className="flex flex-col gap-4 card-glass"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold">
+                        Team member # {index + 1}
+                      </h4>
+                      {fields.length > 1 && (
+                        <Button
+                          variant={"destructive"}
+                          size={"xs"}
+                          onClick={() => remove(index)}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      {...form.register(`teamProfileUrls.${index}.url`)}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              placeholder="https://www.linkedin.com/in/<teammates-profile>"
+                              disabled={form.getValues("undoxxed")}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage>
+                            {
+                              form?.formState?.errors?.teamProfileUrls?.[index]
+                                ?.url?.message
+                            }
+                          </FormMessage>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                );
+              })}
+              <Button
+                variant={"secondary"}
+                disabled={form.getValues("undoxxed")}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  append({ url: "" });
+                }}
+                className="w-fit"
+                size={"sm"}
+              >
+                <Plus className="mr-2" /> Add Team Member
+              </Button>
+            </div>
           </div>
 
           <FormButtons onSubmit={form.handleSubmit(handleSubmit)} />

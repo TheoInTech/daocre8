@@ -45,12 +45,25 @@ export const FundingAndMilestones = () => {
     name: "milestones",
   });
 
+  const {
+    fields: stretchGoalFields,
+    remove: stretchGoalRemove,
+    append: stretchGoalAppend,
+  } = useFieldArray({
+    control: form.control,
+    name: "stretchGoals",
+  });
+
   const watchFundingAndCapital = form.watch([
     "fundingAmount",
     "capitalPercentage",
   ]);
 
   const watchFundingAndMilestone = form.watch(["fundingAmount", "milestones"]);
+  const watchFundingAndStretchGoal = form.watch([
+    "fundingAmount",
+    "stretchGoals",
+  ]);
 
   // methods
   const handleSubmit = (values: IFundingAngMilestones) => {
@@ -75,14 +88,7 @@ export const FundingAndMilestones = () => {
       fundingAndMilestones: values,
     });
 
-    console.log("values", values);
-
     setCompletion({ ...completion, [EStep.MILESTONES]: true });
-    toast({
-      variant: "success",
-      title: "Success",
-      description: "Funding & milestones saved",
-    });
     setStep(EStep.SUMMARY);
   };
 
@@ -223,10 +229,7 @@ export const FundingAndMilestones = () => {
           <div className="fle flex-col py-4 space-y-8 h-full">
             {fields.map((field, index) => {
               return (
-                <div
-                  key={field.id}
-                  className="flex flex-col gap-4 rounded-lg shadow-md p-8 border border-border"
-                >
+                <div key={field.id} className="flex flex-col gap-4 card-glass">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">Milestone # {index + 1}</h4>
                     {fields.length > 1 && (
@@ -326,6 +329,115 @@ export const FundingAndMilestones = () => {
               size={"sm"}
             >
               <Plus className="mr-2" /> Add New Milestone
+            </Button>
+          </div>
+
+          {/* Stretch Goals */}
+          <div className="fle flex-col py-4 space-y-8 h-full">
+            {stretchGoalFields.map((field, index) => {
+              return (
+                <div key={field.id} className="flex flex-col gap-4 card-glass">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold">
+                      Stretch Goal # {index + 1}
+                    </h4>
+                    {stretchGoalFields.length > 1 && (
+                      <Button
+                        variant={"destructive"}
+                        size={"xs"}
+                        onClick={() => stretchGoalRemove(index)}
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 grid-flow-row md:grid-flow-col gap-8">
+                    <FormField
+                      control={form.control}
+                      {...form.register(`stretchGoals.${index}.percentage`)}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel isOptional>
+                            % Funds overallocated upon completion
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="20"
+                              type="number"
+                              min={1}
+                              max={100}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage>
+                            {
+                              form?.formState?.errors?.stretchGoals?.[index]
+                                ?.percentage?.message
+                            }
+                          </FormMessage>
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      name={"stretchGoalInUsd"}
+                      render={() => (
+                        <FormItem>
+                          <FormLabel isOptional>USD Equivalent</FormLabel>
+                          <FormControl>
+                            <Input
+                              value={getPercentagePartition(
+                                watchFundingAndStretchGoal[0], // fundingAmount
+                                watchFundingAndStretchGoal[1][index].percentage // stretch goal percentage
+                              )}
+                              disabled
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      {...form.register(`stretchGoals.${index}.description`)}
+                      render={({ field }) => (
+                        <FormItem className="col-span-1 md:col-span-2 md:col-start-1 md:row-start-2">
+                          <FormLabel isOptional>Description</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="We finished the first prototype..."
+                              className="resize-none"
+                              maxLength={250}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage>
+                            {
+                              form?.formState?.errors?.stretchGoals?.[index]
+                                ?.description?.message
+                            }
+                          </FormMessage>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            <Button
+              variant={"secondary"}
+              onClick={(e: any) => {
+                e.preventDefault();
+                stretchGoalAppend({
+                  percentage: 0,
+                  description: "",
+                });
+              }}
+              size={"sm"}
+            >
+              <Plus className="mr-2" /> Add New Stretch Goal
             </Button>
           </div>
 
