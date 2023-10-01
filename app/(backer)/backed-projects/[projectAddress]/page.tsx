@@ -1,18 +1,15 @@
 import { PageTitle } from "@/app/PageTitle";
 import { BackButton } from "@/components/ui/back-button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { Content } from "@/creator/your-projects/[projectAddress]/Content";
-import { Sidebar } from "@/creator/your-projects/[projectAddress]/Sidebar";
 import { mockProjectsData } from "@/lib/mock";
-// import { NoProjects } from "@/creator/NoProjects";
 
-interface IProjectDetailPage {
+interface IBackedProjectDetailPage {
   params: {
     projectAddress: string;
   };
 }
 
-const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
+const BackedProjectDetailPage = ({ params }: IBackedProjectDetailPage) => {
   const { projectAddress } = params;
 
   const project = mockProjectsData.find(
@@ -24,12 +21,13 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
       <div className="flex flex-col gap-4 mb-8">
         <Breadcrumbs
           links={[
-            { href: "/creator/your-projects", name: "Your Projects" },
+            { href: "/backed-projects", name: "Backed Projects" },
             { name: project?.project_ipfs_hash?.basicDetails.name ?? "" },
           ]}
         />
-        <BackButton href="/creator/your-projects" />
+        <BackButton href="/backed-projects" />
       </div>
+
       <PageTitle
         title={
           project?.project_ipfs_hash?.basicDetails.name ?? "Project not found"
@@ -43,15 +41,8 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
           </>
         }
       />
-
-      {/* <NoProjects /> */}
-
-      <div className="grid grid-cols-4 my-4 space-x-8">
-        <Sidebar className="col-span-1" />
-        <Content className="col-span-3" />
-      </div>
     </>
   );
 };
 
-export default ProjectDetailPage;
+export default BackedProjectDetailPage;

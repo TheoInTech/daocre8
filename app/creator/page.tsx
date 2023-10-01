@@ -2,13 +2,13 @@ import { AIPoweredInsights } from "@/app/creator/(creator-profile)/AIPoweredInsi
 import { CreatorBehaviorInsights } from "@/app/creator/(creator-profile)/CreatorBehaviorInsights";
 import { CreatorSummary } from "@/app/creator/(creator-profile)/CreatorSummary";
 import { EngagementAnalytics } from "@/app/creator/(creator-profile)/EngagementAnalytics";
-import { CreatorTitle } from "@/creator/CreatorTitle";
+import { PageTitle } from "@/app/PageTitle";
 // import { NoProjects } from "@/creator/NoProjects";
 
 const CreatorPage = () => {
   return (
     <>
-      <CreatorTitle
+      <PageTitle
         title={"Creator Profile"}
         subtitle={
           "Monitor your projects' AI-powered insights, analytics, funding and more."

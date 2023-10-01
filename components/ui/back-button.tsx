@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils/cn";
 import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 
 export const BackButton = ({
   href,

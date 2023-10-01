@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 // next
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Link } from "nextjs13-progress";
 // components
 import { ConnectWallet } from "@/app/ConnectWallet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -41,10 +41,9 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="fixed flex left-0 top-0 right-0 px-4 md:px-20 text-lg py-4 bg-black bg-opacity-40 items-center justify-between z-50 backdrop-blur-sm shadow-md">
+    <div className="fixed flex left-0 top-0 right-0 px-4 md:px-20 text-lg py-4 bg-black/50 items-center justify-between z-50 backdrop-blur-sm shadow-md">
       <Link
         href="/"
-        passHref
         className="hover:bg-muted/20 p-4 rounded-lg"
         onClick={handleMenuClick}
       >
@@ -65,7 +64,6 @@ export const Navbar = () => {
             <div key={item.title}>
               <Link
                 href={item.href}
-                passHref
                 className={cn(
                   "hover:bg-muted/20 p-3 rounded-lg block",
                   pathname === item.href &&
@@ -85,7 +83,9 @@ export const Navbar = () => {
                   {/* TODO: Change to actual avatar or NFT */}
                   <AvatarImage src="/" alt="8" />
                   {/* TODO: Change to name initials */}
-                  <AvatarFallback className="bg-primary/20">TR</AvatarFallback>
+                  <AvatarFallback className="bg-primary/20 text-sm">
+                    You
+                  </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -98,10 +98,10 @@ export const Navbar = () => {
                   <Link href={"/creator/your-projects"}>Your Projects</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild onClick={handleMenuClick}>
-                  <Link href={"/creator/backed-projects"}>Backed Projects</Link>
+                  <Link href={"/backed-projects"}>Backed Projects</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild onClick={handleMenuClick}>
-                  <Link href={"/creator/settings"}>Settings</Link>
+                  <Link href={"/settings"}>Settings</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

@@ -1,9 +1,9 @@
-import { CreatorTitle } from "@/creator/CreatorTitle";
+import { PageTitle } from "@/app/PageTitle";
 
 const SettingsPage = () => {
   return (
     <>
-      <CreatorTitle
+      <PageTitle
         title={"Settings"}
         subtitle={"Manage your profile settings."}
       />

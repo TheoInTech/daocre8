@@ -3,6 +3,7 @@ import meta from "@/lib/metadata.json";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Next13NProgress } from "nextjs13-progress";
 
 // components
 import { Navbar } from "@/app/Navbar";
@@ -116,6 +117,7 @@ export default function RootLayout({
         <WalletConnectProvider>
           <ProgramProvider>
             <ThemeProvider attribute="class" defaultTheme="light">
+              <Next13NProgress color="#E416F9" height={5} />
               <Navbar />
               <Particles />
               <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24 z-10">

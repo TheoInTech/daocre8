@@ -76,7 +76,6 @@ const FormContext = createContext<IFormContext>({
     [EStep.BASIC_DETAILS]: false,
     [EStep.REWARDS]: false,
     [EStep.TEAM]: false,
-    // [EStep.STORY]: false,
     [EStep.MILESTONES]: false,
   },
   setCompletion: () => {},

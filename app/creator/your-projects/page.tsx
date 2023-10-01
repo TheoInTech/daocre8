@@ -1,18 +1,18 @@
+import { PageTitle } from "@/app/PageTitle";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { CreatorTitle } from "@/creator/CreatorTitle";
 // import { NoProjects } from "@/creator/NoProjects";
 import { mockProjectsData } from "@/lib/mock";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 
 const YourProjectsPage = () => {
   return (
     <>
-      <CreatorTitle
+      <PageTitle
         title={"Your Projects"}
         subtitle={
           "Manage your projects, milestones, polls and monitor funding status."
