@@ -361,3 +361,16 @@ export const mockProjectsData = [
     } as IFormData,
   },
 ];
+
+export const mockAiPoweredInsights = mockProjectsData.map((project) => ({
+  projectName: project.project_ipfs_hash.basicDetails.name,
+  category: project.project_ipfs_hash.category,
+  insights: {
+    performance: "Below Average",
+    suggestions: [
+      "Enhance project visibility",
+      "Optimize reward & funding tiers",
+      "Enhance project description",
+    ],
+  },
+}));
