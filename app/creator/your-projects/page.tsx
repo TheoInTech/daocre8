@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { CreatorTitle } from "@/creator/CreatorTitle";
 // import { NoProjects } from "@/creator/NoProjects";
-import { mockProjectsData } from "@/creator/your-projects/mock";
+import { mockProjectsData } from "@/lib/mock";
 import Image from "next/image";
 import Link from "next/link";
 

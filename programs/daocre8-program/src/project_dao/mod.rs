@@ -21,7 +21,7 @@ pub use crate::project_dao::{ constants::*, state::* };
 ///
 /// ## BasicDetailsSchema
 /// - `name`: string, required, the name of the project.
-/// - `location`: string, required, must be one of ["Singapore", "Philippines"].
+/// - `location`: string, required, must be one of ["Singapore", "Philippines", "USA", "Europe"].
 /// - `imageUrl`: string, required, must be a valid URL (the image should be of types ["jpeg", "jpg", "png", "webp"] and max size 5MB).
 /// - `pdfUrl`: string, required, must be a valid URL to a PDF document (max size 10MB).
 /// - `videoUrl`: string, optional, must be a valid URL to a video if provided (the video should be of types ["mp4", "mov", "avi", "mkv", "webm"] and max size 100MB).
@@ -46,7 +46,7 @@ pub use crate::project_dao::{ constants::*, state::* };
 /// - `fundingAmount`: number, required, minimum 1.
 /// - `walletAddress`: string, required, must be a valid Solana address.
 /// - `walletIsConfirmed`: boolean, required, must be true.
-/// - `acceptedCurrency`: string, required, must be one of ["SOL", "USDC", "USDT", "USD"].
+/// - `currency`: string, required, must be one of ["SOL", "USDC", "USDT", "USD"].
 /// - `capitalPercentage`: number, required, between 1 and 100 inclusive.
 /// - `milestones`: array, required, each element must be an object with the following properties:
 ///     - `percentage`: number, required, between 1 and 100 inclusive.

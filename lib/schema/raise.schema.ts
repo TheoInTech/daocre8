@@ -16,6 +16,8 @@ export enum EStep {
 export enum ELocation {
   SG = "Singapore",
   PH = "Philippines",
+  USA = "USA",
+  EU = "Europe",
 }
 
 export enum ECategory {

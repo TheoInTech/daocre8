@@ -58,8 +58,6 @@ export const BasicDetails = () => {
       basicDetails: values,
     });
 
-    console.log("values", values);
-
     setCompletion({ ...completion, [EStep.BASIC_DETAILS]: true });
     setStep(EStep.SUMMARY);
   };
