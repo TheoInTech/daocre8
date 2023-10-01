@@ -48,7 +48,7 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
 
       <div className="grid grid-cols-4 my-4 space-x-8">
         <Sidebar className="col-span-1" />
-        <Content className="col-span-3" />
+        <Content className="col-span-3" project={project} />
       </div>
     </>
   );

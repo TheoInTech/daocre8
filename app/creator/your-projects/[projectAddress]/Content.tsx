@@ -8,7 +8,12 @@ import { Team } from "@/app/creator/your-projects/[projectAddress]/Team";
 import { ESidebar } from "@/lib/schema/creator.schema";
 import { cn } from "@/lib/utils/cn";
 
-export const Content = ({ className }: { className?: string }) => {
+export const Content = ({
+  className,
+}: {
+  className?: string;
+  project: any;
+}) => {
   const { activeSidebar } = useProjectDetailState();
 
   let render = null;

@@ -14,7 +14,7 @@ export const Sidebar = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col gap-8 border-r border-r-muted/20 py-8 px-4 card-glass",
+        "flex flex-col gap-8 border-r border-r-muted/20 py-8 px-4 card-glass h-fit",
         className
       )}
     >
