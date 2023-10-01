@@ -22,6 +22,9 @@ export const formDataDefaults: IFormData = {
     videoUrl: "",
     launchDate: "",
     fundraiseEndDate: "",
+    linkedinUrl: "",
+    githubUrl: "",
+    xUrl: "",
   },
   team: {
     undoxxed: false,

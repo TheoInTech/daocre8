@@ -237,6 +237,9 @@ export const BasicDetailsSchema = z
         message: "Launch date can't be previous date",
       })
       .refine((val) => val !== "", { message: "Launch date is required" }),
+    xUrl: z.string().optional(),
+    linkedinUrl: z.string().optional(),
+    githubUrl: z.string().optional(),
   })
   .required()
   .refine(

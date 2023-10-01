@@ -281,6 +281,37 @@ export const BasicDetails = () => {
               </FormItem>
             )}
           />
+
+          {/* X URL */}
+          <FormField
+            control={form.control}
+            name="xUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel isOptional>Project&apos;s Twitter / X URL</FormLabel>
+                <FormControl>
+                  <Input placeholder="https://x.com/<username>" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* LinkedIn URL */}
+          <FormField
+            control={form.control}
+            name="linkedinUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel isOptional>Project&apos;s LinkedIn URL</FormLabel>
+                <FormControl>
+                  <Input placeholder="https://linkedin.com/" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormButtons onSubmit={form.handleSubmit(handleSubmit)} />
         </form>
       </Form>

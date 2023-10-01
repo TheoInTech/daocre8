@@ -26,7 +26,7 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
             { name: project?.project_ipfs_hash?.basicDetails.name ?? "" },
           ]}
         />
-        <BackButton />
+        <BackButton href="/creator/your-projects" />
       </div>
       <CreatorTitle
         title={

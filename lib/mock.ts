@@ -21,6 +21,9 @@ export const mockProjectsData = [
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
         fundraiseEndDate: "2023-10-01",
         launchDate: "2023-12-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
         undoxxed: false,
@@ -80,7 +83,7 @@ export const mockProjectsData = [
   },
   {
     address: "22222222222222",
-    balance: 100000,
+    balance: 2500000,
     project_ipfs_hash: {
       category: ECategory.HARDWARE,
       basicDetails: {
@@ -93,6 +96,9 @@ export const mockProjectsData = [
         videoUrl: null,
         fundraiseEndDate: "2024-01-01",
         launchDate: "2024-03-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
         undoxxed: true,
@@ -162,6 +168,9 @@ export const mockProjectsData = [
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
         fundraiseEndDate: "2024-04-01",
         launchDate: "2024-06-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
         undoxxed: false,
@@ -234,6 +243,9 @@ export const mockProjectsData = [
         videoUrl: null,
         fundraiseEndDate: "2023-07-01",
         launchDate: "2023-09-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
         undoxxed: true,
@@ -303,6 +315,9 @@ export const mockProjectsData = [
         videoUrl: null,
         fundraiseEndDate: "2023-05-01",
         launchDate: "2023-07-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
         undoxxed: false,
