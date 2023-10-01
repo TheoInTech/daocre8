@@ -1,4 +1,5 @@
 import { BackButton } from "@/components/ui/back-button";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CreatorTitle } from "@/creator/CreatorTitle";
 import { mockProjectsData } from "@/lib/mock";
 // import { NoProjects } from "@/creator/NoProjects";
@@ -19,7 +20,13 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
   return (
     <>
       <div className="flex flex-col gap-4 mb-8">
-        <BackButton href="/creator/your-projects" />
+        <Breadcrumbs
+          links={[
+            { href: "/creator/your-projects", name: "Your Projects" },
+            { name: project?.project_ipfs_hash?.basicDetails.name ?? "" },
+          ]}
+        />
+        <BackButton />
       </div>
       <CreatorTitle
         title={
