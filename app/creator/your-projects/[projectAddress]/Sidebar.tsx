@@ -24,7 +24,7 @@ export const Sidebar = ({ className }: { className?: string }) => {
           variant={"ghost"}
           className={cn(
             "shadow-none p-0 flex justify-between items-center",
-            activeSidebar === value && "text-accent font-medium"
+            activeSidebar === value && "text-accent font-medium brightness-200"
           )}
           disabled={activeSidebar === value}
           onClick={() => setActiveSidebar(value)}

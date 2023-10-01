@@ -40,19 +40,17 @@ export const CreatorSummary = () => {
     <CreatorSections title="Creator Summary">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <span className="font-semibold  text-secondary">Total projects</span>
+          <span className="font-semibold  text-accent">Total projects</span>
           <span>{totalProjects}</span>
         </div>
 
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-secondary">
-            Category diversity
-          </span>
+          <span className="font-semibold text-accent">Category diversity</span>
           <span>{categories.join(", ")}</span>
         </div>
 
         <div className="flex flex-col gap-2">
-          <span className="font-semibold  text-secondary">
+          <span className="font-semibold  text-accent">
             Total funding acquired
           </span>
           <div className="w-2/3 md:w-1/3 flex flex-col gap-2">

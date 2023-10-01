@@ -1,6 +1,7 @@
 export enum ESidebar {
   PROJECT_DETAILS = "Project Details",
   TEAM = "Team",
-  MILESTONES = "Milestones",
+  TIERS = "Tiers & Rewards",
+  MILESTONES = "Funding & Milestones",
   POLLS = "Polls",
 }
