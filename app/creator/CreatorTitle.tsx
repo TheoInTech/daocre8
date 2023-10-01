@@ -1,8 +1,9 @@
 import { Separator } from "@/components/ui/separator";
+import { ReactNode } from "react";
 
 interface ICreatorTitle {
-  title: string;
-  subtitle: string;
+  title: ReactNode;
+  subtitle: ReactNode;
 }
 
 export const CreatorTitle = ({ title, subtitle }: ICreatorTitle) => {

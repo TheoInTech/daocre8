@@ -1,3 +1,4 @@
+import { BackButton } from "@/components/ui/back-button";
 import { CreatorTitle } from "@/creator/CreatorTitle";
 import { mockProjectsData } from "@/lib/mock";
 // import { NoProjects } from "@/creator/NoProjects";
@@ -17,12 +18,20 @@ const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
 
   return (
     <>
+      <div className="flex flex-col gap-4 mb-8">
+        <BackButton href="/creator/your-projects" />
+      </div>
       <CreatorTitle
         title={
-          project?.project_ipfs_hash.basicDetails.name ?? "Project not found"
+          project?.project_ipfs_hash?.basicDetails.name ?? "Project not found"
         }
         subtitle={
-          "Manage your project, milestones, polls and monitor funding status."
+          <>
+            <span className="font-semibold capitalize text-gradient-violet">
+              {project?.project_ipfs_hash?.category?.toLocaleLowerCase()}
+            </span>{" "}
+            category
+          </>
         }
       />
 
