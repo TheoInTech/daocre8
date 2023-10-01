@@ -7,6 +7,7 @@ import {
 
 export const mockProjectsData = [
   {
+    address: "1234567890",
     balance: 0,
     project_ipfs_hash: {
       category: ECategory.ART,
@@ -18,8 +19,8 @@ export const mockProjectsData = [
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        launchDate: "2023-10-01",
-        fundraiseEndDate: "2023-12-01",
+        fundraiseEndDate: "2023-10-01",
+        launchDate: "2023-12-01",
       },
       team: {
         undoxxed: false,
@@ -52,7 +53,7 @@ export const mockProjectsData = [
         fundingAmount: 1000000,
         walletAddress: "ABCDE12345",
         walletIsConfirmed: true,
-        acceptedCurrency: ECurrency.SOL,
+        currency: ECurrency.SOL,
         capitalPercentage: 60,
         milestones: [
           {
@@ -78,6 +79,7 @@ export const mockProjectsData = [
     } as IFormData,
   },
   {
+    address: "22222222222222",
     balance: 100000,
     project_ipfs_hash: {
       category: ECategory.HARDWARE,
@@ -89,8 +91,8 @@ export const mockProjectsData = [
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
-        launchDate: "2024-01-01",
-        fundraiseEndDate: "2024-03-01",
+        fundraiseEndDate: "2024-01-01",
+        launchDate: "2024-03-01",
       },
       team: {
         undoxxed: true,
@@ -120,7 +122,7 @@ export const mockProjectsData = [
         fundingAmount: 1500000,
         walletAddress: "KLMNO11223",
         walletIsConfirmed: true,
-        acceptedCurrency: ECurrency.SOL,
+        currency: ECurrency.SOL,
         capitalPercentage: 40,
         milestones: [
           {
@@ -146,6 +148,7 @@ export const mockProjectsData = [
     } as IFormData,
   },
   {
+    address: "3333333333",
     balance: 45000,
     project_ipfs_hash: {
       category: ECategory.MUSIC,
@@ -157,8 +160,8 @@ export const mockProjectsData = [
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        launchDate: "2024-04-01",
-        fundraiseEndDate: "2024-06-01",
+        fundraiseEndDate: "2024-04-01",
+        launchDate: "2024-06-01",
       },
       team: {
         undoxxed: false,
@@ -191,7 +194,7 @@ export const mockProjectsData = [
         fundingAmount: 1200000,
         walletAddress: "VWXYZ77654",
         walletIsConfirmed: true,
-        acceptedCurrency: ECurrency.SOL,
+        currency: ECurrency.SOL,
         capitalPercentage: 40,
         milestones: [
           {
@@ -217,6 +220,7 @@ export const mockProjectsData = [
     } as IFormData,
   },
   {
+    address: "44444444444",
     balance: 1500000,
     project_ipfs_hash: {
       category: ECategory.GAMES,
@@ -228,8 +232,8 @@ export const mockProjectsData = [
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
-        launchDate: "2023-07-01",
-        fundraiseEndDate: "2023-09-01",
+        fundraiseEndDate: "2023-07-01",
+        launchDate: "2023-09-01",
       },
       team: {
         undoxxed: true,
@@ -259,7 +263,7 @@ export const mockProjectsData = [
         fundingAmount: 1600000,
         walletAddress: "PQRST45678",
         walletIsConfirmed: true,
-        acceptedCurrency: ECurrency.SOL,
+        currency: ECurrency.SOL,
         capitalPercentage: 50,
         milestones: [
           {
@@ -285,6 +289,7 @@ export const mockProjectsData = [
     } as IFormData,
   },
   {
+    address: "555555555555",
     balance: 1400000,
     project_ipfs_hash: {
       category: ECategory.FASHION,
@@ -296,8 +301,8 @@ export const mockProjectsData = [
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
-        launchDate: "2023-05-01",
-        fundraiseEndDate: "2023-07-01",
+        fundraiseEndDate: "2023-05-01",
+        launchDate: "2023-07-01",
       },
       team: {
         undoxxed: false,
@@ -330,7 +335,7 @@ export const mockProjectsData = [
         fundingAmount: 1400000,
         walletAddress: "XYZAB98765",
         walletIsConfirmed: true,
-        acceptedCurrency: ECurrency.SOL,
+        currency: ECurrency.SOL,
         capitalPercentage: 50,
         milestones: [
           {

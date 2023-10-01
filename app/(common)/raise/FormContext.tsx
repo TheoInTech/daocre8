@@ -49,7 +49,7 @@ export const formDataDefaults: IFormData = {
     fundingAmount: 0,
     walletAddress: "",
     walletIsConfirmed: false,
-    acceptedCurrency: ECurrency.SOL,
+    currency: ECurrency.SOL,
     capitalPercentage: 0,
     milestones: [
       {

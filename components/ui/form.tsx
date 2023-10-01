@@ -88,25 +88,38 @@ type FormLabelProps = React.ComponentPropsWithoutRef<
   typeof LabelPrimitive.Root
 > & {
   isOptional?: boolean;
+  isRequired?: boolean;
 };
 
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   FormLabelProps
->(({ className, isOptional = false, children, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
+>(
+  (
+    { className, isOptional = false, isRequired = true, children, ...props },
+    ref
+  ) => {
+    const { error, formItemId } = useFormField();
 
-  return (
-    <Label ref={ref} className={cn(className)} htmlFor={formItemId} {...props}>
-      {children}
-      {isOptional ? (
-        <span className="italic ml-1 text-gray-400">(optional)</span>
-      ) : (
-        <span className="text-destructive">*</span>
-      )}
-    </Label>
-  );
-});
+    return (
+      <Label
+        ref={ref}
+        className={cn(className)}
+        htmlFor={formItemId}
+        {...props}
+      >
+        {children}
+        {isOptional ? (
+          <span className="italic ml-1 text-gray-400">(optional)</span>
+        ) : isRequired ? (
+          <span className="text-destructive">*</span>
+        ) : (
+          <></>
+        )}
+      </Label>
+    );
+  }
+);
 FormLabel.displayName = "FormLabel";
 
 const FormControl = React.forwardRef<

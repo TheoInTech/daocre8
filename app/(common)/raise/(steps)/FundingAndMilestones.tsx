@@ -13,15 +13,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import useZodForm from "@/lib/hooks/useZodForm";
 import {
+  ECurrency,
   EStep,
   FundingAngMilestonesSchema,
   IFundingAngMilestones,
 } from "@/lib/schema/raise.schema";
 import { getPercentagePartition } from "@/lib/utils/getPercentagePartition";
+import { getTotalPercentage } from "@/lib/utils/getTotalPercentage";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Plus } from "lucide-react";
 import { useEffect } from "react";
@@ -68,9 +71,9 @@ export const FundingAndMilestones = () => {
   // methods
   const handleSubmit = (values: IFundingAngMilestones) => {
     // get the total percentage by combining all milestones and the capital percentage
-    const totalPercentage = values.milestones.reduce(
-      (acc, milestone) => Number(acc) + Number(milestone.percentage),
-      Number(values.capitalPercentage)
+    const totalPercentage = getTotalPercentage(
+      values.milestones,
+      values.capitalPercentage
     );
 
     if (totalPercentage !== 100) {
@@ -166,6 +169,50 @@ export const FundingAndMilestones = () => {
               />
             )}
           </div>
+
+          {/* Currency */}
+          <FormField
+            control={form.control}
+            name="currency"
+            render={({ field }) => (
+              <FormItem className="space-y-3">
+                <FormLabel>How do you want to receive funds?</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex flex-col md:flex-row space-y-2 md:space-x-2"
+                  >
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value={ECurrency.SOL} />
+                      </FormControl>
+                      <FormLabel isRequired={false}>{ECurrency.SOL}</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value={ECurrency.USDC} disabled />
+                      </FormControl>
+                      <FormLabel isRequired={false}>{ECurrency.USDC}</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value={ECurrency.USDT} disabled />
+                      </FormControl>
+                      <FormLabel isRequired={false}>{ECurrency.USDT}</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value={ECurrency.USD} disabled />
+                      </FormControl>
+                      <FormLabel isRequired={false}>{ECurrency.USD}</FormLabel>
+                    </FormItem>
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
             {/* Fund Raise Amount */}

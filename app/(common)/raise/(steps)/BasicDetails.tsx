@@ -218,13 +218,13 @@ export const BasicDetails = () => {
             )}
           />
 
-          {/* Launch Date */}
+          {/* Fundraise End Date */}
           <FormField
             control={form.control}
-            name="launchDate"
+            name="fundraiseEndDate"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
-                <FormLabel>Launch Date</FormLabel>
+                <FormLabel>Fundraise End Date</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -251,13 +251,13 @@ export const BasicDetails = () => {
             )}
           />
 
-          {/* Fundraise End Date */}
+          {/* Launch Date */}
           <FormField
             control={form.control}
-            name="fundraiseEndDate"
+            name="launchDate"
             render={({ field }) => (
               <FormItem className="flex flex-col gap-2">
-                <FormLabel>Fundraise End Date</FormLabel>
+                <FormLabel>Launch Date</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>

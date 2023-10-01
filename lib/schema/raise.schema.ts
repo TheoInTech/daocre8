@@ -202,7 +202,7 @@ export const FundingAngMilestonesSchema = z.object({
   walletIsConfirmed: z.boolean().refine((val) => !!val, {
     message: "Please confirm your wallet address",
   }),
-  acceptedCurrency: z.nativeEnum(ECurrency),
+  currency: z.nativeEnum(ECurrency),
   capitalPercentage: z.coerce
     .number()
     .min(1, "Amount must be greater than 0")
@@ -221,12 +221,6 @@ export const BasicDetailsSchema = z
     pdfUrl: PDFSchema,
     videoUrl: VideoSchemaOptional,
     inspiration: z.string().nonempty("Please tell us more about your story."),
-    launchDate: z
-      .string()
-      .refine((val) => !isPreviousDate(val), {
-        message: "Launch date can't be previous date",
-      })
-      .refine((val) => val !== "", { message: "Launch date is required" }),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
@@ -235,8 +229,22 @@ export const BasicDetailsSchema = z
       .refine((val) => val !== "", {
         message: "Fundraise's end date is required",
       }),
+    launchDate: z
+      .string()
+      .refine((val) => !isPreviousDate(val), {
+        message: "Launch date can't be previous date",
+      })
+      .refine((val) => val !== "", { message: "Launch date is required" }),
   })
-  .required();
+  .required()
+  .refine(
+    (data) => {
+      const fundraiseEndDate = new Date(data.fundraiseEndDate).getTime();
+      const launchDate = new Date(data.launchDate).getTime();
+      return launchDate > fundraiseEndDate;
+    },
+    { message: "Launch date must be after fundraise's end date" }
+  );
 
 export const FormDataSchema = z.object({
   category: z.union([z.nativeEnum(ECategory), z.literal(null)]),

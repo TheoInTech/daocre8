@@ -6,7 +6,6 @@ export type TCompletion = Record<
   | EStep.CATEGORY
   | EStep.BASIC_DETAILS
   | EStep.TEAM
-  // | EStep.STORY
   | EStep.MILESTONES
   | EStep.REWARDS,
   boolean
