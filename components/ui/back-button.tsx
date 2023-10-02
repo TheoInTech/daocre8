@@ -15,7 +15,7 @@ export const BackButton = ({
       asChild
       variant={"outline"}
       size={"sm"}
-      className={cn("w-fit bg-background/5 text-muted", className)}
+      className={cn("w-fit", className)}
     >
       <Link href={href}>
         <ChevronLeft className="w-5 h-5 mr-2" /> Back
