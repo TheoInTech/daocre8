@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const RaiseLayout = ({ children }: { children: ReactNode }) => {
   return (
     <FormProvider>
-      <div className="h-full flex flex-col items-center justify-center">
+      <div className="h-full flex flex-col items-center justify-center pt-16 md:pt-0">
         {children}
       </div>
     </FormProvider>

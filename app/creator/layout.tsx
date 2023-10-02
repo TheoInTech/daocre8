@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const CreatorLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="h-full w-full flex flex-col gap-4 flex-grow">
+    <div className="h-full w-full flex flex-col gap-4 flex-grow pt-16 md:pt-0">
       {children}
     </div>
   );

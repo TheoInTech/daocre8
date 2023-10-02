@@ -81,6 +81,9 @@
   .secondary-gradient {
     @apply bg-gradient-to-br from-[#130b1f] via-[#411950] to-[#660166];
   }
+  .blue-gradient {
+    @apply bg-gradient-to-r from-primary to-primary;
+  }
   .success-gradient {
     @apply bg-gradient-to-r from-green-700 to-success;
   }
