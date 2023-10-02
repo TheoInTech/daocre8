@@ -8,7 +8,6 @@ import { ChevronRight } from "lucide-react";
 
 export const Sidebar = ({ className }: { className?: string }) => {
   const { activeSidebar, setActiveSidebar } = useProjectDetailState();
-
   const sidebarOptions = Object.entries(ESidebar);
 
   return (
