@@ -1,4 +1,3 @@
-import { useFormState } from "@/common/raise/FormContext";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -24,10 +23,10 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { useProjectDetailState } from "@/creator/your-projects/[projectAddress]/ProjectDetailContext";
 import {
   BasicDetailsSchema,
   ELocation,
-  EStep,
   IBasicDetails,
 } from "@/lib/schema/raise.schema";
 import { cn } from "@/lib/utils/cn";
@@ -38,27 +37,18 @@ import { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 
 export const ProjectDetails = () => {
-  const { setFormData, formData, setStep, setCompletion, completion } =
-    useFormState();
+  const { project } = useProjectDetailState();
   const { toast } = useToast();
 
   // form
   const form = useForm<IBasicDetails>({
     resolver: zodResolver(BasicDetailsSchema),
-    defaultValues: formData.basicDetails,
+    defaultValues: project?.project_ipfs_hash?.basicDetails ?? {},
   });
   const locationOptions = Object.entries(ELocation);
 
   // methods
-  const handleSubmit = (values: IBasicDetails) => {
-    setFormData({
-      ...formData,
-      basicDetails: values,
-    });
-
-    setCompletion({ ...completion, [EStep.BASIC_DETAILS]: true });
-    setStep(EStep.SUMMARY);
-  };
+  const handleSubmit = (values: IBasicDetails) => {};
 
   const handleSelectFile = (
     e: ChangeEvent<HTMLInputElement>,
@@ -69,12 +59,9 @@ export const ProjectDetails = () => {
     }
 
     const file = e.target.files[0];
-    console.log("file", file);
 
     try {
       form.setValue(key, file);
-
-      console.log("form", form.getValues(key));
     } catch (error: any) {
       console.error("Error selecting media: ", error);
       toast({
@@ -111,7 +98,10 @@ export const ProjectDetails = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Location</FormLabel>
-                <Select onValueChange={field.onChange}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field?.value ?? undefined}
+                >
                   <FormControl>
                     <SelectTrigger className="min-w-[16rem]">
                       <SelectValue placeholder="Your primary location" />

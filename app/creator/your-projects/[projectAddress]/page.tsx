@@ -1,23 +1,15 @@
+"use client";
+
 import { PageTitle } from "@/app/PageTitle";
 import { BackButton } from "@/components/ui/back-button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Content } from "@/creator/your-projects/[projectAddress]/Content";
+import { useProjectDetailState } from "@/creator/your-projects/[projectAddress]/ProjectDetailContext";
 import { Sidebar } from "@/creator/your-projects/[projectAddress]/Sidebar";
-import { mockProjectsData } from "@/lib/mock";
 // import { NoProjects } from "@/creator/NoProjects";
 
-interface IProjectDetailPage {
-  params: {
-    projectAddress: string;
-  };
-}
-
-const ProjectDetailPage = ({ params }: IProjectDetailPage) => {
-  const { projectAddress } = params;
-
-  const project = mockProjectsData.find(
-    (mock) => mock.address === projectAddress
-  );
+const ProjectDetailPage = () => {
+  const { project } = useProjectDetailState();
 
   return (
     <>
