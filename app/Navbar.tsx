@@ -6,15 +6,6 @@ import { usePathname } from "next/navigation";
 import { Link } from "nextjs13-progress";
 // components
 import { ConnectWallet } from "@/app/ConnectWallet";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils/cn";
 import LogoIcon from "@/public/logo.svg";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -25,13 +16,17 @@ const items: { title: string; href: string }[] = [
     title: "Home",
     href: "/",
   },
+  // {
+  //   title: "Fund a Project",
+  //   href: "/fund",
+  // },
+  // {
+  //   title: "Fundraise",
+  //   href: "/raise",
+  // },
   {
-    title: "Fund a Project",
-    href: "/fund",
-  },
-  {
-    title: "Start Fundraising",
-    href: "/raise",
+    title: "Join Waitlist",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSeIUD7FSluhW2QjspFW7R9YU1VVMBtfPBPvJX2YD5LqdwYiXA/viewform",
   },
 ];
 
@@ -92,36 +87,6 @@ export const Navbar = () => {
               </div>
             ))}
             <ConnectWallet />
-            {publicKey && (
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar className="h-14 w-14 hover:brightness-105 hover:scale-110 duration-300 ease-in-out">
-                    {/* TODO: Change to actual avatar or NFT */}
-                    <AvatarImage src="/" alt="8" />
-                    {/* TODO: Change to name initials */}
-                    <AvatarFallback className="bg-primary/20 text-sm">
-                      You
-                    </AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild onClick={handleMenuClick}>
-                    <Link href={"/creator"}>Creator Profile</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild onClick={handleMenuClick}>
-                    <Link href={"/creator/your-projects"}>Your Projects</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild onClick={handleMenuClick}>
-                    <Link href={"/backed-projects"}>Backed Projects</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild onClick={handleMenuClick}>
-                    <Link href={"/settings"}>Settings</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
           </div>
         </div>
       </div>
