@@ -78,7 +78,17 @@ pub fn initialize_project_dao(
     project_dao_account.authority = ctx.accounts.authority.key();
     project_dao_account.project_ipfs_hash = project_ipfs_hash;
 
-    msg!("Initialized Project DAO with Metadata");
+    // Initialize milestones account
+    let milestones_account = &mut ctx.accounts.milestones_account;
+    milestones_account.authority = ctx.accounts.authority.key();
+    milestones_account.project_dao = *project_dao_account.to_account_info().key;
+
+    // Initialize polls account
+    let polls_account = &mut ctx.accounts.polls_account;
+    polls_account.authority = ctx.accounts.authority.key();
+    polls_account.project_dao = *project_dao_account.to_account_info().key;
+
+    msg!("Initialized Project DAO with Metadata, Milestones, and Polls");
     Ok(())
 }
 
@@ -98,6 +108,24 @@ pub struct InitializeProjectDao<'info> {
         space = 8 + std::mem::size_of::<ProjectDaoAccount>()
     )]
     pub project_dao_account: Box<Account<'info, ProjectDaoAccount>>,
+
+    #[account(
+        init,
+        seeds = [MILESTONES_TAG, project_dao_account.to_account_info().key.as_ref()],
+        bump,
+        payer = authority,
+        space = 8 + std::mem::size_of::<MilestoneAccount>()
+    )]
+    pub milestones_account: Box<Account<'info, MilestoneAccount>>,
+
+    #[account(
+        init,
+        seeds = [POLLS_TAG, project_dao_account.to_account_info().key.as_ref()],
+        bump,
+        payer = authority,
+        space = 8 + std::mem::size_of::<PollAccount>()
+    )]
+    pub polls_account: Box<Account<'info, PollAccount>>,
 
     pub system_program: Program<'info, System>,
 }
