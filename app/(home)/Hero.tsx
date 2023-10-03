@@ -18,7 +18,7 @@ const SectionHero = () => {
           Renaissance
         </h1>
         <h2 className="font-body font-medium text-base md:text-xl">
-          Blockchain-powered Crowdfunding for Creators and Builders
+          Decentralized Crowdfunding for Creators and Builders
         </h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 my-8">
           <Button asChild className="md:w-fit w-full h-fit">
