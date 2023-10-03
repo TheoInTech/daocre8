@@ -45,7 +45,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
-    setMenuOpen(false); // close the menu after interaction
+    setMenuOpen(false);
   };
 
   return (
