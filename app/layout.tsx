@@ -120,7 +120,7 @@ export default function RootLayout({
               <Next13NProgress color="#E416F9" height={5} />
               <Navbar />
               <Particles />
-              <main className="flex min-h-screen h-full flex-col py-32 md:py-40 px-8 md:px-24 z-10">
+              <main className="flex min-h-screen h-full flex-col z-10">
                 {children}
                 <Toaster />
                 <Analytics />

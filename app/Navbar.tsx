@@ -11,7 +11,7 @@ import LogoIcon from "@/public/logo.svg";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Menu } from "lucide-react";
 
-const items: { title: string; href: string }[] = [
+export const navItems: { title: string; href: string }[] = [
   {
     title: "Home",
     href: "/",
@@ -60,7 +60,7 @@ export const Navbar = () => {
               menuOpen ? "translate-x-0" : "translate-x-full"
             } md:static md:w-auto md:bg-transparent md:flex-row md:gap-8 md:transform-none`}
           >
-            {items.map((item) => (
+            {navItems.map((item) => (
               <div key={item.title}>
                 <Link
                   href={item.href}

@@ -8,14 +8,14 @@ import {
 export const mockProjectsData = [
   {
     address: "1234567890",
-    balance: 0,
+    balance: 150000,
     project_ipfs_hash: {
-      category: ECategory.ART,
+      category: ECategory.SOFTWARE,
       basicDetails: {
-        name: "Artistic Explorations",
+        name: "DAOCre-8",
         location: ELocation.SG,
-        inspiration: "Fusing traditional and digital art techniques.",
-        imageUrl: "https://via.placeholder.com/150",
+        inspiration: "Pioneering a DAO-Powered Renaissance",
+        imageUrl: "/assets/nft-sample.png",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
@@ -53,7 +53,7 @@ export const mockProjectsData = [
         },
       ],
       fundingAndMilestones: {
-        fundingAmount: 1000000,
+        fundingAmount: 100000,
         walletAddress: "ABCDE12345",
         walletIsConfirmed: true,
         currency: ECurrency.SOL,
@@ -90,7 +90,7 @@ export const mockProjectsData = [
         name: "NextGen Tech",
         location: ELocation.PH,
         inspiration: "Creating sustainable technology solutions.",
-        imageUrl: "https://via.placeholder.com/150",
+        imageUrl: "/logo-icon.svg",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
@@ -162,7 +162,7 @@ export const mockProjectsData = [
         name: "Melodic Innovations",
         location: ELocation.SG,
         inspiration: "Revolutionizing the way we experience music.",
-        imageUrl: "https://via.placeholder.com/150",
+        imageUrl: "/assets/nft-sample.png",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
