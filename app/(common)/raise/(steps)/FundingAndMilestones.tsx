@@ -105,7 +105,7 @@ export const FundingAndMilestones = () => {
   }, [publicKey]);
 
   return (
-    <div className="flex flex-col gap-4 h-full flex-grow w-full">
+    <div className="flex flex-col gap-4 h-full flex-grow w-full py-48">
       <SummaryTitle />
       <Form {...form}>
         <form className="flex flex-col gap-8 py-4">

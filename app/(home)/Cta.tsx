@@ -5,16 +5,16 @@ const SectionCta = () => {
   return (
     <section
       id={"section-cta"}
-      className="z-20 flex bg-black/80 flex-col items-center justify-center w-full gap-4 py-8 overflow-hidden text-center h-fit bg-neon-green md:py-16 lg:py-24 xl:overflow-auto"
+      className="z-20 flex bg-black/60 flex-col items-center justify-center w-full gap-4 py-8 overflow-hidden text-center h-fit bg-neon-green md:py-16 lg:py-24 xl:overflow-auto"
     >
       <h4 className="text-dim text-[28px] lg:text-[48px] leading-[30px] lg:leading-[54px] font-extrabold px-8 lg:px-0">
         Become a <span className="text-gradient-primary">DAOCre-8-or</span>{" "}
         today!
       </h4>
-      <h5 className="font-body font-medium text-[16px] lg:text-[22px] leading-[22px] lg:leading-[32px] px-8 md:px-40">
+      <h5 className="font-body font-medium text-lg px-8 max-w-[64rem] w-full">
         Whether you&apos;re a creator with a vision or a backer with a passion
-        for innovation, there&apos;s a place for you here. <br />
-        Join us and help shape the future, one project at a time.
+        for innovation, there&apos;s a place for you here. Join us and help
+        shape the future, one project at a time.
       </h5>
       <Button asChild className="w-fit h-fit my-8">
         <Link

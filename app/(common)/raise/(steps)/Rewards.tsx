@@ -78,7 +78,7 @@ export const Rewards = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 h-full flex-grow w-full">
+    <div className="flex flex-col gap-4 h-full flex-grow w-full py-48">
       <SummaryTitle />
       <Form {...form}>
         <form>

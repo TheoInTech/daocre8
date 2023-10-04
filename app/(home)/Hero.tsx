@@ -7,7 +7,7 @@ const SectionHero = () => {
   return (
     <section
       id="section-hero"
-      className="relative z-20 text-dim w-full min-h-screen flex flex-col justify-center gap-4 px-8 md:px-24 py-40"
+      className="relative z-20 text-dim w-full min-h-screen flex flex-col justify-center gap-4 px-8 md:px-24 py-40 mt-24"
     >
       <div className="z-10 flex flex-col gap-4 text-center">
         <h1 className="font-heading font-semibold text-5xl md:text-7xl">
