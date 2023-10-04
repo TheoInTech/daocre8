@@ -20,7 +20,7 @@ const FundPage = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8 items-center h-full flex-grow min-h-screen">
+    <div className="flex flex-col gap-8 items-center h-full w-full flex-grow min-h-screen">
       <OptionsTabs
         handleCurrentTab={setCurrentTab}
         currentTab={currentTab}

@@ -17,7 +17,7 @@ export const OptionsTabs = ({
             <button
               className={`inline-block p-2 lg:p-4 rounded-t-lg ${
                 currentTab === value
-                  ? "text-muted border-b-2 border-primary"
+                  ? "text-primary border-b-2 border-primary"
                   : "border-b-2 border-transparent hover:text-primary "
               }`}
               onClick={() => handleCurrentTab(value)}
