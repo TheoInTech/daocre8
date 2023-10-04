@@ -389,3 +389,41 @@ export const mockAiPoweredInsights = mockProjectsData.map((project) => ({
     ],
   },
 }));
+
+export const mockProjectUpdates = [
+  {
+    projectAddress: mockProjectsData[0].address,
+    idx: 1,
+    title: "Update 1",
+    description:
+      "We've just launched the DAOCre-8 project and are excited to see the response from the community!",
+  },
+  {
+    projectAddress: mockProjectsData[0].address,
+    idx: 2,
+    title: "Update 2",
+    description:
+      "We've reached our first funding milestone and are now able to hire additional developers to work on the project.",
+  },
+  {
+    projectAddress: mockProjectsData[0].address,
+    idx: 3,
+    title: "Update 3",
+    description:
+      "We've partnered with several leading DAOs in the industry to help promote the DAOCre-8 project and increase awareness.",
+  },
+  {
+    projectAddress: mockProjectsData[0].address,
+    idx: 4,
+    title: "Update 4",
+    description:
+      "We've just released a new version of the DAOCre-8 platform with several new features and improvements.",
+  },
+  {
+    projectAddress: mockProjectsData[0].address,
+    idx: 5,
+    title: "Update 5",
+    description:
+      "We've received overwhelming support from the community and are excited to continue building the future of DAO-powered creativity!",
+  },
+];

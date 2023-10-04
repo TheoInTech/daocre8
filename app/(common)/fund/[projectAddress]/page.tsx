@@ -47,7 +47,7 @@ const FundProjectPage = () => {
             alt={project?.project_ipfs_hash?.basicDetails.name ?? "Project"}
             width={1000}
             height={1000}
-            className="w-full h-full rounded-lg shadow-2xl col-span-1"
+            className="w-full h-fit rounded-lg shadow-2xl col-span-1"
           />
           <Button onClick={() => setActiveSidebar(ESidebar.TIERS)}>
             Fund this project
