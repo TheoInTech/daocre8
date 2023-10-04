@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Raise",
+  title: "Fundraise",
 };
 
 const RaiseLayout = ({ children }: { children: ReactNode }) => {

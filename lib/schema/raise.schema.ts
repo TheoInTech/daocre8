@@ -248,7 +248,10 @@ export const BasicDetailsSchema = z
       const launchDate = new Date(data.launchDate).getTime();
       return launchDate > fundraiseEndDate;
     },
-    { message: "Launch date must be after fundraise's end date" }
+    {
+      message: "Launch date must be after fundraise's end date",
+      path: ["fundraiseEndDate"],
+    }
   );
 
 export const FormDataSchema = z.object({

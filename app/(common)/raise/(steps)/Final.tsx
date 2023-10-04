@@ -5,10 +5,10 @@ import { Link } from "nextjs13-progress";
 
 export const Final = () => {
   return (
-    <div className="flex flex-col gap-4 h-full flex-grow w-full">
+    <div className="flex flex-col gap-4 h-full flex-grow w-full justify-center min-h-screen">
       <SummaryTitle />
 
-      <div className="flex gap-8 w-full items-center justify-center my-4">
+      <div className="flex gap-8 w-full items-center justify-center my-4 ">
         <Image
           src={"/assets/nft-sample.png"}
           alt={"DAOCre-8 Creator NFT"}

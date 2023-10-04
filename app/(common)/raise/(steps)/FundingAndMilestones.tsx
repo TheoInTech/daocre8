@@ -181,27 +181,29 @@ export const FundingAndMilestones = () => {
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="flex flex-col md:flex-row space-y-2 md:space-x-2"
+                    className="flex flex-col md:flex-row md:items-center gap-8"
                   >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormItem className="flex items-center gap-4 h-full space-y-0">
                       <FormControl>
                         <RadioGroupItem value={ECurrency.SOL} />
                       </FormControl>
-                      <FormLabel isRequired={false}>{ECurrency.SOL}</FormLabel>
+                      <FormLabel className="m-0" isRequired={false}>
+                        {ECurrency.SOL}
+                      </FormLabel>
                     </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormItem className="flex items-center gap-4 space-y-0">
                       <FormControl>
                         <RadioGroupItem value={ECurrency.USDC} disabled />
                       </FormControl>
                       <FormLabel isRequired={false}>{ECurrency.USDC}</FormLabel>
                     </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormItem className="flex items-center gap-4 space-y-0">
                       <FormControl>
                         <RadioGroupItem value={ECurrency.USDT} disabled />
                       </FormControl>
                       <FormLabel isRequired={false}>{ECurrency.USDT}</FormLabel>
                     </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormItem className="flex items-center gap-4 space-y-0">
                       <FormControl>
                         <RadioGroupItem value={ECurrency.USD} disabled />
                       </FormControl>
