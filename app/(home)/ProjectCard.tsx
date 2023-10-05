@@ -29,6 +29,8 @@ export const ProjectCard = ({
           width={1000}
           height={1000}
           className="w-[20rem] h-[20rem] rounded-xl object-cover"
+          placeholder="blur"
+          priority
         />
         <div className="flex flex-col absolute bottom-0 left-0 right-0 p-4 rounded-b-xl card-glass bg-black/80 overflow-hidden">
           <div className="font-bold truncate text-gradient-yellow w-full text-base">
