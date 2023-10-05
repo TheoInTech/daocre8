@@ -104,7 +104,7 @@ const SectionHowItWorks = () => {
                 <div
                   key={instruction.id}
                   className={cn(
-                    "flex gap-4 hover:border hover:border-border cursor-pointer p-8",
+                    "flex gap-4 hover:bg-muted/5 cursor-pointer p-8 rounded-lg duration-300 ease-in-out box-border",
                     instruction.id === activeInstruction.id && "card-glass"
                   )}
                   onClick={() => setActiveInstruction(instruction)}
