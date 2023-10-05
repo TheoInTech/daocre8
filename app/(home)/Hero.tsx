@@ -49,6 +49,7 @@ const SectionHero = () => {
           {mockProjectsData.map((project) => (
             <ProjectCard
               key={project.address}
+              address={project.address}
               imageUrl={project.project_ipfs_hash.basicDetails.imageUrl}
               title={project.project_ipfs_hash.basicDetails.name}
               fundraised={project.balance}
@@ -63,6 +64,7 @@ const SectionHero = () => {
           {mockProjectsData.map((project) => (
             <ProjectCard
               key={project.address}
+              address={project.address}
               imageUrl={project.project_ipfs_hash.basicDetails.imageUrl}
               title={project.project_ipfs_hash.basicDetails.name}
               fundraised={project.balance}
