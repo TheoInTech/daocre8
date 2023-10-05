@@ -511,7 +511,7 @@ export const mockAiPoweredInsights = mockProjectsData.map((project) => ({
 
 export const mockProjectUpdates = [
   {
-    projectAddress: mockProjectsData[4].address,
+    projectAddress: mockProjectsData[5].address,
     idx: 1,
     title: "Milestone 2 Achieved! Dance Battles Galore!",
     description: `Hello, Dance Enthusiasts!

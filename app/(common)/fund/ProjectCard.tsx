@@ -48,7 +48,7 @@ export const ProjectCard = ({
       </CardHeader>
       <CardContent className="flex flex-col gap-4 p-4">
         <CardTitle className="flex flex-col gap-2">
-          <div className="font-bold truncate text-gradient-yellow w-full">
+          <div className="font-bold truncate text-lg text-gradient-yellow w-full">
             {title}
           </div>{" "}
           <div className="font-medium text-sm">{category} category</div>
