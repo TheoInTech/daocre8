@@ -22,7 +22,7 @@ export const ProjectCard = ({
       href={`/fund/${address}`}
       className="hover:h-full hover:shadow-2xl hover:brightness-110 duration-300 ease-in-out"
     >
-      <li className="relative max-w-none overflow-hidden">
+      <li className="relative max-w-none overflow-hidden p-2">
         <Image
           src={imageUrl}
           alt={title}
@@ -30,6 +30,7 @@ export const ProjectCard = ({
           height={1000}
           className="w-[20rem] h-[20rem] rounded-xl object-cover"
           placeholder="blur"
+          blurDataURL="/assets/nft-sample.png"
           priority
         />
         <div className="flex flex-col absolute bottom-0 left-0 right-0 p-4 rounded-b-xl card-glass bg-black/80 overflow-hidden">
