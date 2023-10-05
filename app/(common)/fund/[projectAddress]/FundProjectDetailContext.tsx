@@ -20,7 +20,7 @@ const ProjectDetailContext = createContext<IProjectDetailContext>({
   updates: [],
 });
 
-export const ProjectDetailProvider = ({
+export const FundProjectDetailProvider = ({
   projectAddress,
   children,
 }: {
@@ -77,6 +77,6 @@ export const ProjectDetailProvider = ({
   );
 };
 
-export const useProjectDetailState = () => {
+export const useFundProjectDetailState = () => {
   return useContext(ProjectDetailContext);
 };

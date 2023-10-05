@@ -27,7 +27,7 @@ export const Category = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-8 items-center justify-between h-full flex-grow min-h-[25rem]">
+      <div className="flex flex-col gap-8 items-center justify-center h-full flex-grow min-h-screen">
         <div className="flex flex-col gap-8 items-center text-center md:text-left">
           <h4 className="font-semibold text-4xl">
             Let&apos; get your project started!

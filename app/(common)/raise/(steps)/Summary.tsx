@@ -41,9 +41,9 @@ export const Summary = () => {
               className="flex items-center justify-between w-full gap-4"
             >
               <Button
-                variant={"default"}
+                variant={"outline"}
                 onClick={() => setStep(step)}
-                className="w-full flex justify-between py-4 px-6"
+                className="w-full h-fit flex-nowrap text-sm md:text-lg flex justify-between py-4 px-6"
               >
                 {label}
                 <ChevronRight className="w-4 h-4" />

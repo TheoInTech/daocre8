@@ -57,7 +57,7 @@ export const Team = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 h-full flex-grow w-full">
+    <div className="flex flex-col gap-4 h-full flex-grow w-full py-48">
       <SummaryTitle />
       <Form {...form}>
         <form className="fle flex-col gap-8 py-4">

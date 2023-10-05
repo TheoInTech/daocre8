@@ -6,43 +6,37 @@ const features = [
     title: "Effortless Project Launch",
     description:
       "Creators can easily kickstart projects, while backers can seamlessly support initiatives they believe in.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/launch.png",
   },
   {
     title: "Collaborative Decision-Making",
     description:
       "Foster a collaborative environment with decentralized polls for key project decisions.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/collab.png",
   },
   {
     title: "Transparent Progress Tracking",
     description:
       "Keep everyone informed on project milestones and achievements in real-time.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/tracking.png",
   },
   {
     title: "Exclusive Creator NFTs",
     description:
       "Creators can mint unique NFTs, offering backers a tangible stake in the project.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/nft.png",
   },
   {
     title: "Secured Funding Protocol",
     description:
       "Safeguard funds through a secure escrow until project milestones are duly met.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/secured.png",
   },
   {
     title: "Community Engagement",
     description:
       "A thriving ecosystem where creators and backers interact, share insights, and foster project success.",
-    image:
-      "https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg",
+    image: "/assets/icons/community.png",
   },
 ];
 
@@ -62,9 +56,9 @@ const SectionFeatures = () => {
             className="grid-cols-1 grid gap-6 card-glass p-8 md:p-10 items-center"
           >
             <Image
-              src="https://uploads-ssl.webflow.com/646f65e37fe0275cfb808405/646f66cdeeb4ddfdae25a288_Circle%20Image-5.svg"
-              alt="Features Icon"
-              className="inline-block max-w-full w-fit h-16"
+              src={feature.image}
+              alt={feature.title}
+              className="inline-block max-w-full w-fit h-16 primary-gradient rounded-full"
               height={500}
               width={500}
             />

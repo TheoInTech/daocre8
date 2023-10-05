@@ -32,7 +32,7 @@ const SectionFacts = () => {
                 <div className="flex flex-col items-center justify-center gap-4">
                   <p className="text-xl">Creators</p>
                   <h2 className="mb-4 md:mt-6 font-extrabold text-3xl md:text-5xl">
-                    500<span className="text-secondary">+</span>
+                    125<span className="text-secondary">+</span>
                   </h2>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">

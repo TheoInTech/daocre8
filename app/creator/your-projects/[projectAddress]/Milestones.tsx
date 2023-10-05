@@ -1,10 +1,9 @@
 import { useProjectDetailState } from "@/app/creator/your-projects/[projectAddress]/ProjectDetailContext";
 import { Button } from "@/components/ui/button";
+import { CountdownTimer } from "@/components/ui/countdown-timer";
 
 export const Milestones = () => {
-  const { project } = useProjectDetailState();
-  const milestones =
-    project?.project_ipfs_hash?.fundingAndMilestones?.milestones;
+  const { project, milestones, milestonePolls } = useProjectDetailState();
   const fundingAmount =
     project?.project_ipfs_hash?.fundingAndMilestones?.fundingAmount ?? 0;
 
@@ -16,42 +15,68 @@ export const Milestones = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      {milestones?.map((milestone) => (
-        <div
-          key={milestone.description}
-          className="grid grid-cols-1 md:grid-cols-3 border-b border-b-muted/20 pb-8 last:border-b-0"
-        >
-          <div className="flex flex-col gap-4 col-span-1 md:col-span-2">
-            <div className="flex flex-col gap-2 ">
-              <div className="text-sm font-medium text-primary">
-                Milestone description
+      {milestones?.map((milestone) => {
+        const milestonePoll = milestonePolls?.find(
+          (poll) => poll.milestone.idx === milestone.idx
+        );
+
+        return (
+          <div
+            key={milestone.idx}
+            className="grid grid-cols-1 md:grid-cols-3 border-b border-b-muted/20 pb-8 last:border-b-0"
+          >
+            <div className="flex flex-col gap-4 col-span-1 md:col-span-2">
+              <div className="flex flex-col gap-2 ">
+                <div className="text-sm font-medium text-primary">
+                  Milestone description
+                </div>
+                <div className="text-base font-medium">
+                  {milestone.milestone_ipfs_hash} Lorem ipsum dolor sit amet
+                  consectetur adipisicing elit. Error unde necessitatibus rerum
+                  praesentium explicabo quis vitae temporibus odit accusantium
+                  ratione voluptate atque eaque doloremque recusandae, porro at
+                  fugit, dicta repellat.
+                </div>
               </div>
-              <div className="text-base font-medium">
-                {milestone.description} Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Error unde necessitatibus rerum praesentium
-                explicabo quis vitae temporibus odit accusantium ratione
-                voluptate atque eaque doloremque recusandae, porro at fugit,
-                dicta repellat.
+              <div className="flex flex-col gap-2">
+                <div className="text-sm font-medium text-primary">
+                  Amount to be unlocked
+                </div>
+                <div className="text-base font-medium">
+                  {(
+                    fundingAmount *
+                    (milestone.percentage / 100)
+                  ).toLocaleString()}{" "}
+                  {project?.project_ipfs_hash?.fundingAndMilestones.currency}
+                </div>
               </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <div className="text-sm font-medium text-primary">
-                Amount to unlock
+            {!milestonePoll ? (
+              <Button
+                className="w-fit h-fit justify-self-end min-w-[14rem]"
+                size={"sm"}
+                onClick={() =>
+                  alert(
+                    "Open popup to get more info and initialize milestone poll"
+                  )
+                }
+              >
+                Start milestone poll
+              </Button>
+            ) : (
+              <div className="flex flex-col gap-4 w-full items-end">
+                <div className="flex text-right gap-2">
+                  <span className="text-primary font-medium">Ends in</span>
+                  <CountdownTimer
+                    endTime={milestonePoll.end_datetime}
+                    className="font-semibold"
+                  />
+                </div>
               </div>
-              <div className="text-base font-medium">
-                {(
-                  fundingAmount *
-                  (milestone.percentage / 100)
-                ).toLocaleString()}{" "}
-                {project?.project_ipfs_hash?.fundingAndMilestones.currency}
-              </div>
-            </div>
+            )}
           </div>
-          <Button className="w-fit h-fit justify-self-end" size={"sm"}>
-            Start milestone poll
-          </Button>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

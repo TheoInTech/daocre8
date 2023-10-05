@@ -36,11 +36,22 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
-    setMenuOpen(false); // close the menu after interaction
+    setMenuOpen(false);
   };
 
   return (
     <div className="fixed left-0 top-0 right-0 z-50">
+      {/* <div className="flex flex-wrap justify-center text-xs items-center p-2 bg-accent text-foreground font-medium">
+        This is a demo site for Solana Hyperdrive and mock data are currently
+        used. Be the first to know when we launch!{" "}
+        <Link
+          href="https://xovoxlabs.my.canva.site/daocre-8-waitlist"
+          target="_blank"
+          className="font-bold underline md:ml-2"
+        >
+          Join our waitlist.
+        </Link>
+      </div> */}
       <div className="flex px-4 md:px-20 text-lg py-4 bg-black/80 items-center justify-between backdrop-blur-sm shadow-md">
         <Link
           href="/"
@@ -58,7 +69,7 @@ export const Navbar = () => {
           <div
             className={`fixed flex flex-col top-24 items-end md:items-center p-8 md:p-0 gap-4 left-0 w-full bg-black/95 z-40 transition-transform duration-300 ease-in-out transform ${
               menuOpen ? "translate-x-0" : "translate-x-full"
-            } md:static md:w-auto md:bg-transparent md:flex-row md:gap-8 md:transform-none`}
+            } md:static md:w-auto md:bg-transparent md:flex-row md:gap-8 md:transform-none md:text-sm`}
           >
             {navItems.map((item) => (
               <div key={item.title}>
