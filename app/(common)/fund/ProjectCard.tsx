@@ -43,12 +43,14 @@ export const ProjectCard = ({
           alt={title}
           width={1000}
           height={1000}
-          className="w-full h-full rounded-t-xl"
+          className="w-full h-[20rem] rounded-t-xl object-cover"
         />
       </CardHeader>
       <CardContent className="flex flex-col gap-4 p-4">
         <CardTitle className="flex flex-col gap-2">
-          <div className="font-bold truncate text-gradient-yellow">{title}</div>{" "}
+          <div className="font-bold truncate text-gradient-yellow w-full">
+            {title}
+          </div>{" "}
           <div className="font-medium text-sm">{category} category</div>
         </CardTitle>
         <CardDescription className="flex flex-col gap-4 justify-between">

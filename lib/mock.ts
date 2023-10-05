@@ -83,21 +83,23 @@ export const mockProjectsData = [
   },
   {
     address: "22222222222222",
-    balance: 2500000,
+    balance: 80000,
     project_ipfs_hash: {
       category: ECategory.HARDWARE,
       basicDetails: {
-        name: "NextGen Tech",
+        name: "Solar-Powered Schools for Alien Exchange Students",
         location: ELocation.PH,
-        inspiration: "Creating sustainable technology solutions.",
-        imageUrl: "/logo-icon.svg",
+        inspiration:
+          "Help us build solar-powered schools for exchange students from outer space! Back our project and get a chance to attend a galactic graduation party with alien DJs and zero-gravity dance-offs!",
+        imageUrl:
+          "/assets/mock/DreamShaper_v7_SolarPowered_Schools_for_Alien_Exchange_Studen_0.jpg",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
         fundraiseEndDate: "2024-01-01",
         launchDate: "2024-03-01",
         linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
-        githubUrl: "https://github.com/theindiehacker",
+        githubUrl: "",
         xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
@@ -125,7 +127,7 @@ export const mockProjectsData = [
         },
       ],
       fundingAndMilestones: {
-        fundingAmount: 1500000,
+        fundingAmount: 100000,
         walletAddress: "KLMNO11223",
         walletIsConfirmed: true,
         currency: ECurrency.SOL,
@@ -133,11 +135,18 @@ export const mockProjectsData = [
         milestones: [
           {
             percentage: 30,
-            description: "Beta release with initial products",
+            description:
+              "Solar panels installed at School A - Backers receive holographic alien dance tutorials!",
           },
           {
-            percentage: 30,
-            description: "User Testing and Feedback",
+            percentage: 20,
+            description:
+              "Solar panels installed at School B - Exclusive 'Intergalactic Prom Night' for backers!",
+          },
+          {
+            percentage: 10,
+            description:
+              "Solar panels installed at School C - VIP trip to an alien planet for top backers!",
           },
         ],
         stretchGoals: [
@@ -157,12 +166,14 @@ export const mockProjectsData = [
     address: "3333333333",
     balance: 45000,
     project_ipfs_hash: {
-      category: ECategory.MUSIC,
+      category: ECategory.GAMES,
       basicDetails: {
-        name: "Melodic Innovations",
+        name: "Next-Gen Blockchain Gaming Console - Time Travel Edition",
         location: ELocation.SG,
-        inspiration: "Revolutionizing the way we experience music.",
-        imageUrl: "/assets/nft-sample.png",
+        inspiration:
+          "Back us to create the world's first time-traveling gaming console! Unlock exclusive game levels set in the past, future, and alternate dimensions. Plus, receive a virtual time-traveling 'Sidekick Pet' to accompany you on your adventures!",
+        imageUrl:
+          "/assets/mock/DreamShaper_v7_NextGen_Blockchain_Gaming_Console_Time_Travel_0.jpg",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
@@ -174,7 +185,7 @@ export const mockProjectsData = [
       },
       team: {
         undoxxed: false,
-        name: "Sound Pioneers",
+        name: "SunSolutions Foundation",
         about: "A team dedicated to musical innovation.",
         linkedinUrl: "https://linkedin.com/in/example3",
         githubUrl: "https://github.com/example3",
@@ -200,19 +211,26 @@ export const mockProjectsData = [
         },
       ],
       fundingAndMilestones: {
-        fundingAmount: 1200000,
+        fundingAmount: 150000,
         walletAddress: "VWXYZ77654",
         walletIsConfirmed: true,
         currency: ECurrency.SOL,
         capitalPercentage: 40,
         milestones: [
           {
-            percentage: 30,
-            description: "Release of our first album",
+            percentage: 20,
+            description:
+              "Prototype development - 'Time Warp Party' with historical and futuristic figures!",
           },
           {
-            percentage: 30,
-            description: "Virtual Concert Experience",
+            percentage: 20,
+            description:
+              "Beta testing - Exclusive time-travel-themed in-game skins and items!",
+          },
+          {
+            percentage: 20,
+            description:
+              "Mass production - Limited edition 'Time Traveler's Console' for early backers!",
           },
         ],
         stretchGoals: [
@@ -232,19 +250,20 @@ export const mockProjectsData = [
     address: "44444444444",
     balance: 1500000,
     project_ipfs_hash: {
-      category: ECategory.GAMES,
+      category: ECategory.HARDWARE,
       basicDetails: {
-        name: "Gamer's Paradise",
+        name: "Jurassic Park Revival",
         location: ELocation.PH,
-        inspiration: "Creating immersive gaming experiences.",
-        imageUrl: "https://via.placeholder.com/150",
+        inspiration:
+          "Support us in bringing back the dinosaurs! Backers receive a virtual pet baby dinosaur and a front-row seat to our 'Dino-Palooza' time-travel event, where you can witness the resurrection of a T-Rex!",
+        imageUrl: "/assets/mock/DreamShaper_v7_Jurassic_Park_Revival_2.jpg",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
         fundraiseEndDate: "2023-07-01",
         launchDate: "2023-09-01",
-        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
-        githubUrl: "https://github.com/theindiehacker",
+        linkedinUrl: "",
+        githubUrl: "",
         xUrl: "https://twitter.com/_theindiehacker",
       },
       team: {
@@ -272,19 +291,26 @@ export const mockProjectsData = [
         },
       ],
       fundingAndMilestones: {
-        fundingAmount: 1600000,
+        fundingAmount: 1000000,
         walletAddress: "PQRST45678",
         walletIsConfirmed: true,
         currency: ECurrency.SOL,
         capitalPercentage: 50,
         milestones: [
           {
-            percentage: 25,
-            description: "Launch Alpha version",
+            percentage: 20,
+            description:
+              "Dino DNA extraction - Backers get a DNA-themed virtual dance party!",
           },
           {
-            percentage: 25,
-            description: "Beta Testing and Feedback",
+            percentage: 20,
+            description:
+              "Genetic cloning success - Exclusive 'Dino Whisperer' virtual badges for backers!",
+          },
+          {
+            percentage: 10,
+            description:
+              "T-Rex release - A virtual 'Jurassic Jam' concert with dinosaur musicians!",
           },
         ],
         stretchGoals: [
@@ -302,14 +328,16 @@ export const mockProjectsData = [
   },
   {
     address: "555555555555",
-    balance: 1400000,
+    balance: 20000,
     project_ipfs_hash: {
-      category: ECategory.FASHION,
+      category: ECategory.FOOD,
       basicDetails: {
-        name: "Green Threads",
+        name: "Quantum Teleportation Pods for Pets",
         location: ELocation.SG,
-        inspiration: "Eco-friendly fashion for a sustainable future.",
-        imageUrl: "https://via.placeholder.com/150",
+        inspiration:
+          "Support our mission to teleport your pets across the universe! Backers receive a virtual teleportation pod and a chance to teleport their pet to a virtual 'Pet Planet' for playdates with alien animals!",
+        imageUrl:
+          "/assets/mock/DreamShaper_v7_Quantum_Teleportation_Pods_for_Pets_2.jpg",
         pdfUrl:
           "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         videoUrl: null,
@@ -321,7 +349,7 @@ export const mockProjectsData = [
       },
       team: {
         undoxxed: false,
-        name: "Green Threads",
+        name: "QuantumPets Co.",
         about: "A team dedicated to eco-friendly fashion.",
         linkedinUrl: "https://linkedin.com/in/example5",
         githubUrl: "https://github.com/example5",
@@ -347,19 +375,26 @@ export const mockProjectsData = [
         },
       ],
       fundingAndMilestones: {
-        fundingAmount: 1400000,
+        fundingAmount: 75000,
         walletAddress: "XYZAB98765",
         walletIsConfirmed: true,
         currency: ECurrency.SOL,
         capitalPercentage: 50,
         milestones: [
           {
-            percentage: 25,
-            description: "Launch first clothing line",
+            percentage: 15,
+            description:
+              "Quantum teleportation tech development - 'Teleportation Tiki Party' with your virtual pets!",
           },
           {
-            percentage: 25,
-            description: "Establish partnerships with eco brands",
+            percentage: 15,
+            description:
+              "Successful teleportation trials - Customizable virtual pet teleportation pods!",
+          },
+          {
+            percentage: 10,
+            description:
+              "Pet Planet launch - VIP access to a virtual pet paradise with alien-themed games!",
           },
         ],
         stretchGoals: [
