@@ -54,17 +54,17 @@ export const ProjectDetails = () => {
         <div className="flex gap-4 items-start w-full">
           {xUrl && (
             <Link href={xUrl} target="_blank">
-              <Twitter className="w-6 h-6 hover:text-secondary duration-300 stroke-2" />
+              <Twitter className="w-6 h-6 hover:text-secondary duration-300 stroke-1" />
             </Link>
           )}
           {linkedinUrl && (
             <Link href={linkedinUrl} target="_blank">
-              <Linkedin className="w-6 h-6 hover:text-secondary duration-300 stroke-2" />
+              <Linkedin className="w-6 h-6 hover:text-secondary duration-300 stroke-1" />
             </Link>
           )}
           {githubUrl && (
             <Link href={githubUrl} target="_blank">
-              <Github className="w-6 h-6 hover:text-secondary duration-300 stroke-2" />
+              <Github className="w-6 h-6 hover:text-secondary duration-300 stroke-1" />
             </Link>
           )}
         </div>
