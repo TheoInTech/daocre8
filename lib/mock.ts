@@ -410,6 +410,90 @@ export const mockProjectsData = [
       },
     } as IFormData,
   },
+  {
+    address: "demodemodemo",
+    balance: 200000,
+    project_ipfs_hash: {
+      category: ECategory.DANCE,
+      basicDetails: {
+        name: "AI-Powered Dance-Off Competition",
+        location: ELocation.SG,
+        inspiration:
+          "Get ready to dance your heart out with AI-powered dance partners! Back our project and receive a virtual 'Dance Battle' avatar. Join our virtual dance-off events with AI dancers, and win the title of 'Ultimate Dance Guru'!",
+        imageUrl:
+          "/assets/mock/DreamShaper_v7_AIPowered_Robot_DanceOff_Competition_1.jpg",
+        pdfUrl:
+          "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        videoUrl: null,
+        fundraiseEndDate: "2023-012-01",
+        launchDate: "2024-02-01",
+        linkedinUrl: "https://www.linkedin.com/company/the-howdy-studios",
+        githubUrl: "https://github.com/theindiehacker",
+        xUrl: "https://twitter.com/_theindiehacker",
+      },
+      team: {
+        undoxxed: false,
+        name: "GroovyBots Inc.",
+        about: "A team dedicated to GroovyBots dancing",
+        linkedinUrl: "https://linkedin.com/in/example5",
+        githubUrl: "https://github.com/example5",
+        xUrl: "https://example.com/team5",
+        pastProjectUrl: "https://example.com/past_project5",
+        teamProfileUrls: [
+          { url: "https://example.com/profile5" },
+          { url: "https://example.com/profile6" },
+        ],
+      },
+      fundingTiers: [
+        {
+          name: "Trendsetter",
+          amountInUsd: 70000,
+          description: "Setting trends while saving the planet.",
+          imageUrl: "https://via.placeholder.com/150",
+        },
+        {
+          name: "Eco Warrior",
+          amountInUsd: 95000,
+          description: "Pioneering sustainable fashion solutions.",
+          imageUrl: "https://via.placeholder.com/150",
+        },
+      ],
+      fundingAndMilestones: {
+        fundingAmount: 50000,
+        walletAddress: "XYZAB98765",
+        walletIsConfirmed: true,
+        currency: ECurrency.SOL,
+        capitalPercentage: 50,
+        milestones: [
+          {
+            percentage: 15,
+            description:
+              "AI dance algorithm development - Exclusive virtual dance-off tutorial sessions!",
+          },
+          {
+            percentage: 15,
+            description:
+              "AI dance competitions - Dance battles with AI dancers and exclusive in-game dance moves!",
+          },
+          {
+            percentage: 10,
+            description:
+              "Crowning the Dance Guru - Virtual dance-off championship with celebrity judges!",
+          },
+        ],
+        stretchGoals: [
+          {
+            percentage: 10,
+            description: "Stretch Goal 1",
+          },
+          {
+            percentage: 15,
+            description: "Stretch Goal 2",
+          },
+        ],
+      },
+    } as IFormData,
+  },
 ];
 
 export const mockAiPoweredInsights = mockProjectsData.map((project) => ({
@@ -427,38 +511,22 @@ export const mockAiPoweredInsights = mockProjectsData.map((project) => ({
 
 export const mockProjectUpdates = [
   {
-    projectAddress: mockProjectsData[0].address,
+    projectAddress: mockProjectsData[4].address,
     idx: 1,
-    title: "Update 1",
-    description:
-      "We've just launched the DAOCre-8 project and are excited to see the response from the community!",
-  },
-  {
-    projectAddress: mockProjectsData[0].address,
-    idx: 2,
-    title: "Update 2",
-    description:
-      "We've reached our first funding milestone and are now able to hire additional developers to work on the project.",
-  },
-  {
-    projectAddress: mockProjectsData[0].address,
-    idx: 3,
-    title: "Update 3",
-    description:
-      "We've partnered with several leading DAOs in the industry to help promote the DAOCre-8 project and increase awareness.",
-  },
-  {
-    projectAddress: mockProjectsData[0].address,
-    idx: 4,
-    title: "Update 4",
-    description:
-      "We've just released a new version of the DAOCre-8 platform with several new features and improvements.",
-  },
-  {
-    projectAddress: mockProjectsData[0].address,
-    idx: 5,
-    title: "Update 5",
-    description:
-      "We've received overwhelming support from the community and are excited to continue building the future of DAO-powered creativity!",
+    title: "Milestone 2 Achieved! Dance Battles Galore!",
+    description: `Hello, Dance Enthusiasts!
+
+    We're thrilled to share the latest update on our AI-Powered Dance-Off Competition project. Thanks to your incredible support, we've hit a major milestone! 🎉
+    
+    Milestone 2: AI Dance Competitions
+    
+    Our AI dance algorithms are groovier than ever, and we've unleashed them onto the virtual dance floor. Backers, you're invited to join the dance battles with our AI dancers. Get ready for some funky moves and electrifying showdowns!
+    
+    Exclusive Features:
+    
+    Dance Battle Tournaments: Participate in daily dance battles and show off your moves.
+    Vote for the Funkiest Moves: Backers have the power to vote for the coolest dance routines.
+    Unlock Exclusive In-Game Dance Moves: Top backers gain access to jaw-dropping dance moves for their avatars.
+    `,
   },
 ];
