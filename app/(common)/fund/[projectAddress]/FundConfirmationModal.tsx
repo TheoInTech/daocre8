@@ -14,14 +14,16 @@ export const FundConfirmationModal = ({
   isOpen,
   closeModal,
   onConfirm,
-  name,
+  projectName,
+  tierName,
   amountInUsd,
   currency,
 }: {
   isOpen: boolean;
   closeModal: () => void;
   onConfirm: () => void;
-  name: string;
+  projectName: string;
+  tierName: string;
   amountInUsd: number;
   currency: ECurrency;
 }) => {
@@ -29,13 +31,14 @@ export const FundConfirmationModal = ({
     <AlertDialog open={isOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            You&apos;re one step away from funding: <br />
+          <AlertDialogTitle className="flex flex-col gap-2 pb-2">
+            You&apos;re one step away from funding:
             <span className="text-xl font-semibold text-gradient-primary">
-              {name}!
+              {projectName}
             </span>
+            <span className="text-sm font-medium">Tier: {tierName}</span>
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-4">
+          <AlertDialogDescription className="flex flex-col gap-4 pt-4 border-t border-t-border">
             <p>
               You are about to fund this project with{" "}
               <strong>${amountInUsd} USD</strong> in {currency}.
