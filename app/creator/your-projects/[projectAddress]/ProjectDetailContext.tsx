@@ -5,10 +5,14 @@ import { ReactNode, createContext, useContext, useState } from "react";
 // types
 import { ESidebar, IProjectDetailContext } from "@/lib/types/creator.types";
 // mock
-import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
+import {
+  mockProjectChangePolls,
+  mockProjectUpdates,
+  mockProjectsData,
+} from "@/lib/mock";
 import { IMilestone } from "@/lib/types/milestones.types";
 import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
-import { IProjectUpdate } from "@/lib/types/updates.types";
+import { IProjectChangePoll, IProjectUpdate } from "@/lib/types/updates.types";
 
 const ProjectDetailContext = createContext<IProjectDetailContext>({
   activeSidebar: ESidebar.PROJECT_DETAILS,
@@ -17,6 +21,7 @@ const ProjectDetailContext = createContext<IProjectDetailContext>({
   milestones: [],
   milestonePolls: [],
   updates: [],
+  changePolls: [],
 });
 
 export const ProjectDetailProvider = ({
@@ -60,6 +65,11 @@ export const ProjectDetailProvider = ({
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
 
+  // mock change polls
+  const changePolls = mockProjectChangePolls?.filter(
+    (mock) => mock.projectAddress === projectAddress
+  ) as unknown as Array<IProjectChangePoll>;
+
   return (
     <ProjectDetailContext.Provider
       value={{
@@ -69,6 +79,7 @@ export const ProjectDetailProvider = ({
         milestones,
         milestonePolls,
         updates,
+        changePolls,
       }}
     >
       {children}
