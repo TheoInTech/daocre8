@@ -7,7 +7,7 @@ import { ProjectDetails } from "@/app/creator/your-projects/[projectAddress]/Pro
 import { ProjectUpdates } from "@/app/creator/your-projects/[projectAddress]/ProjectUpdates";
 import { Team } from "@/app/creator/your-projects/[projectAddress]/Team";
 import { Tiers } from "@/app/creator/your-projects/[projectAddress]/Tiers";
-import { ESidebar } from "@/lib/schema/creator.schema";
+import { ESidebar } from "@/lib/types/creator.types";
 import { cn } from "@/lib/utils/cn";
 
 export const Content = ({

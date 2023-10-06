@@ -3,8 +3,7 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ESidebar } from "@/lib/schema/creator.schema";
-import { IProjectDetailContext } from "@/lib/types/creator.types";
+import { ESidebar, IProjectDetailContext } from "@/lib/types/creator.types";
 // mock
 import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
 import { IMilestone } from "@/lib/types/milestones.types";

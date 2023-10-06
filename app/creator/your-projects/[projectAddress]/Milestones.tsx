@@ -60,6 +60,7 @@ export const Milestones = () => {
                     "Open popup to get more info and initialize milestone poll"
                   )
                 }
+                disabled
               >
                 Start milestone poll
               </Button>

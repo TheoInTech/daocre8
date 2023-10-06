@@ -3,21 +3,30 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ESidebar } from "@/lib/schema/creator.schema";
-import { IProjectDetailContext } from "@/lib/types/creator.types";
+import {
+  ETabsForToBeFundedProjects,
+  IToBeFundedProjectDetailContext,
+} from "@/lib/types/backer.types";
 // mock
-import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
+import {
+  mockProjectChangePolls,
+  mockProjectUpdates,
+  mockProjectsData,
+} from "@/lib/mock";
+import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IMilestone } from "@/lib/types/milestones.types";
 import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
-import { IProjectUpdate } from "@/lib/types/updates.types";
+import { IProjectChangePoll, IProjectUpdate } from "@/lib/types/updates.types";
 
-const ProjectDetailContext = createContext<IProjectDetailContext>({
-  activeSidebar: ESidebar.PROJECT_DETAILS,
+const ProjectDetailContext = createContext<IToBeFundedProjectDetailContext>({
+  activeSidebar: ETabsForToBeFundedProjects.PROJECT_DETAILS,
   setActiveSidebar: () => {},
   project: null,
   milestones: [],
   milestonePolls: [],
   updates: [],
+  changePolls: [],
+  tiers: [],
 });
 
 export const FundProjectDetailProvider = ({
@@ -27,9 +36,10 @@ export const FundProjectDetailProvider = ({
   projectAddress: string;
   children: ReactNode;
 }) => {
-  const [activeSidebar, setActiveSidebar] = useState<ESidebar>(
-    ESidebar.PROJECT_DETAILS
-  );
+  const [activeSidebar, setActiveSidebar] =
+    useState<ETabsForToBeFundedProjects>(
+      ETabsForToBeFundedProjects.PROJECT_DETAILS
+    );
 
   // TODO: Fetch the project details here
   // For now, use mock
@@ -57,9 +67,19 @@ export const FundProjectDetailProvider = ({
     },
   ];
 
+  // mock project updates
   const updates = mockProjectUpdates?.filter(
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
+
+  // mock change polls
+  const changePolls = mockProjectChangePolls?.filter(
+    (mock) => mock.projectAddress === projectAddress
+  ) as unknown as Array<IProjectChangePoll>;
+
+  // mock tiers and rewards
+  const tiers =
+    project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
 
   return (
     <ProjectDetailContext.Provider
@@ -70,6 +90,8 @@ export const FundProjectDetailProvider = ({
         milestones,
         milestonePolls,
         updates,
+        changePolls,
+        tiers,
       }}
     >
       {children}

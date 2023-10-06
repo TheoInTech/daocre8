@@ -24,7 +24,7 @@ export const ProjectDetails = () => {
         <span className="font-semibold text-accent">
           Inspiration behind the project
         </span>
-        <span>{inspiration}</span>
+        <span className="whitespace-pre-line">{inspiration}</span>
       </div>
 
       <div className="flex flex-col gap-2">

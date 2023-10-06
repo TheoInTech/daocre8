@@ -2,7 +2,7 @@
 
 import { useProjectDetailState } from "@/app/creator/your-projects/[projectAddress]/ProjectDetailContext";
 import { Button } from "@/components/ui/button";
-import { ESidebar } from "@/lib/schema/creator.schema";
+import { ESidebar } from "@/lib/types/creator.types";
 import { cn } from "@/lib/utils/cn";
 import { ChevronRight } from "lucide-react";
 

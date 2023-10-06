@@ -2,12 +2,11 @@
 
 import { useFundProjectDetailState } from "@/app/(common)/fund/[projectAddress]/FundProjectDetailContext";
 import { Milestones } from "@/app/(common)/fund/[projectAddress]/Milestones";
-import { Polls } from "@/app/(common)/fund/[projectAddress]/Polls";
 import { ProjectDetails } from "@/app/(common)/fund/[projectAddress]/ProjectDetails";
 import { ProjectUpdates } from "@/app/(common)/fund/[projectAddress]/ProjectUpdates";
 import { Team } from "@/app/(common)/fund/[projectAddress]/Team";
 import { Tiers } from "@/app/(common)/fund/[projectAddress]/Tiers";
-import { ESidebar } from "@/lib/schema/creator.schema";
+import { ETabsForToBeFundedProjects } from "@/lib/types/backer.types";
 import { cn } from "@/lib/utils/cn";
 
 export const Content = ({
@@ -21,22 +20,19 @@ export const Content = ({
   let render = null;
 
   switch (activeSidebar) {
-    case ESidebar.TEAM:
+    case ETabsForToBeFundedProjects.TEAM:
       render = <Team />;
       break;
-    case ESidebar.UPDATES:
+    case ETabsForToBeFundedProjects.UPDATES:
       render = <ProjectUpdates />;
       break;
-    case ESidebar.MILESTONES:
+    case ETabsForToBeFundedProjects.MILESTONES:
       render = <Milestones />;
       break;
-    case ESidebar.TIERS:
+    case ETabsForToBeFundedProjects.TIERS:
       render = <Tiers />;
       break;
-    case ESidebar.POLLS:
-      render = <Polls />;
-      break;
-    case ESidebar.PROJECT_DETAILS:
+    case ETabsForToBeFundedProjects.PROJECT_DETAILS:
     default:
       render = <ProjectDetails />;
       break;

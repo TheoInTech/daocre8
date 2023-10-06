@@ -7,7 +7,7 @@ import { BackButton } from "@/components/ui/back-button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { OptionsTabs } from "@/components/ui/options-tabs";
-import { ESidebar } from "@/lib/schema/creator.schema";
+import { ETabsForToBeFundedProjects } from "@/lib/types/backer.types";
 import Image from "next/image";
 
 const FundProjectPage = () => {
@@ -49,7 +49,9 @@ const FundProjectPage = () => {
             height={1000}
             className="w-full h-fit rounded-lg shadow-2xl col-span-1"
           />
-          <Button onClick={() => setActiveSidebar(ESidebar.TIERS)}>
+          <Button
+            onClick={() => setActiveSidebar(ETabsForToBeFundedProjects.TIERS)}
+          >
             Fund this project
           </Button>
         </div>
@@ -57,7 +59,7 @@ const FundProjectPage = () => {
           <OptionsTabs
             handleCurrentTab={setActiveSidebar}
             currentTab={activeSidebar}
-            options={Object.entries(ESidebar)}
+            options={Object.entries(ETabsForToBeFundedProjects)}
           />
           <Content project={project} />
         </div>

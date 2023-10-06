@@ -446,16 +446,37 @@ export const mockProjectsData = [
       },
       fundingTiers: [
         {
-          name: "Trendsetter",
-          amountInUsd: 70000,
-          description: "Setting trends while saving the planet.",
-          imageUrl: "https://via.placeholder.com/150",
+          name: "Groovy Mover Tier",
+          amountInUsd: 20,
+          description: `- Access to all dance competitions.
+          - Exclusive in-game dance move.
+          `,
+          imageUrl: "https://via.placeholder.com/150?text=Groovy Mover Tier",
         },
         {
-          name: "Eco Warrior",
-          amountInUsd: 95000,
-          description: "Pioneering sustainable fashion solutions.",
-          imageUrl: "https://via.placeholder.com/150",
+          name: "Funky Groover Tier",
+          amountInUsd: 50,
+          description: `- Everything from the Groovy Mover Tier.
+          - VIP voting privileges for the coolest dance routines.
+          `,
+          imageUrl: "https://via.placeholder.com/150?text=Funky Groover Tier",
+        },
+        {
+          name: "Dance Legend Tier",
+          amountInUsd: 100,
+          description: `- Everything from the Funky Groover Tier.
+          - A chance to be a guest judge in one of our dance battles.
+          `,
+          imageUrl: "https://via.placeholder.com/150?text=Dance Legend Tier",
+        },
+        {
+          name: "Ultimate Dance Guru Tier",
+          amountInUsd: 500,
+          description: `- Everything from the Dance Legend Tier.
+          - Personalized AI dance routine choreographed just for you.
+          `,
+          imageUrl:
+            "https://via.placeholder.com/150?text=Ultimate Dance Guru Tier",
         },
       ],
       fundingAndMilestones: {
@@ -528,5 +549,18 @@ export const mockProjectUpdates = [
     Vote for the Funkiest Moves: Backers have the power to vote for the coolest dance routines.
     Unlock Exclusive In-Game Dance Moves: Top backers gain access to jaw-dropping dance moves for their avatars.
     `,
+  },
+];
+
+export const mockProjectChangePolls = [
+  {
+    idx: 1,
+    projectAddress: mockProjectsData[5].address,
+    question:
+      "What dance styles should our AI dancers groove to? Cast your vote!",
+    options: ["Hip-Hop", "Salsa", "Breakdance", "Contemporary", "Tango"],
+    voterMap: [],
+    startDateTime: "2023-10-06",
+    endDateTime: "2023-12-06",
   },
 ];

@@ -1,9 +1,17 @@
-import { ESidebar } from "@/lib/schema/creator.schema";
 import { IFormData } from "@/lib/schema/raise.schema";
 import { IMilestone } from "@/lib/types/milestones.types";
 import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
-import { IProjectUpdate } from "@/lib/types/updates.types";
+import { IProjectChangePoll, IProjectUpdate } from "@/lib/types/updates.types";
 import { Dispatch, SetStateAction } from "react";
+
+export enum ESidebar {
+  PROJECT_DETAILS = "Project Details",
+  UPDATES = "Project Updates",
+  TIERS = "Tiers & Rewards",
+  MILESTONES = "Funding & Milestones",
+  POLLS = "Change Polls",
+  TEAM = "Team",
+}
 
 export interface IProject {
   address: string;
@@ -18,4 +26,5 @@ export interface IProjectDetailContext {
   milestones: Array<IMilestone> | null | undefined;
   milestonePolls: Array<IMilestoneAchievementPoll> | null | undefined;
   updates: Array<IProjectUpdate>;
+  changePolls: Array<IProjectChangePoll>;
 }

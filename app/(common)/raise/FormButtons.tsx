@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { MultistepProgress } from "@/components/ui/multistep-progress";
 import { EStep } from "@/lib/schema/raise.schema";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs13-progress";
 
 export const FormButtons = ({
   disabled = false,
