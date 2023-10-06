@@ -6,16 +6,24 @@ DAOCre-8 is a Solana-based decentralized application that empowers realization o
 
 ## Features
 
-- **Project DAO Initialization**: Become a Creator. Start managing and crowdfunding your projects and creations in the form of decentralized autonomous organizations.
-- **Escrow Management**: Securely handle transactions and agreements in the blockchain. Get funded from anyone around the world through SOL, USDC, USDT and even USD, all handled in a permissionless and fully-automated Solana program.
-- **Polling System**: Facilitate a decentralized and permissionless decision-making and milestone achievement polls with your funders and backers, without the need of KYC (know-your-customer).
-- **Creator NFT Collection**: Initialize, mint, and manage creator-centric NFT collections. Join, connect and collaborate with thousands of creators in building a healthier and more competitive ecosystem in your niche market.
+- **Effortless Project Launch**: Creators can easily kickstart projects, while backers can seamlessly support initiatives they believe in.
+- **Collaborative Decision-Making**: Foster a collaborative environment with decentralized polls for key project decisions.
+- **Transparent Progress Tracking**: Keep everyone informed on project milestones and achievements in real-time.
+- **Exclusive Creator NFTs**: Creators can mint unique NFTs, offering backers a tangible stake in the project.
+- **Secured Funding Protocol**: Safeguard funds through a secure escrow until project milestones are duly met.
+- **Community Engagement**: A thriving ecosystem where creators and backers interact, share insights, and foster project success.
 
-## Dependencies
+## Tech Stack
 
-- Node.js
-- Yarn
-- Anchor
+- [**Next.js 13**](https://nextjs.org/): Our Full Stack Framework that enables functionality for both front-end and back-end operations.
+- [**React.js 18**](https://reactjs.org/): Utilized for building our user interface and managing the front-end logic of the application.
+- [**Zod**](https://github.com/colinhacks/zod): Implements schema validation ensuring data integrity throughout our application.
+- [**Tailwind CSS**](https://tailwindcss.com/): Provides utility-first CSS framework for rapidly building custom designs.
+- **REST API & [SWR](https://swr.vercel.app/)**: Used for server-backend operations, enabling data fetching, mutations, and real-time updates.
+- [**Solana Rust**](https://solana.com/): Powers the blockchain backend of our application ensuring security, scalability, and decentralization.
+- [**Anchor**](https://project-serum.github.io/anchor/): A framework for Solana Rust, simplifying the development of Solana programs.
+- [**Apollo GraphQL**](https://www.apollographql.com/): Facilitates querying our data in a more efficient, powerful and flexible manner.
+- [**Bundlr**](https://getbundlr.com/): Provides decentralized storage solutions, ensuring data persistence and availability.
 
 ## Contributing
 
