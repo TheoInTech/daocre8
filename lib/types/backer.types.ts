@@ -50,8 +50,6 @@ export interface IToBeFundedProjectDetailContext {
   setActiveSidebar: Dispatch<SetStateAction<ETabsForToBeFundedProjects>>;
   project: IToBeFundedProject | null | undefined;
   milestones: Array<IMilestone> | null | undefined;
-  milestonePolls: Array<IMilestoneAchievementPoll> | null | undefined;
   updates: Array<IProjectUpdate>;
-  changePolls: Array<IProjectChangePoll>;
   tiers: Array<IFundingTier> | null | undefined;
 }

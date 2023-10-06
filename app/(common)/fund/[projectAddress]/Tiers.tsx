@@ -40,9 +40,9 @@ export const Tiers = () => {
       />
       <div className="flex flex-col">
         {tiers && tiers?.length > 0 ? (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-8">
             {tiers.map((tier) => (
-              <div key={tier.name} className="grid grid-cols-3 my-4 space-x-8">
+              <div key={tier.name} className="grid grid-cols-3 space-x-8">
                 {/* Modal */}
 
                 {/* Content */}

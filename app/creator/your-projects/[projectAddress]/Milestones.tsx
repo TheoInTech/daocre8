@@ -6,6 +6,14 @@ export const Milestones = () => {
   const { project, milestones, milestonePolls } = useProjectDetailState();
   const fundingAmount =
     project?.project_ipfs_hash?.fundingAndMilestones?.fundingAmount ?? 0;
+  const currency = project?.project_ipfs_hash?.fundingAndMilestones?.currency;
+  const walletAddress =
+    project?.project_ipfs_hash?.fundingAndMilestones?.walletAddress;
+  const initialCapital =
+    fundingAmount *
+    ((project?.project_ipfs_hash?.fundingAndMilestones?.capitalPercentage ??
+      0) /
+      100);
 
   /** TODO:
    * 1. List all milestones (description, amount, status)
@@ -15,6 +23,30 @@ export const Milestones = () => {
 
   return (
     <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 card-glass">
+        <div className="flex flex-col gap-2 ">
+          <div className="text-sm font-medium text-primary">
+            Total Fundraising Amount
+          </div>
+          <div className="text-base font-medium">
+            {fundingAmount.toLocaleString()} {currency}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 ">
+          <div className="text-sm font-medium text-primary">
+            Wallet To Receive
+          </div>
+          <div className="text-base font-medium">{walletAddress}</div>
+        </div>
+        <div className="flex flex-col gap-2 ">
+          <div className="text-sm font-medium text-primary">
+            Initial Distributed Capital
+          </div>
+          <div className="text-base font-medium">
+            {initialCapital.toLocaleString()} {currency}
+          </div>
+        </div>
+      </div>
       {milestones?.map((milestone) => {
         const milestonePoll = milestonePolls?.find(
           (poll) => poll.milestone.idx === milestone.idx

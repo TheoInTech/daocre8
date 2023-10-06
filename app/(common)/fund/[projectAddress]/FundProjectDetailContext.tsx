@@ -8,24 +8,18 @@ import {
   IToBeFundedProjectDetailContext,
 } from "@/lib/types/backer.types";
 // mock
-import {
-  mockProjectChangePolls,
-  mockProjectUpdates,
-  mockProjectsData,
-} from "@/lib/mock";
+import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
 import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IMilestone } from "@/lib/types/milestones.types";
 import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
-import { IProjectChangePoll, IProjectUpdate } from "@/lib/types/updates.types";
+import { IProjectUpdate } from "@/lib/types/updates.types";
 
 const ProjectDetailContext = createContext<IToBeFundedProjectDetailContext>({
   activeSidebar: ETabsForToBeFundedProjects.PROJECT_DETAILS,
   setActiveSidebar: () => {},
   project: null,
   milestones: [],
-  milestonePolls: [],
   updates: [],
-  changePolls: [],
   tiers: [],
 });
 
@@ -72,11 +66,6 @@ export const FundProjectDetailProvider = ({
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
 
-  // mock change polls
-  const changePolls = mockProjectChangePolls?.filter(
-    (mock) => mock.projectAddress === projectAddress
-  ) as unknown as Array<IProjectChangePoll>;
-
   // mock tiers and rewards
   const tiers =
     project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
@@ -88,9 +77,7 @@ export const FundProjectDetailProvider = ({
         setActiveSidebar,
         project,
         milestones,
-        milestonePolls,
         updates,
-        changePolls,
         tiers,
       }}
     >
