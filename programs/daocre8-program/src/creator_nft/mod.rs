@@ -1,19 +1,20 @@
 use anchor_lang::prelude::*;
 
+pub mod constant;
+pub mod errors;
 pub mod state;
-pub use crate::creator_nft::state::*;
+use crate::creator_nft::{constant::*, state::*};
 use crate::errors::*;
 
 pub fn initialize_creator_nft_collection(
     ctx: Context<InitializeCreatorNFTCollection>,
     title: String,
     description: String,
-    image_uri: String
+    image_uri: String,
 ) -> Result<()> {
     let collection = &mut ctx.accounts.nft_collection;
     collection.authority = *ctx.accounts.authority.to_account_info().key;
     collection.metadata = CreatorMetadata {
-        // Here, changed Metadata to CreatorMetadata
         title,
         description,
         image_uri,

@@ -1,104 +1,67 @@
 use anchor_lang::prelude::*;
-use crate::errors::*;
 
-pub mod constants;
+pub mod constant;
+pub mod errors;
 pub mod state;
-pub use crate::project_dao::{ constants::*, state::* };
+use crate::creator::{constant::*, state::*};
+use crate::errors::*;
+use crate::project_dao::{constant::*, state::*};
 
-/// Initializes a Project DAO with a given `project_ipfs_hash`.
-///
-/// The `project_ipfs_hash` should correspond to an Arweave or IPFS address where a JSON object, adhering strictly to the below-described schema, is stored.
-///
-/// # Schema: FormDataSchema
-/// The JSON object must conform to the following precise schema:
-///
-/// ## Main Object
-/// - `category`: string, required, must be one of ["Art", "Comics", "Crafts", "Dance", "Fashion", "Films & Video", "Food", "Games", "Hardware", "Journalism", "Music", "Photography", "Software", "Theater"]
-/// - `basicDetails`: object, required, must follow the `BasicDetailsSchema` described below.
-/// - `team`: object, required, must follow the `TeamSchema` described below.
-/// - `fundingTiers`: array, required, each element must follow the `FundingTierSchema` described below.
-/// - `fundingAndMilestones`: object, required, must follow the `FundingAndMilestonesSchema` described below.
-///
-/// ## BasicDetailsSchema
-/// - `name`: string, required, the name of the project.
-/// - `location`: string, required, must be one of ["Singapore", "Philippines", "USA", "Europe"].
-/// - `imageUrl`: string, required, must be a valid URL (the image should be of types ["jpeg", "jpg", "png", "webp"] and max size 5MB).
-/// - `pdfUrl`: string, required, must be a valid URL to a PDF document (max size 10MB).
-/// - `videoUrl`: string, optional, must be a valid URL to a video if provided (the video should be of types ["mp4", "mov", "avi", "mkv", "webm"] and max size 100MB).
-///
-/// ## TeamSchema
-/// - `undoxxed`: boolean, required.
-/// - `name`: string, required if `undoxxed` is false.
-/// - `about`: string, required if `undoxxed` is false.
-/// - `linkedinUrl`: string, optional.
-/// - `githubUrl`: string, optional.
-/// - `xUrl`: string, optional.
-/// - `pastProjectUrl`: string, optional.
-/// - `teamProfileUrls`: array of strings, optional, each string must be a valid URL.
-///
-/// ## FundingTierSchema
-/// - `name`: string, required.
-/// - `amountInUsd`: number, required, minimum 1.
-/// - `description`: string, required, max 250 characters.
-/// - `imageUrl`: string, required, must be a valid URL (the image should be of types ["jpeg", "jpg", "png", "webp"] and max size 5MB).
-///
-/// ## FundingAndMilestonesSchema
-/// - `fundingAmount`: number, required, minimum 1.
-/// - `walletAddress`: string, required, must be a valid Solana address.
-/// - `walletIsConfirmed`: boolean, required, must be true.
-/// - `currency`: string, required, must be one of ["SOL", "USDC", "USDT", "USD"].
-/// - `capitalPercentage`: number, required, between 1 and 100 inclusive.
-/// - `milestones`: array, required, each element must be an object with the following properties:
-///     - `percentage`: number, required, between 1 and 100 inclusive.
-///     - `description`: string, required.
-///
-/// # Example
-/// ```json
-/// {
-///    "category": "Art",
-///    "basicDetails": {...},
-///    "team": {...},
-///    "fundingTiers": [...],
-///    "fundingAndMilestones": {...}
-/// }
-/// ```
-///
-/// # Errors
-/// Returns `FieldNotEmpty` error if `project_ipfs_hash` is empty.
 pub fn initialize_project_dao(
     ctx: Context<InitializeProjectDao>,
-    project_ipfs_hash: String
+    project_ipfs_hash: String,
+    fundraise_end_date: i64,
+    launch_date: i64,
+    funding_amount: u128,
+    capital_percentage: u128,
 ) -> Result<()> {
-    if project_ipfs_hash.is_empty() {
+    // Check if any of the fields are empty
+    if project_ipfs_hash.is_empty()
+        || fundraise_end_date == 0
+        || launch_date == 0
+        || funding_amount == 0
+        || capital_percentage == 0
+    {
         return Err(DAOCre8Error::FieldNotEmpty.into());
     }
 
     let project_dao_account = &mut ctx.accounts.project_dao_account;
 
+    // Populate the Project DAO Account PDA fields
     project_dao_account.authority = ctx.accounts.authority.key();
     project_dao_account.project_ipfs_hash = project_ipfs_hash;
+    project_dao_account.fundraise_end_date = fundraise_end_date;
+    project_dao_account.launch_date = launch_date;
+    project_dao_account.funding_amount = funding_amount;
+    project_dao_account.capital_percentage = capital_percentage;
 
-    // Initialize milestones account
-    let milestones_account = &mut ctx.accounts.milestones_account;
-    milestones_account.authority = ctx.accounts.authority.key();
-    milestones_account.project_dao = *project_dao_account.to_account_info().key;
+    // Initial Milestones
+    project_dao_account.last_milestone = 0;
+    project_dao_account.milestones_count = 0;
 
-    // Initialize polls account
-    let polls_account = &mut ctx.accounts.polls_account;
-    polls_account.authority = ctx.accounts.authority.key();
-    polls_account.project_dao = *project_dao_account.to_account_info().key;
+    // Initial Polls
+    project_dao_account.last_decision_poll = 0;
+    project_dao_account.last_milestone_poll = 0;
+    project_dao_account.decision_polls_count = 0;
+    project_dao_account.milestone_polls_count = 0;
 
-    msg!("Initialized Project DAO with Metadata, Milestones, and Polls");
+    msg!(
+        "Initialized Project DAO {} with Metadata, Milestones, and Polls",
+        project_dao_account.key()
+    );
     Ok(())
 }
 
 #[derive(Accounts)]
-#[instruction(
-    project_ipfs_hash: String,
-)]
+#[instruction()]
 pub struct InitializeProjectDao<'info> {
-    #[account(mut)]
-    pub authority: Signer<'info>,
+    #[account(
+        mut,
+        seeds = [CREATOR_TAG, authority.key().as_ref()],
+        bump,
+        has_one = authority,
+    )]
+    pub creator_profile: Box<Account<'info, CreatorProfile>>,
 
     #[account(
         init,
@@ -109,23 +72,13 @@ pub struct InitializeProjectDao<'info> {
     )]
     pub project_dao_account: Box<Account<'info, ProjectDaoAccount>>,
 
-    #[account(
-        init,
-        seeds = [MILESTONES_TAG, project_dao_account.to_account_info().key.as_ref()],
-        bump,
-        payer = authority,
-        space = 8 + std::mem::size_of::<MilestoneAccount>()
-    )]
-    pub milestones_account: Box<Account<'info, MilestoneAccount>>,
-
-    #[account(
-        init,
-        seeds = [POLLS_TAG, project_dao_account.to_account_info().key.as_ref()],
-        bump,
-        payer = authority,
-        space = 8 + std::mem::size_of::<PollAccount>()
-    )]
-    pub polls_account: Box<Account<'info, PollAccount>>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
 
     pub system_program: Program<'info, System>,
+}
+
+pub fn bump(seeds: &[&[u8]], program_id: &Pubkey) -> u8 {
+    let (_found_key, bump) = Pubkey::find_program_address(seeds, program_id);
+    bump
 }
