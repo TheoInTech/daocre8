@@ -130,15 +130,17 @@ export const Milestones = () => {
                   )}
                 </div>
               </div>
-              <Button
-                variant="secondary"
-                size={"md"}
-                className="w-fit"
-                disabled={!hasPollStarted}
-                onClick={() => handleClickMilestone(milestone)}
-              >
-                Cast your vote
-              </Button>
+              {milestonePoll && (
+                <Button
+                  variant="secondary"
+                  size={"md"}
+                  className="w-fit"
+                  disabled={!hasPollStarted}
+                  onClick={() => handleClickMilestone(milestone)}
+                >
+                  Cast your vote
+                </Button>
+              )}
             </div>
           );
         })}
