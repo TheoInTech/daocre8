@@ -11,10 +11,10 @@ import { Dispatch, SetStateAction } from "react";
 export enum ETabsForBackedProjects {
   PROJECT_DETAILS = "Project Details",
   UPDATES = "Project Updates",
-  TIERS = "Tiers & Rewards",
   MILESTONES = "Funding & Milestones",
   POLLS = "Change Polls",
   TEAM = "Team",
+  TIERS = "Tiers & Rewards",
 }
 
 export interface IBackedProject {
