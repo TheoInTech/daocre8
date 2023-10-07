@@ -1,7 +1,10 @@
+import { Content } from "@/app/(backer)/backed-projects/[projectAddress]/Content";
+import { Sidebar } from "@/app/(backer)/backed-projects/[projectAddress]/Sidebar";
 import { PageTitle } from "@/app/PageTitle";
 import { BackButton } from "@/components/ui/back-button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { mockProjectsData } from "@/lib/mock";
+// import { NoProjects } from "@/app/(backer)/NoProjects";
 
 interface IBackedProjectDetailPage {
   params: {
@@ -41,6 +44,13 @@ const BackedProjectDetailPage = ({ params }: IBackedProjectDetailPage) => {
           </>
         }
       />
+
+      {/* <NoProjects /> */}
+
+      <div className="grid grid-cols-4 my-4 space-x-8">
+        <Sidebar className="col-span-1" />
+        <Content className="col-span-3" project={project} />
+      </div>
     </>
   );
 };

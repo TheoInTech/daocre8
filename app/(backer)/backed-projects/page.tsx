@@ -15,7 +15,7 @@ const BackedProjectsPage = () => {
       <PageTitle
         title={"Backed Projects"}
         subtitle={
-          "Manage your backed projects, vote on milestones and see project updates."
+          "Manage your backed projects, vote on milestones and collaborate on project updates."
         }
       />
 

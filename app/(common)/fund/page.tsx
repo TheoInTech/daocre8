@@ -28,7 +28,7 @@ const FundPage = () => {
       />
 
       {filteredProject.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProject.map((project) => (
             <ProjectCard
               key={project.address}

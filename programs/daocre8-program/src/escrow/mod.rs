@@ -1,9 +1,10 @@
 use anchor_lang::prelude::*;
-use crate::errors::*;
-use solana_program::{ program::invoke, system_instruction };
+use solana_program::{program::invoke, system_instruction};
 
+pub mod errors;
 pub mod state;
-pub use state::*;
+use crate::errors::*;
+use crate::escrow::state::*;
 
 pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<()> {
     // Ensure the amount is 1 SOL
@@ -25,7 +26,7 @@ pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<
     let transfer_instruction = system_instruction::transfer(
         &ctx.accounts.authority.key(),
         &recipient_account.recipient,
-        half_amount
+        half_amount,
     );
 
     // Invoke the transfer instruction
@@ -35,7 +36,7 @@ pub fn initialize_escrow(ctx: Context<InitializeEscrow>, amount: u64) -> Result<
             ctx.accounts.authority.to_account_info(),
             ctx.accounts.recipient_account.to_account_info().clone(),
             ctx.accounts.system_program.to_account_info(),
-        ]
+        ],
     )?;
 
     Ok(())

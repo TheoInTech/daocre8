@@ -19,11 +19,11 @@ export const OptionsTabs = ({
         className
       )}
     >
-      <ul className="flex flex-wrap -mb-px">
+      <ul className="flex flex-wrap -mb-px py-2 px-2 items-center justify-center">
         {options.map(([key, value]) => (
           <li key={key} className="mr-2">
             <button
-              className={`inline-block p-2 lg:p-4 rounded-t-lg ${
+              className={`inline-block p-2 lg:px-4 lg:py-2 rounded-t-lg ${
                 currentTab === value
                   ? "text-primary border-b-2 border-primary"
                   : "border-b-2 border-transparent hover:text-primary "

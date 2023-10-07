@@ -3,12 +3,17 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ESidebar } from "@/lib/schema/creator.schema";
-import { IProjectDetailContext } from "@/lib/types/creator.types";
+import { ESidebar, IProjectDetailContext } from "@/lib/types/creator.types";
 // mock
-import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
-import { IMilestone } from "@/lib/types/milestones.types";
-import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
+import {
+  mockProjectChangePolls1,
+  mockProjectChangePolls2,
+  mockProjectMilestonePolls,
+  mockProjectMilestones,
+  mockProjectUpdates,
+  mockProjectsData,
+} from "@/lib/mock";
+import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
 const ProjectDetailContext = createContext<IProjectDetailContext>({
@@ -18,6 +23,8 @@ const ProjectDetailContext = createContext<IProjectDetailContext>({
   milestones: [],
   milestonePolls: [],
   updates: [],
+  changePolls: [],
+  tiers: [],
 });
 
 export const ProjectDetailProvider = ({
@@ -38,28 +45,28 @@ export const ProjectDetailProvider = ({
   );
 
   // mock milestones
-  const milestones: Array<IMilestone> =
-    project?.project_ipfs_hash?.fundingAndMilestones?.milestones.map(
-      (milestone, index) => ({
-        idx: index + 1,
-        percentage: milestone.percentage ?? 0,
-        milestone_ipfs_hash: milestone.description ?? "",
-      })
-    ) ?? [];
+  const milestones = mockProjectMilestones?.filter(
+    (mock) => mock.project_dao_id === projectAddress
+  );
 
   // mock milestone polls
-  const milestonePolls: Array<IMilestoneAchievementPoll> = [
-    {
-      milestone: milestones[0],
-      voter_map: [],
-      start_datetime: "2023-10-01",
-      end_datetime: "2023-12-01",
-    },
-  ];
+  const milestonePolls = mockProjectMilestonePolls?.filter(
+    (mock) => mock.project_dao_id === projectAddress
+  );
+
+  // mock change polls
+  const changePolls = [
+    ...mockProjectChangePolls1,
+    ...mockProjectChangePolls2,
+  ]?.filter((mock) => mock.project_dao_id === projectAddress);
 
   const updates = mockProjectUpdates?.filter(
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
+
+  // mock tiers and rewards
+  const tiers =
+    project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
 
   return (
     <ProjectDetailContext.Provider
@@ -70,6 +77,8 @@ export const ProjectDetailProvider = ({
         milestones,
         milestonePolls,
         updates,
+        changePolls,
+        tiers,
       }}
     >
       {children}

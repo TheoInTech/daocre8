@@ -3,21 +3,26 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ESidebar } from "@/lib/schema/creator.schema";
-import { IProjectDetailContext } from "@/lib/types/creator.types";
+import {
+  ETabsForToBeFundedProjects,
+  IToBeFundedProjectDetailContext,
+} from "@/lib/types/backer.types";
 // mock
-import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
-import { IMilestone } from "@/lib/types/milestones.types";
-import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
+import {
+  mockProjectMilestones,
+  mockProjectUpdates,
+  mockProjectsData,
+} from "@/lib/mock";
+import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
-const ProjectDetailContext = createContext<IProjectDetailContext>({
-  activeSidebar: ESidebar.PROJECT_DETAILS,
+const ProjectDetailContext = createContext<IToBeFundedProjectDetailContext>({
+  activeSidebar: ETabsForToBeFundedProjects.PROJECT_DETAILS,
   setActiveSidebar: () => {},
   project: null,
   milestones: [],
-  milestonePolls: [],
   updates: [],
+  tiers: [],
 });
 
 export const FundProjectDetailProvider = ({
@@ -27,9 +32,10 @@ export const FundProjectDetailProvider = ({
   projectAddress: string;
   children: ReactNode;
 }) => {
-  const [activeSidebar, setActiveSidebar] = useState<ESidebar>(
-    ESidebar.PROJECT_DETAILS
-  );
+  const [activeSidebar, setActiveSidebar] =
+    useState<ETabsForToBeFundedProjects>(
+      ETabsForToBeFundedProjects.PROJECT_DETAILS
+    );
 
   // TODO: Fetch the project details here
   // For now, use mock
@@ -38,28 +44,18 @@ export const FundProjectDetailProvider = ({
   );
 
   // mock milestones
-  const milestones: Array<IMilestone> =
-    project?.project_ipfs_hash?.fundingAndMilestones?.milestones.map(
-      (milestone, index) => ({
-        idx: index + 1,
-        percentage: milestone.percentage ?? 0,
-        milestone_ipfs_hash: milestone.description ?? "",
-      })
-    ) ?? [];
+  const milestones = mockProjectMilestones?.filter(
+    (mock) => mock.project_dao_id === projectAddress
+  );
 
-  // mock milestone polls
-  const milestonePolls: Array<IMilestoneAchievementPoll> = [
-    {
-      milestone: milestones[0],
-      voter_map: [],
-      start_datetime: "2023-10-01",
-      end_datetime: "2023-12-01",
-    },
-  ];
-
+  // mock project updates
   const updates = mockProjectUpdates?.filter(
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
+
+  // mock tiers and rewards
+  const tiers =
+    project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
 
   return (
     <ProjectDetailContext.Provider
@@ -68,8 +64,8 @@ export const FundProjectDetailProvider = ({
         setActiveSidebar,
         project,
         milestones,
-        milestonePolls,
         updates,
+        tiers,
       }}
     >
       {children}

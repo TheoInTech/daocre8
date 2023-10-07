@@ -2,7 +2,7 @@
 
 import { useProjectDetailState } from "@/app/creator/your-projects/[projectAddress]/ProjectDetailContext";
 import { Button } from "@/components/ui/button";
-import { ESidebar } from "@/lib/schema/creator.schema";
+import { ESidebar } from "@/lib/types/creator.types";
 import { cn } from "@/lib/utils/cn";
 import { ChevronRight } from "lucide-react";
 
@@ -23,7 +23,8 @@ export const Sidebar = ({ className }: { className?: string }) => {
           variant={"ghost"}
           className={cn(
             "shadow-none p-0 flex justify-between items-center",
-            activeSidebar === value && "text-accent font-medium brightness-200"
+            activeSidebar === value &&
+              "text-primary font-medium disabled:opacity-100"
           )}
           disabled={activeSidebar === value}
           onClick={() => setActiveSidebar(value)}
