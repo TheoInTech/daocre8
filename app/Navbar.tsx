@@ -50,7 +50,7 @@ export const Navbar = () => {
 
   return (
     <div className="fixed left-0 top-0 right-0 z-50">
-      <div className="flex flex-wrap justify-center text-xs items-center p-2 bg-accent text-foreground font-medium">
+      <div className="flex flex-wrap justify-center text-xs items-center p-2 bg-accent text-foreground font-medium text-center">
         This is a demo site for Solana Hyperdrive and mock data are currently
         used. Be the first to know when we launch!{" "}
         <Link
