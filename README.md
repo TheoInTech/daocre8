@@ -36,7 +36,7 @@ We welcome contributions! Please see the [contributing guide](CONTRIBUTING.md) f
 ## Contact
 
 - Theo Roque | theindiehacker: theoroque95@gmail.com
-- Project Website: [https://daocre8.io](https://daocre8.io)
+- Project Website: [https://daocre8.com](https://daocre8.com)
 
 ## Acknowledgments
 
