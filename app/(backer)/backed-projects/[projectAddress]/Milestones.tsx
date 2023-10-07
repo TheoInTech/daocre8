@@ -1,8 +1,8 @@
-import { useFundProjectDetailState } from "@/app/(common)/fund/[projectAddress]/FundProjectDetailContext";
+import { useBackedProjectsState } from "@/app/(backer)/backed-projects/BackedProjectsContext";
 import { Detail } from "@/components/ui/detail";
 
 export const Milestones = () => {
-  const { project, milestones } = useFundProjectDetailState();
+  const { project, milestones } = useBackedProjectsState();
   const fundingAmount =
     project?.project_ipfs_hash?.fundingAndMilestones?.fundingAmount ?? 0;
   const currency = project?.project_ipfs_hash?.fundingAndMilestones?.currency;

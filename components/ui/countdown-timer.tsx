@@ -4,10 +4,15 @@ import { useCallback, useEffect, useState } from "react";
 
 interface CountdownTimerProps {
   endTime: string;
+  endText?: string;
   className?: string;
 }
 
-export const CountdownTimer = ({ endTime, className }: CountdownTimerProps) => {
+export const CountdownTimer = ({
+  endTime,
+  endText,
+  className,
+}: CountdownTimerProps) => {
   const [timeLeft, setTimeLeft] = useState<string>("");
 
   const updateTimeLeft = useCallback(() => {
@@ -16,7 +21,7 @@ export const CountdownTimer = ({ endTime, className }: CountdownTimerProps) => {
     const distance = end - now;
 
     if (distance < 0) {
-      setTimeLeft("Ended");
+      setTimeLeft(endText ?? "Ended");
     } else {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
@@ -27,7 +32,7 @@ export const CountdownTimer = ({ endTime, className }: CountdownTimerProps) => {
 
       setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }
-  }, [endTime, setTimeLeft]);
+  }, [endTime, endText, setTimeLeft]);
 
   useEffect(() => {
     updateTimeLeft();

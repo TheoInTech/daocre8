@@ -1,5 +1,3 @@
-import { IMilestone } from "@/lib/types/milestones.types";
-
 export enum EPollType {
   DECISION_MAKING,
   MILESTONE_ACHIEVEMENT,
@@ -11,7 +9,9 @@ export interface IMilestoneAchievementPollVoterMap {
 }
 
 export interface IMilestoneAchievementPoll {
-  milestone: IMilestone;
+  idx: number;
+  project_dao_id: string;
+  milestone_id: string;
   voter_map: Array<IMilestoneAchievementPollVoterMap>;
   start_datetime: string;
   end_datetime: string;
@@ -19,10 +19,12 @@ export interface IMilestoneAchievementPoll {
 
 export interface IDecisionMakingPollVoterMap {
   key: string;
-  vote: number;
+  vote: number | string;
 }
 
 export interface IDecisionMakingPoll {
+  idx: number;
+  project_dao_id: string;
   question: string;
   options: Array<string>;
   voter_map: Array<IDecisionMakingPollVoterMap>;

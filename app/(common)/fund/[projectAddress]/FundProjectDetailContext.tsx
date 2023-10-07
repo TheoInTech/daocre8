@@ -8,10 +8,12 @@ import {
   IToBeFundedProjectDetailContext,
 } from "@/lib/types/backer.types";
 // mock
-import { mockProjectUpdates, mockProjectsData } from "@/lib/mock";
+import {
+  mockProjectMilestones,
+  mockProjectUpdates,
+  mockProjectsData,
+} from "@/lib/mock";
 import { IFundingTier } from "@/lib/schema/raise.schema";
-import { IMilestone } from "@/lib/types/milestones.types";
-import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
 const ProjectDetailContext = createContext<IToBeFundedProjectDetailContext>({
@@ -42,24 +44,9 @@ export const FundProjectDetailProvider = ({
   );
 
   // mock milestones
-  const milestones: Array<IMilestone> =
-    project?.project_ipfs_hash?.fundingAndMilestones?.milestones.map(
-      (milestone, index) => ({
-        idx: index + 1,
-        percentage: milestone.percentage ?? 0,
-        milestone_ipfs_hash: milestone.description ?? "",
-      })
-    ) ?? [];
-
-  // mock milestone polls
-  const milestonePolls: Array<IMilestoneAchievementPoll> = [
-    {
-      milestone: milestones[0],
-      voter_map: [],
-      start_datetime: "2023-10-01",
-      end_datetime: "2023-12-01",
-    },
-  ];
+  const milestones = mockProjectMilestones?.filter(
+    (mock) => mock.project_dao_id === projectAddress
+  );
 
   // mock project updates
   const updates = mockProjectUpdates?.filter(

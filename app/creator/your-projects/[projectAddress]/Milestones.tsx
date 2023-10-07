@@ -49,7 +49,7 @@ export const Milestones = () => {
       </div>
       {milestones?.map((milestone) => {
         const milestonePoll = milestonePolls?.find(
-          (poll) => poll.milestone.idx === milestone.idx
+          (poll) => poll.project_dao_id === milestone.project_dao_id
         );
 
         return (

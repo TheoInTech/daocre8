@@ -3,7 +3,10 @@
 // react
 import { ReactNode, createContext, useContext, useState } from "react";
 // types
-import { ESidebar, IProjectDetailContext } from "@/lib/types/creator.types";
+import {
+  ETabsForBackedProjects,
+  IProjectDetailContext,
+} from "@/lib/types/backer.types";
 // mock
 import {
   mockProjectChangePolls1,
@@ -13,27 +16,29 @@ import {
   mockProjectUpdates,
   mockProjectsData,
 } from "@/lib/mock";
+import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
-const ProjectDetailContext = createContext<IProjectDetailContext>({
-  activeSidebar: ESidebar.PROJECT_DETAILS,
+const BackedProjectsContext = createContext<IProjectDetailContext>({
+  activeSidebar: ETabsForBackedProjects.PROJECT_DETAILS,
   setActiveSidebar: () => {},
   project: null,
   milestones: [],
   milestonePolls: [],
   updates: [],
   changePolls: [],
+  tiers: [],
 });
 
-export const ProjectDetailProvider = ({
+export const BackedProjectsProvider = ({
   projectAddress,
   children,
 }: {
   projectAddress: string;
   children: ReactNode;
 }) => {
-  const [activeSidebar, setActiveSidebar] = useState<ESidebar>(
-    ESidebar.PROJECT_DETAILS
+  const [activeSidebar, setActiveSidebar] = useState<ETabsForBackedProjects>(
+    ETabsForBackedProjects.PROJECT_DETAILS
   );
 
   // TODO: Fetch the project details here
@@ -58,12 +63,17 @@ export const ProjectDetailProvider = ({
     ...mockProjectChangePolls2,
   ]?.filter((mock) => mock.project_dao_id === projectAddress);
 
+  // mock project updates
   const updates = mockProjectUpdates?.filter(
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
 
+  // mock tiers and rewards
+  const tiers =
+    project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
+
   return (
-    <ProjectDetailContext.Provider
+    <BackedProjectsContext.Provider
       value={{
         activeSidebar,
         setActiveSidebar,
@@ -72,13 +82,14 @@ export const ProjectDetailProvider = ({
         milestonePolls,
         updates,
         changePolls,
+        tiers,
       }}
     >
       {children}
-    </ProjectDetailContext.Provider>
+    </BackedProjectsContext.Provider>
   );
 };
 
-export const useProjectDetailState = () => {
-  return useContext(ProjectDetailContext);
+export const useBackedProjectsState = () => {
+  return useContext(BackedProjectsContext);
 };

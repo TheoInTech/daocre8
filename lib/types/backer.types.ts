@@ -1,7 +1,10 @@
 import { IFormData, IFundingTier } from "@/lib/schema/raise.schema";
 import { IMilestone } from "@/lib/types/milestones.types";
-import { IMilestoneAchievementPoll } from "@/lib/types/polls.types";
-import { IProjectChangePoll, IProjectUpdate } from "@/lib/types/updates.types";
+import {
+  IDecisionMakingPoll,
+  IMilestoneAchievementPoll,
+} from "@/lib/types/polls.types";
+import { IProjectUpdate } from "@/lib/types/updates.types";
 import { Dispatch, SetStateAction } from "react";
 
 // Backed Projects
@@ -27,7 +30,8 @@ export interface IProjectDetailContext {
   milestones: Array<IMilestone> | null | undefined;
   milestonePolls: Array<IMilestoneAchievementPoll> | null | undefined;
   updates: Array<IProjectUpdate>;
-  changePolls: Array<IProjectChangePoll>;
+  changePolls: Array<IDecisionMakingPoll>;
+  tiers: Array<IFundingTier> | null | undefined;
 }
 
 //   To Be Funded Projects

@@ -4,6 +4,11 @@ import {
   ELocation,
   IFormData,
 } from "@/lib/schema/raise.schema";
+import {
+  IDecisionMakingPoll,
+  IMilestoneAchievementPoll,
+} from "@/lib/types/polls.types";
+import { IMilestone } from "./types/milestones.types";
 
 export const mockProjectsData = [
   {
@@ -552,15 +557,140 @@ export const mockProjectUpdates = [
   },
 ];
 
-export const mockProjectChangePolls = [
+export const mockProjectMilestones: Array<IMilestone & { address: string }> = [
+  {
+    address: `${mockProjectsData[5].address}-milestone-1`,
+    idx: 1,
+    project_dao_id: mockProjectsData[5].address,
+    percentage:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[0]
+        .percentage,
+    milestone_ipfs_hash:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[0]
+        .description,
+  },
+  {
+    address: `${mockProjectsData[5].address}-milestone-2`,
+    idx: 2,
+    project_dao_id: mockProjectsData[5].address,
+    percentage:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[1]
+        .percentage,
+    milestone_ipfs_hash:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[1]
+        .description,
+  },
+  {
+    address: `${mockProjectsData[5].address}-milestone-3`,
+    idx: 3,
+    project_dao_id: mockProjectsData[5].address,
+    percentage:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[2]
+        .percentage,
+    milestone_ipfs_hash:
+      mockProjectsData[5].project_ipfs_hash.fundingAndMilestones.milestones[2]
+        .description,
+  },
+];
+
+export const mockProjectMilestonePolls: Array<IMilestoneAchievementPoll> = [
   {
     idx: 1,
-    projectAddress: mockProjectsData[5].address,
+    project_dao_id: mockProjectsData[5].address,
+    milestone_id: mockProjectMilestones[0].address,
+    voter_map: [
+      { key: "1", vote: true },
+      { key: "2", vote: true },
+      { key: "3", vote: false },
+      { key: "4", vote: true },
+      { key: "5", vote: true },
+      { key: "6", vote: true },
+      { key: "7", vote: false },
+      { key: "8", vote: true },
+      { key: "9", vote: true },
+    ],
+    start_datetime: "2023-10-05",
+    end_datetime: "2023-11-05",
+  },
+];
+
+enum EProjectChangePollSample1Options {
+  HIPHOP = "Hip-Hop",
+  SALSA = "Salsa",
+  BREAKDANCE = "Breakdance",
+  CONTEMPORARY = "Contemporary",
+  TANGO = "Tango",
+}
+
+export const mockProjectChangePolls1: Array<IDecisionMakingPoll> = [
+  {
+    idx: 1,
+    project_dao_id: mockProjectsData[5].address,
     question:
       "What dance styles should our AI dancers groove to? Cast your vote!",
-    options: ["Hip-Hop", "Salsa", "Breakdance", "Contemporary", "Tango"],
-    voterMap: [],
-    startDateTime: "2023-10-06",
-    endDateTime: "2023-12-06",
+    options: [
+      EProjectChangePollSample1Options.HIPHOP,
+      EProjectChangePollSample1Options.SALSA,
+      EProjectChangePollSample1Options.BREAKDANCE,
+      EProjectChangePollSample1Options.CONTEMPORARY,
+      EProjectChangePollSample1Options.TANGO,
+    ],
+    voter_map: [
+      { key: "1", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "2", vote: EProjectChangePollSample1Options.CONTEMPORARY },
+      { key: "3", vote: EProjectChangePollSample1Options.SALSA },
+      { key: "4", vote: EProjectChangePollSample1Options.SALSA },
+      { key: "5", vote: EProjectChangePollSample1Options.CONTEMPORARY },
+      { key: "6", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "7", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "8", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "9", vote: EProjectChangePollSample1Options.TANGO },
+      { key: "10", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "11", vote: EProjectChangePollSample1Options.CONTEMPORARY },
+      { key: "12", vote: EProjectChangePollSample1Options.HIPHOP },
+      { key: "13", vote: EProjectChangePollSample1Options.TANGO },
+    ],
+    start_datetime: "2023-10-02",
+    end_datetime: "2023-11-06",
+  },
+];
+
+enum EProjectChangePollSample2Options {
+  SCIFI = "Sci-Fi Extravaganza",
+  TIME_TRAVEL = "Time-Travel Tango",
+  DISCO_FEVER = "Disco Fever",
+  FANTASY = "Fantasy Frenzy",
+  RETRO = "Retro Rewind",
+}
+
+export const mockProjectChangePolls2: Array<IDecisionMakingPoll> = [
+  {
+    idx: 1,
+    project_dao_id: mockProjectsData[5].address,
+    question: "Pick the themes for our upcoming dance battles!",
+    options: [
+      EProjectChangePollSample2Options.SCIFI,
+      EProjectChangePollSample2Options.TIME_TRAVEL,
+      EProjectChangePollSample2Options.DISCO_FEVER,
+      EProjectChangePollSample2Options.FANTASY,
+      EProjectChangePollSample2Options.RETRO,
+    ],
+    voter_map: [
+      { key: "1", vote: EProjectChangePollSample2Options.SCIFI },
+      { key: "2", vote: EProjectChangePollSample2Options.DISCO_FEVER },
+      { key: "3", vote: EProjectChangePollSample2Options.FANTASY },
+      { key: "4", vote: EProjectChangePollSample2Options.DISCO_FEVER },
+      { key: "5", vote: EProjectChangePollSample2Options.FANTASY },
+      { key: "6", vote: EProjectChangePollSample2Options.RETRO },
+      { key: "7", vote: EProjectChangePollSample2Options.TIME_TRAVEL },
+      { key: "8", vote: EProjectChangePollSample2Options.SCIFI },
+      { key: "9", vote: EProjectChangePollSample2Options.TIME_TRAVEL },
+      { key: "10", vote: EProjectChangePollSample2Options.TIME_TRAVEL },
+      { key: "11", vote: EProjectChangePollSample2Options.SCIFI },
+      { key: "12", vote: EProjectChangePollSample2Options.DISCO_FEVER },
+      { key: "13", vote: EProjectChangePollSample2Options.TIME_TRAVEL },
+    ],
+    start_datetime: "2023-10-16",
+    end_datetime: "2023-12-06",
   },
 ];
