@@ -27,7 +27,7 @@ export interface IProjectDetailContext {
   activeSidebar: ETabsForBackedProjects;
   setActiveSidebar: Dispatch<SetStateAction<ETabsForBackedProjects>>;
   project: IBackedProject | null | undefined;
-  milestones: Array<IMilestone> | null | undefined;
+  milestones: Array<IMilestone & { address: string }> | null | undefined;
   milestonePolls: Array<IMilestoneAchievementPoll> | null | undefined;
   updates: Array<IProjectUpdate>;
   changePolls: Array<IDecisionMakingPoll>;

@@ -17,6 +17,7 @@ import {
   mockProjectsData,
 } from "@/lib/mock";
 import { IFundingTier } from "@/lib/schema/raise.schema";
+import { IMilestone } from "@/lib/types/milestones.types";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
 const BackedProjectsContext = createContext<IProjectDetailContext>({
@@ -48,9 +49,10 @@ export const BackedProjectsProvider = ({
   );
 
   // mock milestones
-  const milestones = mockProjectMilestones?.filter(
-    (mock) => mock.project_dao_id === projectAddress
-  );
+  const milestones: Array<IMilestone & { address: string }> =
+    mockProjectMilestones?.filter(
+      (mock) => mock.project_dao_id === projectAddress
+    );
 
   // mock milestone polls
   const milestonePolls = mockProjectMilestonePolls?.filter(
