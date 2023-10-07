@@ -22,7 +22,8 @@ export const Polls = () => {
   };
 
   const handleConfirmation = (selectedOption: string) => {
-    alert(selectedOption);
+    alert(`Trigger phantom wallet to vote for: ${selectedOption}`);
+    setCompletionModalIsOpen(false);
   };
 
   return (
@@ -88,7 +89,7 @@ export const Polls = () => {
                 size={"md"}
                 className="w-fit"
                 disabled={!hasPollStarted}
-                onClick={() => console.log("vote")}
+                onClick={() => handleClickPoll(poll)}
               >
                 Submit your vote
               </Button>

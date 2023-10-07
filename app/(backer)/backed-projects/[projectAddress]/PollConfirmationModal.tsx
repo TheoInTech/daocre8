@@ -33,17 +33,24 @@ export const PollConfirmationModal = ({
     <AlertDialog open={isOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="flex flex-col gap-2 pb-2 text-xl font-semibold text-gradient-primary">
+          <AlertDialogTitle className="flex flex-col gap-2 pb-2 text-xl font-semibold text-gradient-violet">
             {question}
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-4 pt-4 border-t border-t-border">
+          <AlertDialogDescription className="flex flex-col gap-4 pt-4 border-t border-t-border ">
             <RadioGroup
               defaultValue="comfortable"
               onValueChange={setSelectedOption}
             >
               {options.map((option) => (
-                <div key={option} className="flex items-center space-x-2">
-                  <RadioGroupItem value={option} id={option} />
+                <div
+                  key={option}
+                  className="flex items-center space-x-2 text-foreground"
+                >
+                  <RadioGroupItem
+                    value={option}
+                    id={option}
+                    className="border-black"
+                  />
                   <Label htmlFor="r1">{option}</Label>
                 </div>
               ))}
