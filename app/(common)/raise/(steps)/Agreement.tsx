@@ -20,7 +20,7 @@ export const Agreement = () => {
         <li>Projects should be transparent</li>
         <li>Project should not offer investment returns</li>
         <li>Projects should not offer equity</li>
-        <li>Projects cant&apos;t raise funds of charity</li>
+        <li>Projects can&apos;t raise funds of charity</li>
       </ul>
       <FormButtons onSubmit={handleAgree} />
     </div>
