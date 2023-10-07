@@ -92,7 +92,7 @@ export const Polls = () => {
                   disabled={!hasPollStarted}
                   onClick={() => handleClickPoll(poll)}
                 >
-                  Submit your vote
+                  Cast your vote
                 </Button>
               </div>
             );
