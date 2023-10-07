@@ -102,7 +102,9 @@ export const Milestones = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {milestonePoll?.start_datetime && (
                     <Detail
-                      title={"Poll starts in"}
+                      title={
+                        hasPollStarted ? "Poll started in" : "Poll starts in"
+                      }
                       value={
                         <CountdownTimer
                           className="font-bold"

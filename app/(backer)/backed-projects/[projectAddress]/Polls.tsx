@@ -46,7 +46,7 @@ export const Polls = () => {
                 className="card-glass grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
               >
                 <Detail
-                  title={"Poll starts in"}
+                  title={hasPollStarted ? "Poll started in" : "Poll starts in"}
                   value={
                     <CountdownTimer
                       className="font-bold"
