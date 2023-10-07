@@ -1,4 +1,4 @@
-import { IFormData } from "@/lib/schema/raise.schema";
+import { IFormData, IFundingTier } from "@/lib/schema/raise.schema";
 import { IMilestone } from "@/lib/types/milestones.types";
 import {
   IDecisionMakingPoll,
@@ -30,4 +30,5 @@ export interface IProjectDetailContext {
   milestonePolls: Array<IMilestoneAchievementPoll> | null | undefined;
   updates: Array<IProjectUpdate>;
   changePolls: Array<IDecisionMakingPoll>;
+  tiers: Array<IFundingTier> | null | undefined;
 }

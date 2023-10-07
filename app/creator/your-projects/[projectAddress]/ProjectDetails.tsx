@@ -300,6 +300,10 @@ export const ProjectDetails = () => {
           />
         </form>
       </Form>
+
+      <Button onClick={form.handleSubmit(handleSubmit)} className="self-end">
+        Update
+      </Button>
     </div>
   );
 };

@@ -13,6 +13,7 @@ import {
   mockProjectUpdates,
   mockProjectsData,
 } from "@/lib/mock";
+import { IFundingTier } from "@/lib/schema/raise.schema";
 import { IProjectUpdate } from "@/lib/types/updates.types";
 
 const ProjectDetailContext = createContext<IProjectDetailContext>({
@@ -23,6 +24,7 @@ const ProjectDetailContext = createContext<IProjectDetailContext>({
   milestonePolls: [],
   updates: [],
   changePolls: [],
+  tiers: [],
 });
 
 export const ProjectDetailProvider = ({
@@ -62,6 +64,10 @@ export const ProjectDetailProvider = ({
     (mock) => mock.projectAddress === projectAddress
   ) as unknown as Array<IProjectUpdate>;
 
+  // mock tiers and rewards
+  const tiers =
+    project?.project_ipfs_hash?.fundingTiers ?? ([] as Array<IFundingTier>);
+
   return (
     <ProjectDetailContext.Provider
       value={{
@@ -72,6 +78,7 @@ export const ProjectDetailProvider = ({
         milestonePolls,
         updates,
         changePolls,
+        tiers,
       }}
     >
       {children}
