@@ -1,7 +1,6 @@
 use anchor_lang::prelude::*;
 use solana_program::{program::invoke, system_instruction};
 
-pub mod errors;
 pub mod state;
 use crate::errors::*;
 use crate::escrow::state::*;

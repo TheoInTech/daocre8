@@ -1,7 +1,6 @@
 use anchor_lang::prelude::*;
 
 pub mod constant;
-pub mod errors;
 pub mod state;
 use crate::creator::{constant::*, state::*};
 use crate::errors::*;
@@ -57,7 +56,10 @@ pub fn initialize_project_dao(
 pub struct InitializeProjectDao<'info> {
     #[account(
         mut,
-        seeds = [CREATOR_TAG, authority.key().as_ref()],
+        seeds = [
+            CREATOR_TAG,
+            authority.key().as_ref()
+        ],
         bump,
         has_one = authority,
     )]
@@ -65,7 +67,11 @@ pub struct InitializeProjectDao<'info> {
 
     #[account(
         init,
-        seeds = [PROJECT_DAO_TAG, authority.key().as_ref()],
+        seeds = [
+            PROJECT_DAO_TAG,
+            creator_profile.key().as_ref(),
+            &[creator_profile.last_project_dao as u8].as_ref()
+        ],
         bump,
         payer = authority,
         space = 8 + std::mem::size_of::<ProjectDaoAccount>()

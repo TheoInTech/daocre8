@@ -22,7 +22,7 @@ pub struct InitializeCreator<'info> {
 
     #[account(
         init,
-        seeds = [CREATOR_TAG,authority.key().as_ref()],
+        seeds = [CREATOR_TAG, authority.key().as_ref()],
         bump,
         payer = authority,
         space = 8 + std::mem::size_of::<CreatorProfile>(),

@@ -1,7 +1,6 @@
 use anchor_lang::prelude::*;
 
 pub mod constant;
-pub mod errors;
 pub mod state;
 use crate::creator_nft::{constant::*, state::*};
 use crate::errors::*;

@@ -74,6 +74,7 @@ pub mod daocre8 {
     // Polls
     pub fn initialize_decision_making_poll(
         ctx: Context<InitializeDecisionMakingPollAccount>,
+        project_dao: Pubkey,
         question: String,
         options: Vec<String>,
         start_datetime: i64,
@@ -81,6 +82,7 @@ pub mod daocre8 {
     ) -> Result<()> {
         polls::initialize_decision_making_poll(
             ctx,
+            project_dao,
             question,
             options,
             start_datetime,
@@ -91,12 +93,14 @@ pub mod daocre8 {
 
     pub fn initialize_milestone_achievement_poll(
         ctx: Context<InitializeMilestoneAchievementPollAccount>,
+        project_dao: Pubkey,
         milestone_id: Pubkey,
         start_datetime: i64,
         end_datetime: i64
     ) -> Result<()> {
         polls::initialize_milestone_achievement_poll(
             ctx,
+            project_dao,
             milestone_id,
             start_datetime,
             end_datetime
