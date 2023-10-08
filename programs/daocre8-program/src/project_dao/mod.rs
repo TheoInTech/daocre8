@@ -2,9 +2,9 @@ use anchor_lang::prelude::*;
 
 pub mod constant;
 pub mod state;
-use crate::creator::{constant::*, state::*};
+use crate::creator::{ constant::*, state::* };
 use crate::errors::*;
-use crate::project_dao::{constant::*, state::*};
+use crate::project_dao::{ constant::*, state::* };
 
 pub fn initialize_project_dao(
     ctx: Context<InitializeProjectDao>,
@@ -12,19 +12,21 @@ pub fn initialize_project_dao(
     fundraise_end_date: i64,
     launch_date: i64,
     funding_amount: u128,
-    capital_percentage: u128,
+    capital_percentage: u128
 ) -> Result<()> {
     // Check if any of the fields are empty
-    if project_ipfs_hash.is_empty()
-        || fundraise_end_date == 0
-        || launch_date == 0
-        || funding_amount == 0
-        || capital_percentage == 0
+    if
+        project_ipfs_hash.is_empty() ||
+        fundraise_end_date == 0 ||
+        launch_date == 0 ||
+        funding_amount == 0 ||
+        capital_percentage == 0
     {
         return Err(DAOCre8Error::FieldNotEmpty.into());
     }
 
     let project_dao_account = &mut ctx.accounts.project_dao_account;
+    let creator_profile = &mut ctx.accounts.creator_profile;
 
     // Populate the Project DAO Account PDA fields
     project_dao_account.authority = ctx.accounts.authority.key();
@@ -43,6 +45,12 @@ pub fn initialize_project_dao(
     project_dao_account.last_milestone_poll = 0;
     project_dao_account.decision_polls_count = 0;
     project_dao_account.milestone_polls_count = 0;
+
+    // Increase project_dao idx for Creator PDA
+    creator_profile.last_project_dao = creator_profile.last_project_dao.checked_add(1).unwrap();
+
+    // Increase total project_dao for Creator PDA
+    creator_profile.project_dao_count = creator_profile.project_dao_count.checked_add(1).unwrap();
 
     msg!(
         "Initialized Project DAO {} with Metadata, Milestones, and Polls",
@@ -70,7 +78,7 @@ pub struct InitializeProjectDao<'info> {
         seeds = [
             PROJECT_DAO_TAG,
             creator_profile.key().as_ref(),
-            &[creator_profile.last_project_dao as u8].as_ref()
+            &[creator_profile.last_project_dao as u8].as_ref(),
         ],
         bump,
         payer = authority,
