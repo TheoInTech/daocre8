@@ -22,6 +22,8 @@ DAOCre-8 is a Solana-based decentralized application that empowers realization o
 - **REST API & [SWR](https://swr.vercel.app/)**: Used for server-backend operations, enabling data fetching, mutations, and real-time updates.
 - [**Solana Rust**](https://solana.com/): Powers the blockchain backend of our application ensuring security, scalability, and decentralization.
 - [**Anchor**](https://project-serum.github.io/anchor/): A framework for Solana Rust, simplifying the development of Solana programs.
+- [**Ironforge**](https://www.ironforge.cloud/): As an abstraction layer and collaboration tool, Ironforge improves application scalability and reliability, lowers the cost of expensive RPC calls, facilitates knowledge sharing, and generally simplifies the process of building and sending requests to the blockchain.
+- [**Metaplex Program**](https://github.com/metaplex-foundation/metaplex): Used its crate handling and managing NFT and its metadata.
 - [**Apollo GraphQL**](https://www.apollographql.com/): Facilitates querying our data in a more efficient, powerful and flexible manner.
 - [**Bundlr**](https://getbundlr.com/): Provides decentralized storage solutions, ensuring data persistence and availability.
 
