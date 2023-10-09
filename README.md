@@ -27,6 +27,10 @@ DAOCre-8 is a Solana-based decentralized application that empowers realization o
 - [**Apollo GraphQL**](https://www.apollographql.com/): Facilitates querying our data in a more efficient, powerful and flexible manner.
 - [**Bundlr**](https://getbundlr.com/): Provides decentralized storage solutions, ensuring data persistence and availability.
 
+## Solana Program Architecture
+
+![Solana Program Architecture](https://demo.daocre8.com/assets/architecture.jpg)
+
 ## Contributing
 
 We welcome contributions! Please see the [contributing guide](CONTRIBUTING.md) for more details.
