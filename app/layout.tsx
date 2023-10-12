@@ -55,7 +55,7 @@ const gordita = localFont({
 });
 
 export const metadata: Metadata = {
-  // metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_HOST_URL ?? ""),
   title: {
     default: meta.longName,
     template: `%s | ${meta.longName}`,
@@ -69,13 +69,13 @@ export const metadata: Metadata = {
     siteName: meta.longName,
     locale: "en-US",
     type: "website",
-    // images: [
-    //   {
-    //     url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
-    //     width: 2560,
-    //     height: 1440,
-    //   },
-    // ],
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`,
+        width: 2560,
+        height: 1440,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -92,8 +92,8 @@ export const metadata: Metadata = {
     title: meta.longName,
     card: "summary_large_image",
     description: meta.description,
-    creator: "@_theindiehacker",
-    // images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
+    creator: "@DAOCre8",
+    images: [`${process.env.NEXT_PUBLIC_HOST_URL ?? ""}/og-image.png`],
   },
   viewport: {
     width: "device-width",
