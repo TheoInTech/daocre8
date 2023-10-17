@@ -1,65 +1,98 @@
-import Irys from "@irys/sdk";
+import { Tag } from "@/lib/types/irys.types";
+import { WebIrys } from "@irys/sdk";
 
 function useIrys() {
   const getIrys = async () => {
-    const url = "https://devnet.irys.xyz";
-    const token = "solana";
-    const providerUrl = "https://api.devnet.solana.com";
+    const url =
+      process.env.NEXT_PUBLIC_IRYS_NODE_URL || "https://devnet.irys.xyz";
+    const token = process.env.NEXT_PUBLIC_IRYS_TOKEN || "solana";
+    const providerUrl =
+      process.env.NEXT_PUBLIC_IRYS_PROVIDER_URL ||
+      "https://api.devnet.solana.com";
 
-    const irys = new Irys({
-      url, // URL of the node you want to connect to
-      token, // Token used for payment
-      key: process.env.WALLET_PRIVATE_KEY, // SOL private key
-      config: { providerUrl }, // Optional provider URL, only required when using Devnet
-    });
+    // Obtain the server's public key
+    const pubKeyRes = (await (
+      await fetch("/api/publicKeySOL")
+    ).json()) as unknown as {
+      pubKey: string;
+    };
+    const pubKey = Buffer.from(pubKeyRes.pubKey, "hex");
+    console.log("got pubKey=", pubKey);
+
+    // Create a provider
+    const provider = {
+      publicKey: {
+        toBuffer: () => pubKey,
+        byteLength: 32,
+      },
+      signMessage: async (message: Uint8Array) => {
+        let convertedMsg = Buffer.from(message).toString("hex");
+        const res = await fetch("/api/signDataSOL", {
+          method: "POST",
+          body: JSON.stringify({
+            signatureData: convertedMsg,
+          }),
+        });
+        const { signature } = await res.json();
+        const bSig = Buffer.from(signature, "hex");
+        return bSig;
+      },
+    };
+
+    // Create a new WebIrys object using the provider created with server info.
+    const wallet = {
+      rpcURL: providerUrl,
+      name: token,
+      provider: provider,
+    };
+    const irys = new WebIrys({ url, token: token, wallet });
 
     return irys;
   };
 
-  const fundNode = async () => {
+  const gaslessFundAndUploadFiles = async (files: File[], tags: Tag[]) => {
     const irys = await getIrys();
+
     try {
-      const fundTx = await irys.fund(irys.utils.toAtomic(0.05));
+      await irys.ready();
+      console.log("WebIrys=", irys);
+
+      console.log("Uploading files...");
+      const tx = await irys.uploadFolder(files);
+
       console.log(
-        `Successfully funded ${irys.utils.fromAtomic(fundTx.quantity)} ${
-          irys.token
-        }`
+        `Files uploaded. Manifest Id=${tx.manifestId} Receipt Id=${tx.id}`
       );
-    } catch (e) {
-      console.log("Error uploading data ", e);
+
+      return tx.id;
+    } catch (error) {
+      console.log("Error uploading file ", error);
     }
   };
 
-  const uploadData = async () => {
+  const gaslessFundAndUploadData = async (data: string, tags: Tag[]) => {
     const irys = await getIrys();
-    const dataToUpload = "GM world.";
-    try {
-      const receipt = await irys.upload(dataToUpload);
-      console.log(`Data uploaded ==> https://gateway.irys.xyz/${receipt.id}`);
-    } catch (e) {
-      console.log("Error uploading data ", e);
-    }
-  };
-
-  const uploadFile = async () => {
-    const irys = await getIrys();
-    // Your file
-    const fileToUpload = "./myImage.png";
-
-    const tags = [{ name: "application-id", value: "MyNFTDrop" }];
 
     try {
-      const receipt = await irys.uploadFile(fileToUpload, { tags });
-      console.log(`File uploaded ==> https://gateway.irys.xyz/${receipt.id}`);
-    } catch (e) {
-      console.log("Error uploading file ", e);
+      await irys.ready();
+      console.log("WebIrys=", irys);
+
+      console.log("Uploading data...");
+      const tx = await irys.upload(data, {
+        tags,
+      });
+
+      console.log(`Data uploaded ==> https://gateway.irys.xyz/${tx.id}`);
+
+      return tx.id;
+    } catch (error) {
+      console.log("Error uploading data ", error);
     }
   };
 
   return {
-    fundNode,
-    uploadData,
-    uploadFile,
+    gaslessFundAndUploadFiles,
+    gaslessFundAndUploadData,
   };
 }
 
