@@ -12,7 +12,7 @@ function useIrys() {
 
     // Obtain the server's public key
     const pubKeyRes = (await (
-      await fetch("/api/publicKeySOL")
+      await fetch("/api/irys/publicKeySOL")
     ).json()) as unknown as {
       pubKey: string;
     };
@@ -27,7 +27,7 @@ function useIrys() {
       },
       signMessage: async (message: Uint8Array) => {
         let convertedMsg = Buffer.from(message).toString("hex");
-        const res = await fetch("/api/signDataSOL", {
+        const res = await fetch("/api/irys/signDataSOL", {
           method: "POST",
           body: JSON.stringify({
             signatureData: convertedMsg,
@@ -50,7 +50,7 @@ function useIrys() {
     return irys;
   };
 
-  const gaslessFundAndUploadFiles = async (files: File[], tags: Tag[]) => {
+  const gaslessFundAndUploadFiles = async (files: File[]) => {
     const irys = await getIrys();
 
     try {

@@ -44,7 +44,7 @@ export enum ECurrency {
   USD = "USD",
 }
 
-const MAX_FILE_SIZE = 500000;
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB in bytes;
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -250,7 +250,7 @@ export const BasicDetailsSchema = z
     },
     {
       message: "Launch date must be after fundraise's end date",
-      path: ["fundraiseEndDate"],
+      path: ["launchDate"],
     }
   );
 

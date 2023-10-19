@@ -61,7 +61,7 @@ export const Navbar = () => {
           Join our waitlist.
         </Link>
       </div>
-      <div className="flex px-4 md:px-20 text-lg py-4 bg-black/80 items-center justify-between backdrop-blur-sm shadow-md">
+      <div className="relative flex px-4 md:px-20 text-lg py-4 bg-black/80 items-center justify-between backdrop-blur-sm shadow-md">
         <Link
           href="/"
           className="hover:bg-muted/20 p-4 rounded-lg"

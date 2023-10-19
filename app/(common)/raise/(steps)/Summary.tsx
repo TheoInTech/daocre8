@@ -3,6 +3,7 @@ import { FormButtons } from "@/common/raise/FormButtons";
 import { useFormState } from "@/common/raise/FormContext";
 import { SummaryTitle } from "@/common/raise/SummaryTitle";
 import { Button } from "@/components/ui/button";
+import useIrys from "@/lib/hooks/useIrys";
 import { EStep } from "@/lib/schema/raise.schema";
 import { TCompletion } from "@/lib/types/raise.types";
 import { cn } from "@/lib/utils/cn";
@@ -17,11 +18,35 @@ const summaryButtons = [
 ];
 
 export const Summary = () => {
-  const { setStep, completion } = useFormState();
+  const { setStep, completion, formData } = useFormState();
+  const { gaslessFundAndUploadFiles } = useIrys();
   const [completionModalIsOpen, setCompletionModalIsOpen] =
     useState<boolean>(false);
 
-  const handleConfirmation = () => {
+  const handleConfirmation = async () => {
+    console.log("formData=", formData);
+
+    // Consolidate the required files into a single array
+    const files = [
+      formData.basicDetails.imageUrl,
+      formData.basicDetails.pdfUrl,
+      ...formData.fundingTiers.map((tier) => tier.imageUrl),
+    ];
+
+    // Add the optional video if it exists
+    formData.basicDetails?.videoUrl &&
+      files.push(formData.basicDetails.videoUrl);
+
+    console.log("files=", files);
+
+    // const uploadResponse = await gaslessFundAndUploadFiles(files);
+
+    // console.log("uploadResponse=", uploadResponse);
+
+    // TODO:
+    // 1. Communicate with the solana program to stake the SOL
+    // 2. Once stake is successful, start the upload to Irys
+    // 3. Once uploaded to Irys, communicate with the solana program to mint the NFT, create the Project DAO and save the hash
     setStep(EStep.FINAL);
   };
 
