@@ -51,7 +51,6 @@ export const FormButtons = ({
     case EStep.BASIC_DETAILS:
     case EStep.MILESTONES:
     case EStep.REWARDS:
-    // case EStep.STORY:
     case EStep.TEAM:
       render = (
         <>
