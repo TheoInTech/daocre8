@@ -26,6 +26,9 @@ export const Summary = () => {
     useState<boolean>(false);
 
   const handleConfirmation = async () => {
+    // TODO:
+    // 1. Communicate with the solana program to stake the SOL
+    // 2. Once stake is successful, start the upload to Irys
     console.log("formData=", formData);
 
     // Consolidate the required files into a single array
@@ -71,10 +74,9 @@ export const Summary = () => {
     //   console.error(error);
     // }
 
-    // TODO:
-    // 1. Communicate with the solana program to stake the SOL
-    // 2. Once stake is successful, start the upload to Irys
     // 3. Once uploaded to Irys, communicate with the solana program to mint the NFT, create the Project DAO and save the hash
+
+    // 4. Go to the NFT giving page
     setStep(EStep.FINAL);
   };
 
