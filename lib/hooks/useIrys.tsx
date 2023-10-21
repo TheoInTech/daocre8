@@ -27,6 +27,7 @@ function useIrys() {
       },
       signMessage: async (message: Uint8Array) => {
         let convertedMsg = Buffer.from(message).toString("hex");
+
         const res = await fetch("/api/irys/signDataSOL", {
           method: "POST",
           body: JSON.stringify({
@@ -34,6 +35,8 @@ function useIrys() {
           }),
         });
         const { signature } = await res.json();
+        console.log("signature=", signature);
+
         const bSig = Buffer.from(signature, "hex");
         return bSig;
       },
@@ -57,6 +60,22 @@ function useIrys() {
       await irys.ready();
       console.log("WebIrys=", irys);
 
+      const numBytes = files.reduce((acc, file) => acc + file.size, 0);
+      // Convert from atomic units to standard units
+      const priceConverted = irys.utils.fromAtomic(numBytes);
+      console.log(
+        `You will be uploading ${numBytes} bytes costs ${priceConverted}`
+      );
+
+      console.log("Funding Irys...");
+      const fundTx = await fetch("/api/irys/lazyFundSOL", {
+        method: "POST",
+        body: JSON.stringify({
+          fileSize: numBytes,
+        }),
+      });
+      console.log("Funding successful at:, ", fundTx);
+
       console.log("Uploading files...");
       const tx = await irys.uploadFolder(files);
 
@@ -64,7 +83,7 @@ function useIrys() {
         `Files uploaded. Manifest Id=${tx.manifestId} Receipt Id=${tx.id}`
       );
 
-      return tx.id;
+      return tx;
     } catch (error) {
       console.log("Error uploading file ", error);
     }
@@ -79,7 +98,7 @@ function useIrys() {
 
       console.log("Uploading data...");
       const tx = await irys.upload(data, {
-        tags,
+        tags: [...tags, { name: "project", value: "DAOCre-8" }],
       });
 
       console.log(`Data uploaded ==> https://gateway.irys.xyz/${tx.id}`);

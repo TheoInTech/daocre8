@@ -222,7 +222,10 @@ export const BasicDetailsSchema = z
     imageUrl: ImageSchema,
     pdfUrl: PDFSchema,
     videoUrl: VideoSchemaOptional,
-    inspiration: z.string().nonempty("Please tell us more about your story."),
+    inspiration: z
+      .string()
+      .nonempty("Please tell us more about your story.")
+      .max(1000, "Inspiration must be less than 1000 characters"),
     fundraiseEndDate: z
       .string()
       .refine((val) => !isPreviousDate(val), {
@@ -255,7 +258,7 @@ export const BasicDetailsSchema = z
   );
 
 export const FormDataSchema = z.object({
-  category: z.union([z.nativeEnum(ECategory), z.literal(null)]),
+  category: z.nativeEnum(ECategory),
   basicDetails: BasicDetailsSchema,
   team: TeamSchema,
   fundingTiers: z.array(FundingTierSchema),

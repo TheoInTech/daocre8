@@ -7,6 +7,7 @@ import useIrys from "@/lib/hooks/useIrys";
 import { EStep } from "@/lib/schema/raise.schema";
 import { TCompletion } from "@/lib/types/raise.types";
 import { cn } from "@/lib/utils/cn";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { CheckCircle, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
@@ -19,7 +20,8 @@ const summaryButtons = [
 
 export const Summary = () => {
   const { setStep, completion, formData } = useFormState();
-  const { gaslessFundAndUploadFiles } = useIrys();
+  const { publicKey } = useWallet();
+  const { gaslessFundAndUploadFiles, gaslessFundAndUploadData } = useIrys();
   const [completionModalIsOpen, setCompletionModalIsOpen] =
     useState<boolean>(false);
 
@@ -39,9 +41,35 @@ export const Summary = () => {
 
     console.log("files=", files);
 
-    // const uploadResponse = await gaslessFundAndUploadFiles(files);
+    // try {
+    //   const fileUploadResponse = await gaslessFundAndUploadFiles(files);
+    //   console.log("fileUploadResponse=", fileUploadResponse);
 
-    // console.log("uploadResponse=", uploadResponse);
+    //   if (!fileUploadResponse) {
+    //     throw new Error("Error uploading files");
+    //   }
+
+    //   const dataToBeUploaded = formatProjectDataForIrys(
+    //     formData,
+    //     fileUploadResponse.manifestId
+    //   );
+
+    //   console.log("dataToBeUploaded=", dataToBeUploaded);
+    //   console.log("Uploading whole project...");
+    //   const dataUploadResponse = await gaslessFundAndUploadData(
+    //     JSON.stringify(dataToBeUploaded),
+    //     [
+    //       {
+    //         name: "user",
+    //         value: publicKey!.toBase58(),
+    //       },
+    //     ]
+    //   );
+
+    //   console.log("dataUploadResponse=", dataUploadResponse);
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
     // TODO:
     // 1. Communicate with the solana program to stake the SOL

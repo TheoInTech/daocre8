@@ -144,7 +144,7 @@ export const BasicDetails = () => {
                   <Textarea
                     placeholder="I'm doing this project because..."
                     className="resize-none"
-                    maxLength={250}
+                    maxLength={1000}
                     {...field}
                   />
                 </FormControl>
