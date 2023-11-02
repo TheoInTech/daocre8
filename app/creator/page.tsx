@@ -1,11 +1,20 @@
+"use client";
+
+import { PageTitle } from "@/app/PageTitle";
 import { AIPoweredInsights } from "@/app/creator/(creator-profile)/AIPoweredInsights";
 import { CreatorBehaviorInsights } from "@/app/creator/(creator-profile)/CreatorBehaviorInsights";
 import { CreatorSummary } from "@/app/creator/(creator-profile)/CreatorSummary";
 import { EngagementAnalytics } from "@/app/creator/(creator-profile)/EngagementAnalytics";
-import { PageTitle } from "@/app/PageTitle";
+import crypto from "crypto";
+import { useEffect } from "react";
 // import { NoProjects } from "@/creator/NoProjects";
 
 const CreatorPage = () => {
+  useEffect(() => {
+    const anchor = Buffer.from(crypto.randomBytes(16)).toString("hex");
+    console.log("anchor=", anchor);
+  }, []);
+
   return (
     <>
       <PageTitle
