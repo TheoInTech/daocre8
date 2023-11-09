@@ -1,0 +1,9 @@
+- name: GitSync: Sync GitHub and Azure DevOps activities
+  # You may pin to the exact commit or the version.
+  # uses: a11smiles/GitSync@a290e901e8980264b27140ecd554d337a4fc2957
+  uses: a11smiles/GitSync@v1.2.2
+  with:
+    # An alternate Azure DevOps configuration from GitHub secrets
+    ado: # optional
+    # An alternate GitHub configuration from GitHub secrets
+    github: # optional
