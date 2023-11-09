@@ -2947,6 +2947,20 @@
     "@solana/wallet-adapter-base" "^0.9.17"
     js-base64 "^3.7.2"
 
+"@solana/addresses@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/addresses/-/addresses-2.0.0-experimental.a23ca33.tgz#05dbdcf7c07e23660dac623e55b7caadde58955f"
+  integrity sha512-AJoQ9/BatJtpw/usaoILoSu6iVWBI3bdlL63Obxf6UUkVKZy1zgsNGm9KSNfROnnqnlqBTJk20Kdyju9Oh8izA==
+  dependencies:
+    "@solana/assertions" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-core" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-strings" "2.0.0-experimental.a23ca33"
+
+"@solana/assertions@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/assertions/-/assertions-2.0.0-experimental.a23ca33.tgz#68ce72742277de2a282047954b7b6d92d76fd59a"
+  integrity sha512-QNaOHRaf11uelkFwEiKjtMuURIXbMnozPsw5DcD8EFkGKK3oBhDgUKN17MYyRpJ5vWcjnSilZk4CAJZYTOP+1g==
+
 "@solana/buffer-layout-utils@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@solana/buffer-layout-utils/-/buffer-layout-utils-0.2.0.tgz#b45a6cab3293a2eb7597cceb474f229889d875ca"
@@ -2964,6 +2978,66 @@
   dependencies:
     buffer "~6.0.3"
 
+"@solana/codecs-core@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/codecs-core/-/codecs-core-2.0.0-experimental.a23ca33.tgz#a5ce8d9fd754a99bbc661e73606045f466c388bf"
+  integrity sha512-I+uEjbRSNxUv4PesALcDKjv82ej+AzUh469/QsVa+hbki7Qe1Tg5GnyOWURxNpOuFAitSE7t0NQapQiHSTFeBQ==
+
+"@solana/codecs-data-structures@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/codecs-data-structures/-/codecs-data-structures-2.0.0-experimental.a23ca33.tgz#56461cdc1a5dca8a25f6a7d431ac8065b0a0b257"
+  integrity sha512-Uv4RVarehCK8XAcCYtD4Mbl/wyQA6rSFzMAwlreqDbPxArj4mFRwqSc6fW31yAYkObjDZbqig/sPfjX5nkfTLA==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-numbers" "2.0.0-experimental.a23ca33"
+
+"@solana/codecs-numbers@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/codecs-numbers/-/codecs-numbers-2.0.0-experimental.a23ca33.tgz#5bdfa4ef1de7283f8ead717421a13daba4cefa80"
+  integrity sha512-MiyOsbinRxNO/jcsxIz5+1JB4rYT9hoQQ2zcHMB/Wu2KM80WATgoiNgV2ZLIkw/G1cDsJ42q9emw4zChQJOo0Q==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-experimental.a23ca33"
+
+"@solana/codecs-strings@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/codecs-strings/-/codecs-strings-2.0.0-experimental.a23ca33.tgz#c4556136b93e5308dd239cf3d377f48ad5620777"
+  integrity sha512-bNeV6ukzCZ1yEWMw20eAp8cy1f36gFcQ+E/IL2uzbj3YuBwwsyYXZsZcD2Fd2gbcWdW6fXqW/QZLGRsYVFLprw==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-numbers" "2.0.0-experimental.a23ca33"
+
+"@solana/functional@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/functional/-/functional-2.0.0-experimental.a23ca33.tgz#e12fce5254de9710dd87535d6f8afaf8fa5bb3d1"
+  integrity sha512-seoepeG7UERPXtSyTlwD0TpR6NsTBJ//nirw1Hzvl/sQ8mvEtsq8xZnCme7gqm4B7EikkJVLeVLsKv59yiHLiA==
+
+"@solana/instructions@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/instructions/-/instructions-2.0.0-experimental.a23ca33.tgz#460c5b51641c0a65b279c88d48f5a012239979f6"
+  integrity sha512-S+ix9E6idEqf+Lil1Bhb5t+GxMPT7gV1kdiORsm0ZkkcWXcUIN2VjytAYyWtrp/xh6nBd2M3rTpRhuPr/L+/Ew==
+
+"@solana/keys@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/keys/-/keys-2.0.0-experimental.a23ca33.tgz#89df0180341fed1b170dab8aba3969ff2bf758c0"
+  integrity sha512-78ApP9AE57N/JMQ/WIdlXdIm4V7xw7ZJ9DrPsV3iNwoQ3qpmmYdpcsJBoW5pOhRWnNV0LrXjZXlRY7l8hCzp0Q==
+  dependencies:
+    "@solana/assertions" "2.0.0-experimental.a23ca33"
+
+"@solana/rpc-core@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/rpc-core/-/rpc-core-2.0.0-experimental.a23ca33.tgz#b3832cbc383217df11d518893ae3ad1e9c15879d"
+  integrity sha512-bYAe05/o3dfKBe4LFOfczDzV345zMVi7JebhSETSo1/SVlwAePjIRcR48IeIyUOvm5QbKdCotPJEaccpk3zapw==
+
+"@solana/rpc-transport@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/rpc-transport/-/rpc-transport-2.0.0-experimental.a23ca33.tgz#2f837f158f510b6d20e7669d5a896bcc5751dc6b"
+  integrity sha512-nogpCKAY+yD2HyA8D/NBhAtADlYAzm6dFUVJSqEdSIyzxy+uqWo1BDPbJfBW74SvgvbHYftrXCROnYbj28HL4Q==
+
+"@solana/rpc-types@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/rpc-types/-/rpc-types-2.0.0-experimental.a23ca33.tgz#1d1203c7f2fc109819463268be0014608a6e1c84"
+  integrity sha512-qSN9JM/Zoz0Rv19Llf2Qiqilu5uKEp3XJBSfwGLZb/bHQQNOu8yIXC5i17iRKMpbp2qMNXegncGvOH/e/3DO5w==
+
 "@solana/spl-token@^0.3.8":
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/@solana/spl-token/-/spl-token-0.3.8.tgz#8e9515ea876e40a4cc1040af865f61fc51d27edf"
@@ -2972,6 +3046,19 @@
     "@solana/buffer-layout" "^4.0.0"
     "@solana/buffer-layout-utils" "^0.2.0"
     buffer "^6.0.3"
+
+"@solana/transactions@2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/transactions/-/transactions-2.0.0-experimental.a23ca33.tgz#041205b9e85a3939331b9eebeae3424b5901dc70"
+  integrity sha512-59UW9RqhUDO/m+Hg5aEmjBYYucUbovXPgj8i6JJ6rmEHinoWrYCjHAuWIHf02ixsvINGn7w83rF4O6V0I8abGw==
+  dependencies:
+    "@solana/addresses" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-core" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-data-structures" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-numbers" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-strings" "2.0.0-experimental.a23ca33"
+    "@solana/functional" "2.0.0-experimental.a23ca33"
+    "@solana/keys" "2.0.0-experimental.a23ca33"
 
 "@solana/wallet-adapter-alpha@^0.1.10":
   version "0.1.10"
@@ -3372,7 +3459,7 @@
     "@wallet-standard/app" "^1.0.1"
     "@wallet-standard/base" "^1.0.1"
 
-"@solana/web3.js@^1.32.0", "@solana/web3.js@^1.36.0", "@solana/web3.js@^1.44.3", "@solana/web3.js@^1.63.1", "@solana/web3.js@^1.68.0", "@solana/web3.js@^1.78.4":
+"@solana/web3.js@^1.32.0", "@solana/web3.js@^1.36.0", "@solana/web3.js@^1.44.3", "@solana/web3.js@^1.63.1", "@solana/web3.js@^1.68.0":
   version "1.78.5"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.78.5.tgz#591cd47423cdb0b5e5cb7e8dc4dc70b2abe02f80"
   integrity sha512-2ZHsDNqkKdglJQrIvJ3p2DmgS3cGnary3VJyqt9C1SPrpAtLYzcElr3xyXJOznyQTU/8AMw+GoF11lFoKbicKg==
@@ -3392,6 +3479,22 @@
     node-fetch "^2.6.12"
     rpc-websockets "^7.5.1"
     superstruct "^0.14.2"
+
+"@solana/web3.js@^2.0.0-experimental.a23ca33":
+  version "2.0.0-experimental.a23ca33"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-2.0.0-experimental.a23ca33.tgz#156604fc5433b3b83712eb4057843ab6fa7a7f51"
+  integrity sha512-3Lsn/a16ynq7DVkkcV0OKOMDPPST58Dt3FIlGcbDVPmMAQVMQo5t4wdnJbz04WCwYS0cIH1Qpc+pyY+hYRJ5lw==
+  dependencies:
+    "@solana/addresses" "2.0.0-experimental.a23ca33"
+    "@solana/codecs-strings" "2.0.0-experimental.a23ca33"
+    "@solana/functional" "2.0.0-experimental.a23ca33"
+    "@solana/instructions" "2.0.0-experimental.a23ca33"
+    "@solana/keys" "2.0.0-experimental.a23ca33"
+    "@solana/rpc-core" "2.0.0-experimental.a23ca33"
+    "@solana/rpc-transport" "2.0.0-experimental.a23ca33"
+    "@solana/rpc-types" "2.0.0-experimental.a23ca33"
+    "@solana/transactions" "2.0.0-experimental.a23ca33"
+    fast-stable-stringify "^1.0.0"
 
 "@solflare-wallet/metamask-sdk@^1.0.2":
   version "1.0.2"
